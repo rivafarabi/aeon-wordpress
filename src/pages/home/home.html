@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar color="danger">
+    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+    <ion-title>WP Client</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 col-md-3 *ngFor="let item of posts">
+        <ion-card (click)="goToPost(item.id, item.featuredmedia.source_url)">
+          <img *ngIf="item.featuredmedia" [src]="item.featuredmedia.source_url">
+          <div *ngIf="item.title" class="post-title" [innerHTML]="item.title.rendered"></div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-infinite-scroll (ionInfinite)="loadMorePosts($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

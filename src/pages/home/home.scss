@@ -1,0 +1,33 @@
+page-home {
+   $grid-columns: 6;
+   $grid-padding-width: 3px;
+   ion-grid{
+      padding:0px !important;
+   }
+   ion-col{
+      padding: 0 !important;
+   }
+   ion-card{
+      position: relative;
+      text-align: left;
+      height: 160px;
+      width: 100% !important;
+      margin: 0px !important;
+      border-radius: 0px !important;
+      img{
+         object-fit: cover;
+         height: 160px;
+      }
+   }
+   .post-title{
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      padding:10px 20px 10px 20px;
+      background-color:  rgba(#222, 0.8);
+      color: #fff;
+      font-size: 9pt;
+      white-space: pre-line;
+   }
+
+}

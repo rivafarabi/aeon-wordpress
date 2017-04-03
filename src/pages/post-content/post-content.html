@@ -1,0 +1,25 @@
+<ion-header no-border [ngClass]="{'hide-header':showheader,'show-header':hideheader}">
+  <ion-navbar color="danger" no-border-bottom>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon item-right  name="ios-bookmark-outline" (click)="toggleBookmark()"></ion-icon>
+      </button>
+      <button ion-button icon-only>
+        <ion-icon item-right  ios="ios-share" md="md-share" (click)="toggleBookmark()"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding (scroll)="console.log('scroll!!')">
+  <div class="featured-media">
+    <div [ngStyle]="{'background-image': 'url(' + postMedia +')'}"></div>
+    <h1 *ngIf="postContent.title" [innerHTML]="postContent.title.rendered" color="light"></h1>
+  </div>
+  <ion-item no-lines class="post-detail">
+    <ion-icon item-left color="primary" name="calendar"></ion-icon> 
+    <ion-label>{{postContent.date | date}}</ion-label>
+  </ion-item>
+  <div class="content-container" *ngIf="postContent.content" [innerHTML]="postContent.content.rendered"></div>
+</ion-content>
