@@ -1,18 +1,17 @@
-<!--
-  Generated template for the PostList page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>postList</ion-title>
+  <ion-navbar color="danger">
+    <ion-title><span [innerHTML]="pageTitle"></span></ion-title>
   </ion-navbar>
 
 </ion-header>
-
-
-<ion-content padding>
-
+<ion-content>
+<ion-list>
+  <button ion-item *ngFor="let item of posts" (click)="goToPost(item.id, item.featuredmedia.source_url)">
+    <ion-thumbnail item-left>
+      <img *ngIf="item.featuredmedia" [src]="item.featuredmedia.source_url">
+    </ion-thumbnail>
+    <h2 [innerHTML]="item.title.rendered"></h2>
+    <p></p>
+  </button>
+</ion-list>
 </ion-content>

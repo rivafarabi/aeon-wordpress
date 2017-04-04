@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import 'rxjs/Rx';
 
 import { ApiUrl } from '../constants/api-url.var';
@@ -11,8 +11,10 @@ export class ClientService {
 
     }
 
-    getListPosts(page: number) {
-        return this.http.get(`${this.api.GET_POSTS}?page=${page}`)
+    getListPosts(page: number, options?: any) {
+        let opts: string;
+        opts = options == null ? '' : `&${options.type}=${options.id}`;
+        return this.http.get(`${this.api.GET_POSTS}?page=${page}${opts}`)
             .map(res => {
                 let posts = res.json();
                 posts.forEach(post => {
@@ -25,6 +27,11 @@ export class ClientService {
                 });
                 return posts;
             });
+    }
+
+    getListCategories(){
+        return this.http.get(this.api.GET_CATEGORIES)
+            .map((res: Response) => res.json())
     }
 
     getListTags() {

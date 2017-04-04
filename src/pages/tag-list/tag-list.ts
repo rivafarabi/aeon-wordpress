@@ -1,22 +1,38 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import 'rxjs/Rx'
 
-/*
-  Generated class for the TagList page.
+import { PostListPage } from '../post-list/post-list';
+import { ClientService } from '../../services/client.service'
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-tag-list',
-  templateUrl: 'tag-list.html'
+  templateUrl: 'tag-list.html',
+  providers: [ClientService]
 })
 export class TagListPage {
+  private tags: any;
+  
+  constructor(
+    public navCtrl: NavController,
+    public clientService: ClientService) {
+    this.fetchTags();
+  }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  fetchTags() {
+    this.clientService.getListTags()
+      .subscribe(res => {
+        this.tags = res;
+      })
+  }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TagListPage');
+  goToTag(id, name) {
+    this.navCtrl.push(
+      PostListPage, {
+        'type': 'tag',
+        'id': id,
+        'name': name
+      });
   }
 
 }

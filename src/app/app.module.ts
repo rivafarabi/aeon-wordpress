@@ -1,8 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
-import { ng2parallax } from 'ang2-parallax/ng2-parallax-directive/parallax.directive';
-
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { CategoryListPage } from '../pages/category-list/category-list';
@@ -19,8 +17,7 @@ import { CommentListPage } from '../pages/comment-list/comment-list';
     PostContentPage,
     TagListPage,
     PostListPage,
-    CommentListPage,
-    ng2parallax
+    CommentListPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)

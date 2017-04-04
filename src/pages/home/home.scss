@@ -17,6 +17,7 @@ page-home {
       img{
          object-fit: cover;
          height: 160px;
+         -webkit-filter: brightness(80%); 
       }
    }
    .post-title{
@@ -24,7 +25,7 @@ page-home {
       width: 100%;
       bottom: 0;
       padding:10px 20px 10px 20px;
-      background-color:  rgba(#222, 0.8);
+      background: linear-gradient(to bottom, transparent, #222) !important;
       color: #fff;
       font-size: 9pt;
       white-space: pre-line;

@@ -12,7 +12,7 @@
 </ion-header>
 
 
-<ion-content padding (scroll)="console.log('scroll!!')">
+<ion-content padding>
   <div class="featured-media">
     <div [ngStyle]="{'background-image': 'url(' + postMedia +')'}"></div>
     <h1 *ngIf="postContent.title" [innerHTML]="postContent.title.rendered" color="light"></h1>

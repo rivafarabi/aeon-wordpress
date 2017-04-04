@@ -40,12 +40,10 @@ page-post-content {
     }
 }
       div {
-         background-attachment: fixed;
          background-position: center;
          background-repeat: no-repeat !important;
          background-position-x: center !important;
          background-size: cover;
-
          height: 300px;
          border: none !important;
          -webkit-filter: brightness(50%); 
@@ -56,7 +54,7 @@ page-post-content {
    }
    .content-container{
       pointer-events: none;
-      font-size: 14pt;
+      font-size: 11pt;
       img{
          width: 100%;
          height: auto
