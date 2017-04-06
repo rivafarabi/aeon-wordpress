@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/Rx';
 
+import { Post } from '../model/post.model';
 import { ApiUrl } from '../constants/api-url.var';
 
 @Injectable()
@@ -29,13 +30,13 @@ export class ClientService {
             });
     }
 
-    getListCategories(){
-        return this.http.get(this.api.GET_CATEGORIES)
+    getListCategories(page){
+        return this.http.get(`${this.api.GET_CATEGORIES}?page=${page}`)
             .map((res: Response) => res.json())
     }
 
-    getListTags() {
-        return this.http.get(this.api.GET_TAGS)
+    getListTags(page) {
+        return this.http.get(`${this.api.GET_TAGS}?page=${page}`)
             .map((res: Response) => res.json())
     }
 
@@ -67,7 +68,7 @@ export class ClientService {
         return this.http.get(`${this.api.GET_POSTS}/${id}`)
         .map((res: Response) => res.json())
         .map(res=>{
-            return res;
+            return new Post(res.title, res.date, res.content);
         });
     }
 }

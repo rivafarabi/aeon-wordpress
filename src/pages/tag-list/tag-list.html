@@ -4,9 +4,15 @@
     <ion-title>Tags</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
-<ion-list>
-  <ion-item *ngFor="let item of tags" [innerHTML]="item.name" >
-  </ion-item>
-</ion-list>
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let item of tags" (click)="goToTag(item.id, item.name)">
+      <span [innerHTML]="item.name"></span>
+      <ion-note item-right>{{item.count}}</ion-note>
+    </button>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="loadMoreTags($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

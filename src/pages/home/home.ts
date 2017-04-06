@@ -11,8 +11,8 @@ import { ClientService } from '../../services/client.service';
   providers: [ClientService]
 })
 export class HomePage {
-  public posts: any;
-  public page: number;
+  private posts: any;
+  private page: number;
 
   constructor(
     public navCtrl: NavController,

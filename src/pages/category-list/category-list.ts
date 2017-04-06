@@ -12,15 +12,17 @@ import { ClientService } from '../../services/client.service'
 })
 export class CategoryListPage {
   private categories: any;
+  private page: number;
 
   constructor(
     public navCtrl: NavController,
     public clientService: ClientService) {
+    this.page = 1;
     this.fetchCategories();
   }
 
   fetchCategories() {
-    this.clientService.getListCategories()
+    this.clientService.getListCategories(this.page)
       .subscribe(res => {
         this.categories = res;
       })
@@ -33,6 +35,19 @@ export class CategoryListPage {
         'id': id,
         'name': name
       });
+  }
+
+  loadMoreCategories(infiniteScroll){
+    this.page++;
+    setTimeout(() => {
+      this.clientService.getListCategories(this.page)
+        .subscribe(res => {
+          res.forEach(element => {
+            this.categories.push(element)
+          });
+          infiniteScroll.complete();
+        })
+    }, 500)
   }
 
 }

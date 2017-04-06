@@ -12,15 +12,17 @@ import { ClientService } from '../../services/client.service'
 })
 export class TagListPage {
   private tags: any;
+  private page: number;
   
   constructor(
     public navCtrl: NavController,
     public clientService: ClientService) {
+    this.page = 1;
     this.fetchTags();
   }
 
   fetchTags() {
-    this.clientService.getListTags()
+    this.clientService.getListTags(this.page)
       .subscribe(res => {
         this.tags = res;
       })
@@ -29,10 +31,23 @@ export class TagListPage {
   goToTag(id, name) {
     this.navCtrl.push(
       PostListPage, {
-        'type': 'tag',
+        'type': 'tags',
         'id': id,
         'name': name
       });
+  }
+
+  loadMoreTags(infiniteScroll){
+    this.page++;
+    setTimeout(() => {
+      this.clientService.getListTags(this.page)
+        .subscribe(res => {
+          res.forEach(element => {
+            this.tags.push(element)
+          });
+          infiniteScroll.complete();
+        })
+    }, 500)
   }
 
 }

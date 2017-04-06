@@ -56,15 +56,7 @@ export class PostContentPage {
     this.clientService.getPostContent(id)
       .subscribe(res => {
         this.postContent = res;
-        console.log(this.postContent);
       })
-  }
-
-  toggleFabOverlay(){
-    this.showFabOverlay = !this.showFabOverlay;
-    if(this.showFabOverlay){
-
-    }
   }
 
   toggleBookmark(fab: FabContainer){
