@@ -29,7 +29,6 @@ export class PostContentPage {
     ) {
     this.postId = this.navParams.get("postId");
     this.postMedia = this.navParams.get("postMedia");
-    console.log(this.postMedia);
     this.getPostContent(this.postId);
     this.showFabOverlay = false;
   }

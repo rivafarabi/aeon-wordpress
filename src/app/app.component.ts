@@ -9,7 +9,6 @@ import { TagListPage } from '../pages/tag-list/tag-list';
 import { PostListPage } from '../pages/post-list/post-list';
 import { CommentListPage } from '../pages/comment-list/comment-list';
 
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -20,7 +19,9 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform) {
+  constructor(
+    public platform: Platform
+    ) {
     this.initializeApp();
 
     this.pages = [
