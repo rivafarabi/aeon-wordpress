@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { ImgLoader } from 'ionic-image-loader';
 import 'rxjs/Rx'
 
 import { PostContentPage } from '../post-content/post-content';
@@ -25,6 +26,7 @@ export class HomePage {
     this.clientService.getListPosts(this.page)
       .subscribe(res => {
         this.posts = res;
+        console.log(this.posts);
       })
   }
 
@@ -47,5 +49,9 @@ export class HomePage {
         'postId': id,
         'postMedia': media
       });
+  }
+
+  onImageLoad(imgLoader: ImgLoader){
+    imgLoader.element.parentElement.parentElement.className = "fade-in";
   }
 }

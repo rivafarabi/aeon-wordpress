@@ -60,7 +60,7 @@ export class ClientService {
         return this.http.get(this.api.GET_MEDIA + id)
             .map((res: Response) => res.json())
             .map(res => {
-                return res;
+                return res.source_url;
             });
     }
 

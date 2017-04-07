@@ -14,6 +14,11 @@ page-home {
       width: 100% !important;
       margin: 0px !important;
       border-radius: 0px !important;
+      opacity: 0;
+      &.fade-in{
+        opacity: 1;
+        transition : opacity 0.5s ease;
+      }
       img{
          object-fit: cover;
          height: 160px;
