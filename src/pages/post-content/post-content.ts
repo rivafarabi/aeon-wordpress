@@ -2,10 +2,12 @@ import { Component, ElementRef } from '@angular/core';
 import { NavController, NavParams, ToastController, FabContainer } from 'ionic-angular';
 import { ClientService } from '../../services/client.service';
 
+import { SocialSharing } from '@ionic-native/social-sharing';
+
 @Component({
   selector: 'page-post-content',
   templateUrl: 'post-content.html',
-  providers: [ClientService]
+  providers: [ClientService, SocialSharing]
 })
 export class PostContentPage {
   private postId: number;
@@ -25,7 +27,8 @@ export class PostContentPage {
     public navParams: NavParams,
     public clientService: ClientService,
     public elementRef: ElementRef,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private socialSharing: SocialSharing
     ) {
     this.postId = this.navParams.get("postId");
     this.postMedia = this.navParams.get("postMedia");
@@ -69,6 +72,11 @@ export class PostContentPage {
 
     console.log("hahaha")
     fab.close();
+  }
+
+  sharePost(link){
+    console.log(link);
+    this.socialSharing.share("","", null, link);
   }
 
 }

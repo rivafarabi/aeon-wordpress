@@ -6,7 +6,7 @@
 </ion-header>
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of categories" (click)="goToCategory(item.id, item.name)">
+    <button ion-item *ngFor="let item of categories" (tap)="goToCategory(item.id, item.name)">
       <span [innerHTML]="item.name"></span>
       <ion-note item-right>{{item.count}}</ion-note>
     </button>

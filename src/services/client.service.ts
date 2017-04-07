@@ -17,27 +17,40 @@ export class ClientService {
         opts = options == null ? '' : `&${options.type}=${options.id}`;
         return this.http.get(`${this.api.GET_POSTS}?page=${page}${opts}`)
             .map(res => {
-                let posts = res.json();
-                posts.forEach(post => {
-                    if (post.featured_media) {
-                        this.getMedia(post.featured_media)
+                let postJson = res.json();
+                postJson.forEach(postItem => {
+                    if (postItem.featured_media) {
+                        this.getMedia(postItem.featured_media)
                             .subscribe(res => {
-                                post.media_url = res;
+                                postItem.media_url = res;
                             })
                     }
-                    if (post.author) {
-                        this.getAuthor(post.author)
+                    if (postItem.author) {
+                        this.getAuthor(postItem.author)
                             .subscribe(res => {
-                                post.author_name = res;
+                                postItem.author_name = res;
                             })
                     }
                 });
-                console.log(posts);
-                return posts;
-            });
+                return postJson;
+            })
+            // .map(res => {
+            //     let postList = [];
+            //     res.forEach(resItem => {
+            //         console.log(resItem.author_name);
+            //         postList.push(new Post(
+            //             resItem.id,
+            //             resItem.title,
+            //             resItem.author_name,
+            //             resItem.date,
+            //             resItem.media_url,
+            //             resItem.content));
+            //     })
+            //     return postList;
+            // });
     }
 
-    getListCategories(page: number){
+    getListCategories(page: number) {
         return this.http.get(`${this.api.GET_CATEGORIES}?page=${page}`)
             .map((res: Response) => res.json())
     }
@@ -71,7 +84,7 @@ export class ClientService {
             });
     }
 
-    getAuthor(id: number){
+    getAuthor(id: number) {
         return this.http.get(this.api.GET_USER + id)
             .map((res: Response) => res.json())
             .map(res => {
@@ -81,9 +94,10 @@ export class ClientService {
 
     getPostContent(id: number) {
         return this.http.get(`${this.api.GET_POSTS}/${id}`)
-        .map((res: Response) => res.json())
-        .map(res=>{
-            return new Post(res.title, res.date, res.content);
-        });
+            .map((res: Response) => res.json())
+            .map(res => {
+                return res;
+                // return new Post(res.title, res.date, res.content);
+            });
     }
 }

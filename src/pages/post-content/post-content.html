@@ -2,10 +2,10 @@
   <ion-navbar color="danger" no-border-bottom>
     <ion-buttons end>
       <button ion-button icon-only>
-        <ion-icon item-right  name="ios-bookmark-outline" (click)="toggleBookmark()"></ion-icon>
+        <ion-icon item-right  name="ios-bookmark-outline" (tap)="toggleBookmark()"></ion-icon>
       </button>
-      <button ion-button icon-only>
-        <ion-icon item-right  ios="ios-share" md="md-share" (click)="toggleBookmark()"></ion-icon>
+      <button ion-button icon-only *ngIf="postContent.link" (tap)="sharePost(postContent.link)">
+        <ion-icon  item-right  ios="ios-share" md="md-share"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -14,7 +14,7 @@
 
 <ion-content padding>
   <div class="featured-media">
-    <div [ngStyle]="{'background-image': 'url(' + postMedia +')'}"></div>
+    <img-loader [src]="postMedia"></img-loader>
     <h1 *ngIf="postContent.title" [innerHTML]="postContent.title.rendered" color="light"></h1>
   </div>
   <ion-item no-lines class="post-detail">

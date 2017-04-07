@@ -6,9 +6,9 @@
 </ion-header>
 <ion-content>
 <ion-list>
-  <button ion-item *ngFor="let item of posts" (click)="goToPost(item.id, item.featuredmedia.source_url)">
+  <button ion-item *ngFor="let item of posts" (tap)="goToPost(item.id, item.media_url)">
     <ion-thumbnail item-left>
-      <img *ngIf="item.featuredmedia" [src]="item.featuredmedia">
+      <img *ngIf="item.media_url" [src]="item.media_url">
     </ion-thumbnail>
     <h2 [innerHTML]="item.title.rendered"></h2>
     <p></p>
