@@ -22,20 +22,27 @@ export class ClientService {
                     if (post.featured_media) {
                         this.getMedia(post.featured_media)
                             .subscribe(res => {
-                                post.featuredmedia = res;
+                                post.media_url = res;
+                            })
+                    }
+                    if (post.author) {
+                        this.getAuthor(post.author)
+                            .subscribe(res => {
+                                post.author_name = res;
                             })
                     }
                 });
+                console.log(posts);
                 return posts;
             });
     }
 
-    getListCategories(page){
+    getListCategories(page: number){
         return this.http.get(`${this.api.GET_CATEGORIES}?page=${page}`)
             .map((res: Response) => res.json())
     }
 
-    getListTags(page) {
+    getListTags(page: number) {
         return this.http.get(`${this.api.GET_TAGS}?page=${page}`)
             .map((res: Response) => res.json())
     }
@@ -61,6 +68,14 @@ export class ClientService {
             .map((res: Response) => res.json())
             .map(res => {
                 return res.source_url;
+            });
+    }
+
+    getAuthor(id: number){
+        return this.http.get(this.api.GET_USER + id)
+            .map((res: Response) => res.json())
+            .map(res => {
+                return res.name;
             });
     }
 

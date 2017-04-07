@@ -6,4 +6,5 @@ export class ApiUrl {
     public GET_PAGES = `${this.WP_URL}/pages/`;
     public GET_COMMENTS = `${this.WP_URL}/comments/`;
     public GET_MEDIA = `${this.WP_URL}/media/`;
+    public GET_USER = `${this.WP_URL}/users/`;
 }
