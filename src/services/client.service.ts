@@ -34,20 +34,6 @@ export class ClientService {
                 });
                 return postJson;
             })
-            // .map(res => {
-            //     let postList = [];
-            //     res.forEach(resItem => {
-            //         console.log(resItem.author_name);
-            //         postList.push(new Post(
-            //             resItem.id,
-            //             resItem.title,
-            //             resItem.author_name,
-            //             resItem.date,
-            //             resItem.media_url,
-            //             resItem.content));
-            //     })
-            //     return postList;
-            // });
     }
 
     getListCategories(page: number) {
@@ -80,7 +66,7 @@ export class ClientService {
         return this.http.get(this.api.GET_MEDIA + id)
             .map((res: Response) => res.json())
             .map(res => {
-                return res.source_url;
+                return res.media_details.sizes.featured_thumbnail.source_url;
             });
     }
 
@@ -97,7 +83,6 @@ export class ClientService {
             .map((res: Response) => res.json())
             .map(res => {
                 return res;
-                // return new Post(res.title, res.date, res.content);
             });
     }
 }
