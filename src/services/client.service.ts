@@ -66,7 +66,10 @@ export class ClientService {
         return this.http.get(this.api.GET_MEDIA + id)
             .map((res: Response) => res.json())
             .map(res => {
-                return res.media_details.sizes.featured_thumbnail.source_url;
+                return {
+                    thumbnail: res.media_details.sizes.featured_thumbnail.source_url,
+                    featured: res.source_url
+                };
             });
     }
 
@@ -82,6 +85,19 @@ export class ClientService {
         return this.http.get(`${this.api.GET_POSTS}/${id}`)
             .map((res: Response) => res.json())
             .map(res => {
+                if (res.featured_media) {
+                    this.getMedia(res.featured_media)
+                        .subscribe(resMedia => {
+                            res.media_url = resMedia;
+                        })
+                }
+                if (res.author) {
+                    this.getAuthor(res.author)
+                        .subscribe(resAuthor => {
+                            res.author_name = resAuthor;
+                        })
+                }
+                console.log(res);
                 return res;
             });
     }

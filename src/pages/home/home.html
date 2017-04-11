@@ -9,14 +9,14 @@
   <ion-grid>
     <ion-row>
       <ion-col col-12>
-        <ion-card *ngIf="posts" (tap)="goToPost(posts[0].id, posts[0].media_url)">
-          <img-loader *ngIf="posts[0].media_url" (load)="onImageLoad($event)" [src]="posts[0].media_url" useImg></img-loader>
+        <ion-card *ngIf="posts" (tap)="goToPost(posts[0].id)">
+          <img-loader *ngIf="posts[0].media_url" (load)="onImageLoad($event)" [src]="posts[0].media_url.thumbnail" useImg></img-loader>
           <div *ngIf="posts[0].title" class="post-title" [innerHTML]="posts[0].title.rendered"></div>
         </ion-card>  
       </ion-col> 
       <ion-col col-6 col-md-3 *ngFor="let item of posts | slice: 1">
-        <ion-card *ngIf="item.media_url" (tap)="goToPost(item.id, item.media_url)">
-          <img-loader *ngIf="item.media_url" (load)="onImageLoad($event)" [src]="item.media_url" useImg></img-loader>
+        <ion-card *ngIf="item.media_url" (tap)="goToPost(item.id)">
+          <img-loader *ngIf="item.media_url" (load)="onImageLoad($event)" [src]="item.media_url.thumbnail" useImg></img-loader>
           <div *ngIf="item.title" class="post-title" [innerHTML]="item.title.rendered"></div>
         </ion-card>
       </ion-col>

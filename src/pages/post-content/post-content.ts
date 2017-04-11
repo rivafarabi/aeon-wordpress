@@ -20,8 +20,7 @@ export class PostContentPage {
   private showheader: boolean;
   private hideheader: boolean;
   private headercontent: any;
-  private showFabOverlay: boolean;
-
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -33,7 +32,6 @@ export class PostContentPage {
     this.postId = this.navParams.get("postId");
     this.postMedia = this.navParams.get("postMedia");
     this.getPostContent(this.postId);
-    this.showFabOverlay = false;
   }
 
   ionViewDidLoad() {
@@ -62,16 +60,13 @@ export class PostContentPage {
       })
   }
 
-  toggleBookmark(fab: FabContainer){
+  toggleBookmark(){
     let toast = this.toastCtrl.create({
       message: 'Bookmark added!',
       duration: 3000,
       position: 'bottom'
     })
     toast.present();
-
-    console.log("hahaha")
-    fab.close();
   }
 
   sharePost(link){

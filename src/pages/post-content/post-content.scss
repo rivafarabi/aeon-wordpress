@@ -28,22 +28,26 @@ page-post-content {
       left: -16px;
       width: calc(100% + 32px);
       height: 300px;
-      h1{
+      div{
          position: absolute;
          bottom: 0;
-         width: 100%;
          margin: 16px;
+         h6{
+             text-align: right;
+             text-transform: uppercase;
+             font-weight: bolder;
+         }
+         span{
+             text-align: right;
+             text-transform: uppercase;
+             font-weight: bolder;
+         }
       }
-      @media only screen and (max-device-width: 1024px) {
-    div {
-        background-attachment: scroll;
-    }
-}
-      div {
+      img-loader {
          background-position: center;
          background-repeat: no-repeat !important;
          background-position-x: center !important;
-         background-size: cover;
+         background-size: cover !important;
          height: 300px;
          border: none !important;
          -webkit-filter: brightness(50%); 

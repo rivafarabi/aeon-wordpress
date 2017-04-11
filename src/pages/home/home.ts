@@ -43,11 +43,10 @@ export class HomePage {
     }, 500)
   }
 
-  goToPost(id, media) {
+  goToPost(id) {
     this.navCtrl.push(
       PostContentPage, {
-        'postId': id,
-        'postMedia': media
+        'postId': id
       });
   }
 
