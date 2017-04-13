@@ -1,8 +1,8 @@
 <ion-header no-border [ngClass]="{'hide-header':showheader,'show-header':hideheader}">
   <ion-navbar color="danger" no-border-bottom>
     <ion-buttons end>
-      <button ion-button icon-only>
-        <ion-icon item-right  name="ios-bookmark-outline" (tap)="toggleBookmark(postContent)"></ion-icon>
+      <button ion-button icon-only (tap)="toggleBookmark(postContent)">
+        <ion-icon item-right  name="ios-bookmark-outline"></ion-icon>
       </button>
       <button ion-button icon-only *ngIf="postContent.link" (tap)="sharePost(postContent.link)">
         <ion-icon  item-right  ios="ios-share" md="md-share"></ion-icon>
@@ -25,9 +25,5 @@
       </ion-row>
     </div>
   </div>
-  <ion-item no-lines class="post-detail">
-    <ion-icon item-left color="primary" name="calendar"></ion-icon>
-    <ion-label>{{postContent.date | date}}</ion-label>
-  </ion-item>
   <div class="content-container" *ngIf="postContent.content" [innerHTML]="postContent.content.rendered"></div>
 </ion-content>

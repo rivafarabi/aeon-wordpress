@@ -1,13 +1,14 @@
 import { Component, ElementRef } from '@angular/core';
-import { NavController, NavParams, ToastController, FabContainer } from 'ionic-angular';
-import { ClientService } from '../../services/client.service';
-
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { ClientService } from '../../services/client.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'page-post-content',
   templateUrl: 'post-content.html',
-  providers: [ClientService, SocialSharing]
+  providers: [ClientService, StorageService, NativeStorage, SocialSharing]
 })
 export class PostContentPage {
   private postId: number;
@@ -20,15 +21,16 @@ export class PostContentPage {
   private showheader: boolean;
   private hideheader: boolean;
   private headercontent: any;
-  
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public clientService: ClientService,
+    public storageService: StorageService,
     public elementRef: ElementRef,
     private toastCtrl: ToastController,
     private socialSharing: SocialSharing
-    ) {
+  ) {
     this.postId = this.navParams.get("postId");
     this.postMedia = this.navParams.get("postMedia");
     this.getPostContent(this.postId);
@@ -60,18 +62,20 @@ export class PostContentPage {
       })
   }
 
-  toggleBookmark(){
-    let toast = this.toastCtrl.create({
-      message: 'Bookmark added!',
-      duration: 3000,
-      position: 'bottom'
-    })
-    toast.present();
+  toggleBookmark(post) {
+    this.storageService.saveBookmark(post)
+      .subscribe(res => {
+        let toast = this.toastCtrl.create({
+          message: 'Bookmark added!',
+          duration: 3000,
+          position: 'bottom'
+        })
+        toast.present();
+      })
   }
 
-  sharePost(link){
-    console.log(link);
-    this.socialSharing.share("","", null, link);
+  sharePost(link) {
+    this.socialSharing.share("", "", null, link);
   }
 
 }
