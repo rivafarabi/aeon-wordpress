@@ -7,16 +7,15 @@ import { ClientService } from '../../services/client.service';
 
 @IonicPage()
 @Component({
-  selector: 'page-post-list',
-  templateUrl: 'post-list.html',
+  selector: 'page-bookmark',
+  templateUrl: 'bookmark.html',
   providers: [ClientService]
 })
-export class PostListPage {
+export class BookmarkPage {
   private pageTitle: string;
   private options: any;
   private posts: any;
   private page: number;
-  private onProgress: boolean;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -34,26 +33,10 @@ export class PostListPage {
     console.log('ionViewDidLoad PostListPage');
   }
   fetchPost(options: any) {
-    this.onProgress = true;
-    this.clientService.getListPosts(this.page, this.options)
-      .subscribe(res => {
-        this.posts = res;
-        this.onProgress = false;
-      })
+    
   }
 
-  loadMorePosts(infiniteScroll) {
-    this.page++;
-    setTimeout(() => {
-      this.clientService.getListPosts(this.page)
-        .subscribe(res => {
-          res.forEach(element => {
-            this.posts.push(element)
-          });
-          infiniteScroll.complete();
-        })
-    }, 500)
-  }
+  
 
   goToPost(id, media) {
     this.navCtrl.push(

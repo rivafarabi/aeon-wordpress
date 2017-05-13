@@ -1,30 +1,39 @@
 <ion-header>
-  <ion-navbar color="danger">
-    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-    <ion-title>WP Client</ion-title>
-  </ion-navbar>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+        <ion-title>WP Client</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only>
+                <ion-icon item-right name="search"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+    <ion-toolbar color="primary">
+        <ion-searchbar (ionInput)="searchPost($event)"></ion-searchbar>
+    </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col col-12>
-        <ion-card *ngIf="posts" (tap)="goToPost(posts[0].id)">
-          <img-loader *ngIf="posts[0].media_url" (load)="onImageLoad($event)" [src]="posts[0].media_url.thumbnail" useImg></img-loader>
-          <div *ngIf="posts[0].title" class="post-title" [innerHTML]="posts[0].title.rendered"></div>
-        </ion-card>  
-      </ion-col> 
-      <ion-col col-6 col-md-3 *ngFor="let item of posts | slice: 1">
-        <ion-card *ngIf="item.media_url" (tap)="goToPost(item.id)">
-          <img-loader *ngIf="item.media_url" (load)="onImageLoad($event)" [src]="item.media_url.thumbnail" useImg></img-loader>
-          <div *ngIf="item.title" class="post-title" [innerHTML]="item.title.rendered"></div>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-infinite-scroll (ionInfinite)="loadMorePosts($event)">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+    <ion-grid>
+        <ion-row align-items-start col-md-10 offset-md-1>
+            <ion-col col-12>
+                <ion-card *ngIf="posts" (tap)="goToPost(posts[0].id)">
+
+                    <img-loader *ngIf="posts[0].media_url" (load)="onImageLoad($event)" [src]="posts[0].media_url.thumbnail" useImg></img-loader>
+                    <span *ngIf="posts[0].category_name" class="post-category" [innerHTML]="posts[0].category_name" ion-text color="light"></span>
+                    <h2 *ngIf="posts[0].title" class="post-title" [innerHTML]="posts[0].title.rendered" ion-text color="light"></h2>
+                </ion-card>
+            </ion-col>
+            <ion-col col-6 *ngFor="let item of posts | slice: 1">
+                <ion-card *ngIf="item.media_url" (tap)="goToPost(item.id)">
+                    <img-loader *ngIf="item.media_url" (load)="onImageLoad($event)" [src]="item.media_url.thumbnail" useImg></img-loader>
+                    <span *ngIf="item.category_name" class="post-category" [innerHTML]="item.category_name" ion-text color="light" text-right></span>
+                    <span *ngIf="item.title" class="post-title" [innerHTML]="item.title.rendered" ion-text color="light"></span>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-infinite-scroll (ionInfinite)="loadMorePosts($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

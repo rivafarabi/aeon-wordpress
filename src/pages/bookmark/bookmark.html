@@ -1,29 +1,25 @@
 <ion-header>
-    <ion-navbar color="primary">
-        <ion-title><span [innerHTML]="pageTitle"></span></ion-title>
+    <ion-navbar color="light">
+        <ion-title>Bookmark</ion-title>
     </ion-navbar>
-    <ion-toolbar color="primary">
+    <ion-toolbar>
         <ion-searchbar animated=true color="primary" (ionInput)="searchPost($event)"></ion-searchbar>
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <ion-grid *ngIf="posts">
-        <ion-row col-md-10 offset-md-1>
-            <ion-col class="post-item" col-12 col-md-6 *ngFor="let item of posts" (tap)="goToPost(item.id, item.media_url)">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12 col-md-6 *ngFor="let item of posts" (tap)="goToPost(item.id, item.media_url)">
                 <ion-row>
                     <ion-col class="post-thumbnail" col-4>
                         <img-loader *ngIf="item.media_url" (load)="onImageLoad($event)" [src]="item.media_url.thumbnail" useImg></img-loader>
                     </ion-col>
                     <ion-col *ngIf="item.title" col-8>
-                        <span class="post-title" class="post-title" [innerHTML]="item.title.rendered"></span><br>
+                        <h5 class="post-title" class="post-title" [innerHTML]="item.title.rendered"></h5>
                         <span class="post-date">{{item.date | date}}</span>
                     </ion-col>
                 </ion-row>
             </ion-col>
         </ion-row>
     </ion-grid>
-    <ion-infinite-scroll (ionInfinite)="loadMorePosts($event)">
-        <ion-infinite-scroll-content loadingSpinner="crescent">
-        </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
 </ion-content>

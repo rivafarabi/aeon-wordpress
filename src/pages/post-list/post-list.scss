@@ -1,3 +1,35 @@
 page-post-list {
-
+    $grid-padding-width: 3px;
+    ion-grid {
+        ion-row {
+            ion-col {
+                position: relative;
+                text-align: left;
+                height: width;
+                width: 100% !important;
+                margin: 0px !important;
+                border-radius: 0px !important;
+                &.post-item {
+                    border-bottom: 1px solid #ccc;
+                }
+                &.fade-in {
+                    opacity: 1;
+                    transition: opacity 1.0s ease;
+                }
+                img {
+                    object-fit: cover;
+                }
+                .post-title {
+                    font-weight: 700;
+                    margin-top: 8px;
+                }
+                .post-date {
+                    position: absolute;
+                    bottom: 8px;
+                    font-size: 1rem;
+                    text-transform: uppercase;
+                }
+            }
+        }
+    }
 }

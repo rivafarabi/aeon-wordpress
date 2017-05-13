@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import 'rxjs/Rx'
 
-import { PostListPage } from '../post-list/post-list';
 import { ClientService } from '../../services/client.service'
 
+@IonicPage()
 @Component({
   selector: 'page-tag-list',
   templateUrl: 'tag-list.html',
@@ -13,7 +13,7 @@ import { ClientService } from '../../services/client.service'
 export class TagListPage {
   private tags: any;
   private page: number;
-  
+
   constructor(
     public navCtrl: NavController,
     public clientService: ClientService) {
@@ -30,14 +30,14 @@ export class TagListPage {
 
   goToTag(id, name) {
     this.navCtrl.push(
-      PostListPage, {
+      "PostListPage", {
         'type': 'tags',
         'id': id,
         'name': name
       });
   }
 
-  loadMoreTags(infiniteScroll){
+  loadMoreTags(infiniteScroll) {
     this.page++;
     setTimeout(() => {
       this.clientService.getListTags(this.page)

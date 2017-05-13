@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { ImgLoader } from 'ionic-image-loader';
 import 'rxjs/Rx'
 
-import { PostContentPage } from '../post-content/post-content';
 import { ClientService } from '../../services/client.service';
 
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -14,12 +14,14 @@ import { ClientService } from '../../services/client.service';
 export class HomePage {
   private posts: any;
   private page: number;
+  private searchString: string;
 
   constructor(
     public navCtrl: NavController,
     public clientService: ClientService) {
     this.page = 1;
     this.fetchPost();
+    this.searchString = "";
   }
 
   fetchPost() {
@@ -43,9 +45,19 @@ export class HomePage {
     }, 500)
   }
 
+  searchPost(event: any){
+    this.navCtrl.push(
+      "PostListPage", {
+        'type': 'search',
+        'id': event.target.value,
+        'name': event.target.value
+      }
+    )
+  }
+
   goToPost(id) {
     this.navCtrl.push(
-      PostContentPage, {
+      "PostContentPage", {
         'postId': id
       });
   }

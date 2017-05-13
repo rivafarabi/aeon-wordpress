@@ -1,58 +1,36 @@
 import { Component, Injectable } from '@angular/core';
-import { NativeStorage } from '@ionic-native/native-storage';
+import { Platform } from 'ionic-angular';
 import 'rxjs/Rx';
 
 @Component({
-  providers: [NativeStorage]
+  providers: []
 })
 @Injectable()
 export class StorageService {
-   public bookmarkList: any = [];
-   
-   constructor(
-    private nativeStorage: NativeStorage
-  ) {
+  public bookmarkList: any = [];
+
+  constructor(private platform: Platform) {
+    this.platform.ready().then(() => {
+      
+    });
     this.fetchBookmark();
   }
 
-  fetchBookmark(){
+
+  fetchBookmark() {
     let response;
-    this.nativeStorage.getItem('bookmark')
-    .then(
-      data => this.bookmarkList = data,
-      error => {
-        console.log(error);
-        response = false;
-      }
-    )
     return this.bookmarkList;
   }
 
-  saveBookmark(postItem: any){
+  saveBookmark(postItem: any) {
+    console.log(postItem)
     let response;
-    this.bookmarkList.push(postItem);
-    this.nativeStorage.setItem('bookmark', postItem)
-    .then(
-      () => response = true,
-      error => {
-        console.log(error);
-        response = false;
-      }
-    )
-    return response;
   }
 
-  removeBookmark(postItem: any){
+  removeBookmark(postItem: any) {
     let response = false;
     this.bookmarkList.push(postItem);
-    this.nativeStorage.remove('bookmark')
-    .then(
-      () => response = true,
-      error => {
-        console.log(error);
-        response = false;
-      }
-    )
+
     return response;
   }
 

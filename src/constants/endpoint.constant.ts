@@ -1,4 +1,4 @@
-export class ApiUrl {
+export class Endpoint {
     private WP_URL = "https://finland.fi/wp-json/wp/v2";
     public GET_POSTS = `${this.WP_URL}/posts`;
     public GET_CATEGORIES = `${this.WP_URL}/categories/`;

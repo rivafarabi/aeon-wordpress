@@ -1,39 +1,45 @@
 page-home {
-   $grid-columns: 6;
-   $grid-padding-width: 3px;
-   ion-grid{
-      padding:0px !important;
-   }
-   ion-col{
-      padding: 0 !important;
-   }
-   ion-card{
-      position: relative;
-      text-align: left;
-      height: 160px;
-      width: 100% !important;
-      margin: 0px !important;
-      border-radius: 0px !important;
-      opacity: 0;
-      &.fade-in{
-        opacity: 1;
-        transition : opacity 1.0s ease;
-      }
-      img{
-         object-fit: cover;
-         height: 160px;
-         -webkit-filter: brightness(80%); 
-      }
-   }
-   .post-title{
-      position: absolute;
-      width: 100%;
-      bottom: 0;
-      padding:10px 20px 10px 20px;
-      background: linear-gradient(to bottom, transparent, #222) !important;
-      color: #fff;
-      font-size: 9pt;
-      white-space: pre-line;
-   }
-
+    $grid-columns: 6;
+    $grid-padding-width: 3px;
+    ion-card {
+        position: relative;
+        width: 100% !important;
+        margin: 0px !important;
+        border-radius: 0px !important;
+        &.fade-in {
+            opacity: 1;
+            transition: opacity 1.0s ease;
+        }
+        @media only screen and (min-width: 768px) {
+            height: 200px;
+        }
+        img {
+            object-fit: cover;
+            -webkit-filter: brightness(80%);
+        }
+    }
+    h1,
+    .post-title {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        margin: 0;
+        padding: 10px;
+        background: linear-gradient(to bottom, transparent, #222) !important;
+        // color: #fff;
+        white-space: pre-line;
+    }
+    .post-category {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        margin: 0;
+        padding: 10px;
+        background: linear-gradient(to top, transparent, #222) !important;
+        white-space: pre-line;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+    }
 }

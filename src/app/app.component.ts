@@ -2,20 +2,13 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-import { HomePage } from '../pages/home/home';
-import { CategoryListPage } from '../pages/category-list/category-list';
-import { PostContentPage } from '../pages/post-content/post-content';
-import { TagListPage } from '../pages/tag-list/tag-list';
-import { PostListPage } from '../pages/post-list/post-list';
-import { CommentListPage } from '../pages/comment-list/comment-list';
-
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = "HomePage";
 
   pages: Array<{title: string, component: any}>;
 
@@ -25,9 +18,10 @@ export class MyApp {
     this.initializeApp();
 
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Categories', component: CategoryListPage },
-      { title: 'Tags', component: TagListPage }
+      { title: 'Home', component: "HomePage" },
+      { title: 'Categories', component: "CategoryListPage" },
+      { title: 'Tags', component: "TagListPage" },
+      { title: 'Bookmark', component: "BookmarkPage" }
     ];
 
   }

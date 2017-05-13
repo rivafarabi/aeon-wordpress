@@ -1,29 +1,30 @@
 <ion-header no-border [ngClass]="{'hide-header':showheader,'show-header':hideheader}">
-  <ion-navbar color="danger" no-border-bottom>
-    <ion-buttons end>
-      <button ion-button icon-only (tap)="toggleBookmark(postContent)">
-        <ion-icon item-right  name="ios-bookmark-outline"></ion-icon>
-      </button>
-      <button ion-button icon-only *ngIf="postContent.link" (tap)="sharePost(postContent.link)">
+    <ion-navbar color="danger" no-border-bottom>
+        <ion-buttons end>
+            <button ion-button icon-only (tap)="toggleBookmark(postContent)">
+                <ion-icon item-right  name="ios-bookmark-outline"></ion-icon>
+            </button>
+            <button ion-button icon-only *ngIf="postContent.link" (tap)="sharePost(postContent.link)">
         <ion-icon  item-right  ios="ios-share" md="md-share"></ion-icon>
       </button>
-    </ion-buttons>
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <div class="featured-media">
-    <img-loader *ngIf="postContent.media_url" [src]="postContent.media_url.featured"></img-loader>
-    <div>
-      <h1 *ngIf="postContent.title" [innerHTML]="postContent.title.rendered" color="light"></h1>
-      <ion-row>
-        <ion-col col-6>
-          <span *ngIf="postContent.date" color="light">{{postContent.date | date}}</span>
-        </ion-col>
-        <ion-col col-6>
-          <span *ngIf="postContent.author_name" color="light">By {{postContent.author_name}}</span>
-        </ion-col>
-      </ion-row>
+    <div class="featured-media">
+        <img-loader *ngIf="postContent.media_url" [src]="postContent.media_url.featured"></img-loader>
+        <div>
+            <span class="post-category" *ngIf="postContent.category_name" [innerHTML]="postContent.category_name" ion-text color="light"></span>
+            <h1 *ngIf="postContent.title" ion-text [innerHTML]="postContent.title.rendered" color="light"></h1>
+            <ion-row>
+                <ion-col col-6>
+                    <span *ngIf="postContent.date" ion-text color="light">{{postContent.date | date}}</span>
+                </ion-col>
+                <ion-col col-6>
+                    <span *ngIf="postContent.author_name" ion-text color="light">By {{postContent.author_name}}</span>
+                </ion-col>
+            </ion-row>
+        </div>
     </div>
-  </div>
-  <div class="content-container" *ngIf="postContent.content" [innerHTML]="postContent.content.rendered"></div>
+    <ion-scroll scrollX="true" scrollY="true" class="content-container" *ngIf="postContent.content" [innerHTML]="postContent.content.rendered"></ion-scroll>
 </ion-content>

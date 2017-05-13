@@ -1,14 +1,15 @@
 import { Component, ElementRef } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { ClientService } from '../../services/client.service';
-import { StorageService } from '../../services/storage.service';
 
+import 'rxjs/Rx';
+@IonicPage()
 @Component({
   selector: 'page-post-content',
   templateUrl: 'post-content.html',
-  providers: [ClientService, StorageService, NativeStorage, SocialSharing]
+  providers: [ClientService, SocialSharing]
 })
 export class PostContentPage {
   private postId: number;
@@ -21,12 +22,10 @@ export class PostContentPage {
   private showheader: boolean;
   private hideheader: boolean;
   private headercontent: any;
-
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public clientService: ClientService,
-    public storageService: StorageService,
     public elementRef: ElementRef,
     private toastCtrl: ToastController,
     private socialSharing: SocialSharing
@@ -40,9 +39,7 @@ export class PostContentPage {
   }
 
   ngOnInit() {
-    // Ionic scroll element
     this.ionScroll = this.elementRef.nativeElement.getElementsByClassName('scroll-content')[0];
-    // On scroll function
     this.ionScroll.addEventListener("scroll", () => {
       if (this.ionScroll.scrollTop - this.start > this.threshold) {
         this.showheader = true;
@@ -63,15 +60,15 @@ export class PostContentPage {
   }
 
   toggleBookmark(post) {
-    this.storageService.saveBookmark(post)
-      .subscribe(res => {
-        let toast = this.toastCtrl.create({
-          message: 'Bookmark added!',
-          duration: 3000,
-          position: 'bottom'
-        })
-        toast.present();
-      })
+    // this.storageService.saveBookmark(post)
+    //   .then(res => {
+    //     let toast = this.toastCtrl.create({
+    //       message: 'Bookmark added!',
+    //       duration: 3000,
+    //       position: 'bottom'
+    //     })
+    //     toast.present();
+    //   })
   }
 
   sharePost(link) {

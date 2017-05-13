@@ -3,11 +3,11 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/Rx';
 
 import { Post } from '../model/post.model';
-import { ApiUrl } from '../constants/api-url.var';
+import { Endpoint } from '../constants/endpoint.constant';
 
 @Injectable()
 export class ClientService {
-    private api: ApiUrl = new ApiUrl();
+    private api: Endpoint = new Endpoint();
     constructor(private http: Http) {
 
     }
@@ -29,6 +29,12 @@ export class ClientService {
                         this.getAuthor(postItem.author)
                             .subscribe(res => {
                                 postItem.author_name = res;
+                            })
+                    }
+                    if (postItem.categories) {
+                        this.getCategory(postItem.categories[0])
+                            .subscribe(res => {
+                                postItem.category_name = res;
                             })
                     }
                 });
@@ -66,8 +72,9 @@ export class ClientService {
         return this.http.get(this.api.GET_MEDIA + id)
             .map((res: Response) => res.json())
             .map(res => {
+                let thumbnail_src = (res.media_details.sizes.thumbnail.source_url != null ? res.media_details.sizes.thumbnail.source_url : res.media_details.sizes.featured_thumbnail.source_url)
                 return {
-                    thumbnail: res.media_details.sizes.featured_thumbnail.source_url,
+                    thumbnail: thumbnail_src,
                     featured: res.source_url
                 };
             });
@@ -79,6 +86,14 @@ export class ClientService {
             .map(res => {
                 return res.name;
             });
+    }
+
+    getCategory(id: number) {
+        return this.http.get(this.api.GET_CATEGORIES + id)
+            .map((res: Response) => res.json())
+            .map(res => {
+                return res.name;
+            })
     }
 
     getPostContent(id: number) {
@@ -95,6 +110,12 @@ export class ClientService {
                     this.getAuthor(res.author)
                         .subscribe(resAuthor => {
                             res.author_name = resAuthor;
+                        })
+                }
+                if (res.categories) {
+                    this.getCategory(res.categories[0])
+                        .subscribe(resCategory => {
+                            res.category_name = resCategory;
                         })
                 }
                 console.log(res);

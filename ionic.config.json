@@ -1,6 +1,5 @@
 {
   "name": "WPClient2",
   "app_id": "c21ecdb6",
-  "v2": true,
-  "typescript": true
+  "type": "ionic-angular"
 }

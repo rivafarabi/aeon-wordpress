@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import 'rxjs/Rx'
 
-import { PostListPage } from '../post-list/post-list';
 import { ClientService } from '../../services/client.service'
 
+@IonicPage()
 @Component({
   selector: 'page-category-list',
   templateUrl: 'category-list.html',
@@ -30,14 +30,14 @@ export class CategoryListPage {
 
   goToCategory(id, name) {
     this.navCtrl.push(
-      PostListPage, {
+      "PostListPage", {
         'type': 'categories',
         'id': id,
         'name': name
       });
   }
 
-  loadMoreCategories(infiniteScroll){
+  loadMoreCategories(infiniteScroll) {
     this.page++;
     setTimeout(() => {
       this.clientService.getListCategories(this.page)
