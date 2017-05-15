@@ -1,18 +1,18 @@
 <ion-header>
-  <ion-navbar color="danger">
-    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-    <ion-title>Tags</ion-title>
-  </ion-navbar>
+    <ion-navbar color="danger">
+        <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+        <ion-title>Tags</ion-title>
+    </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of tags" (tap)="goToTag(item.id, item.name)">
+    <ion-list>
+        <button ion-item *ngFor="let item of tags" (click)="goToTag(item.id, item.name)">
       <span [innerHTML]="item.name"></span>
-      <ion-note item-right>{{item.count}}</ion-note>
+      <ion-note item-right color="danger">{{item.count}}</ion-note>
     </button>
-  </ion-list>
-  <ion-infinite-scroll (ionInfinite)="loadMoreTags($event)">
-    <ion-infinite-scroll-content loadingSpinner="bubbles">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="loadMoreTags($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

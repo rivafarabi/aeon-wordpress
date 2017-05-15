@@ -74,7 +74,7 @@ export class ClientService {
             .map(res => {
                 let thumbnail_src = (res.media_details.sizes.thumbnail.source_url != null ? res.media_details.sizes.thumbnail.source_url : res.media_details.sizes.featured_thumbnail.source_url)
                 return {
-                    thumbnail: thumbnail_src,
+                    sizes: res.media_details.sizes,
                     featured: res.source_url
                 };
             });

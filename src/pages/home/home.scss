@@ -1,11 +1,18 @@
 page-home {
-    $grid-columns: 6;
-    $grid-padding-width: 3px;
+    .search-bar-overlay {
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        background-color: black;
+        opacity: 0.8;
+        z-index: 10;
+    }
     ion-card {
         position: relative;
         width: 100% !important;
         margin: 0px !important;
         border-radius: 0px !important;
+        opacity: 0;
         &.fade-in {
             opacity: 1;
             transition: opacity 1.0s ease;
@@ -26,7 +33,6 @@ page-home {
         margin: 0;
         padding: 10px;
         background: linear-gradient(to bottom, transparent, #222) !important;
-        // color: #fff;
         white-space: pre-line;
     }
     .post-category {

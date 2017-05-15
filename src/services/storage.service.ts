@@ -16,7 +16,6 @@ export class StorageService {
     this.fetchBookmark();
   }
 
-
   fetchBookmark() {
     let response;
     return this.bookmarkList;

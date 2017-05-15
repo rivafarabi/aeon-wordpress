@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { ClientService } from '../../services/client.service';
+import { ImgLoader } from 'ionic-image-loader';
+import { ImageLoaderConfig } from 'ionic-image-loader';
 
 import 'rxjs/Rx';
 @IonicPage()
@@ -22,16 +24,23 @@ export class PostContentPage {
   private showheader: boolean;
   private hideheader: boolean;
   private headercontent: any;
+  private onProgress: boolean;
+  private onImgProgress: boolean;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public clientService: ClientService,
     public elementRef: ElementRef,
     private toastCtrl: ToastController,
-    private socialSharing: SocialSharing
+    private socialSharing: SocialSharing,
+    private imageLoaderConfig: ImageLoaderConfig
   ) {
+    imageLoaderConfig.enableSpinner(false);
     this.postId = this.navParams.get("postId");
     this.postMedia = this.navParams.get("postMedia");
+    this.onProgress = true;
+    this.onImgProgress = true;
     this.getPostContent(this.postId);
   }
 
@@ -56,6 +65,7 @@ export class PostContentPage {
     this.clientService.getPostContent(id)
       .subscribe(res => {
         this.postContent = res;
+        this.onProgress = false;
       })
   }
 

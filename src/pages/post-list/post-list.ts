@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ImgLoader } from 'ionic-image-loader';
 import 'rxjs/Rx'
@@ -15,11 +15,14 @@ export class PostListPage {
   private pageTitle: string;
   private options: any;
   private posts: any;
+  private imgThumbnail: any;
   private page: number;
   private onProgress: boolean;
+  private onInitProgress: boolean;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
+    public elementRef: ElementRef,
     public clientService: ClientService) {
     this.pageTitle = navParams.get('name');
     this.options = {
@@ -33,10 +36,15 @@ export class PostListPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad PostListPage');
   }
+  ngOnInit(){
+    this.imgThumbnail = this.elementRef.nativeElement.getElementsByClassName('post-thumbnail');
+  }
+
   fetchPost(options: any) {
     this.onProgress = true;
     this.clientService.getListPosts(this.page, this.options)
       .subscribe(res => {
+        this.onInitProgress = (this.page == 1 ? false : true);
         this.posts = res;
         this.onProgress = false;
       })
@@ -72,7 +80,7 @@ export class PostListPage {
     this.pageTitle = event.target.value;
   }
 
-  // onImageLoad(imgLoader: ImgLoader){
-  //   imgLoader.element.parentElement.parentElement.parentElement.className = "fade-in";
-  // }
+  onImageLoad(imgLoader: ImgLoader){
+    imgLoader.element.parentElement.parentElement.parentElement.parentElement.className = "fade-in";
+  }
 }

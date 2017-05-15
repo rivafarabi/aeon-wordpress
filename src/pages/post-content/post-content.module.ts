@@ -4,7 +4,9 @@ import { PostContentPage } from './post-content';
 import { IonicImageLoader } from 'ionic-image-loader';
 
 @NgModule({
-   declarations: [PostContentPage],
+   declarations: [
+      PostContentPage
+   ],
    imports: [
       IonicPageModule.forChild(PostContentPage),
       IonicImageLoader

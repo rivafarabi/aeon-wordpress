@@ -1,5 +1,5 @@
 <ion-header no-border [ngClass]="{'hide-header':showheader,'show-header':hideheader}">
-    <ion-navbar color="danger" no-border-bottom>
+    <ion-navbar color="primary" no-border-bottom>
         <ion-buttons end>
             <button ion-button icon-only (tap)="toggleBookmark(postContent)">
                 <ion-icon item-right  name="ios-bookmark-outline"></ion-icon>
@@ -11,12 +11,13 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <div class="featured-media">
+    <ion-spinner *ngIf="onProgress"></ion-spinner>
+    <div class="featured-media" *ngIf="!onProgress">
         <img-loader *ngIf="postContent.media_url" [src]="postContent.media_url.featured"></img-loader>
-        <div>
-            <span class="post-category" *ngIf="postContent.category_name" [innerHTML]="postContent.category_name" ion-text color="light"></span>
+        <div class="post-header">
+            <span class="text-category" *ngIf="postContent.category_name" [innerHTML]="postContent.category_name" ion-text color="light"></span>
             <h1 *ngIf="postContent.title" ion-text [innerHTML]="postContent.title.rendered" color="light"></h1>
-            <ion-row>
+            <ion-row *ngIf="!onImgProgress">
                 <ion-col col-6>
                     <span *ngIf="postContent.date" ion-text color="light">{{postContent.date | date}}</span>
                 </ion-col>
@@ -26,5 +27,5 @@
             </ion-row>
         </div>
     </div>
-    <ion-scroll scrollX="true" scrollY="true" class="content-container" *ngIf="postContent.content" [innerHTML]="postContent.content.rendered"></ion-scroll>
+    <ion-scroll class="content-container" *ngIf="!onProgress && postContent.content" [innerHTML]="postContent.content.rendered"></ion-scroll>
 </ion-content>

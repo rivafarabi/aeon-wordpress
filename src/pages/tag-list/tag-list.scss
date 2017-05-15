@@ -1,3 +1,11 @@
 page-tag-list {
-
+    button {
+        span {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        ion-note {
+            font-weight: 700;
+        }
+    }
 }

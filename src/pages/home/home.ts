@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, Platform, NavController } from 'ionic-angular';
 import { ImgLoader } from 'ionic-image-loader';
+import { ImageLoaderConfig } from 'ionic-image-loader';
 import 'rxjs/Rx'
 
 import { ClientService } from '../../services/client.service';
@@ -14,22 +15,40 @@ import { ClientService } from '../../services/client.service';
 export class HomePage {
   private posts: any;
   private page: number;
+  private showSearchBar: boolean;
   private searchString: string;
 
   constructor(
     public navCtrl: NavController,
-    public clientService: ClientService) {
+    public platform: Platform,
+    public clientService: ClientService,
+    private imageLoaderConfig: ImageLoaderConfig) {
+      imageLoaderConfig.enableSpinner(false);
     this.page = 1;
     this.fetchPost();
+    this.showSearchBar = false;
     this.searchString = "";
   }
 
-  fetchPost() {
+  fetchPost(isRefresh?: boolean) {
+    if (isRefresh) {
+      this.page = 1;
+    }
     this.clientService.getListPosts(this.page)
       .subscribe(res => {
+        console.log(res);
         this.posts = res;
-        console.log(this.posts);
       })
+  }
+
+  doRefreshPost(refresher) {
+    console.log('Begin async operation', refresher);
+    this.fetchPost(true);
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+
   }
 
   loadMorePosts(infiniteScroll) {
@@ -45,7 +64,7 @@ export class HomePage {
     }, 500)
   }
 
-  searchPost(event: any){
+  searchPost(event: any) {
     this.navCtrl.push(
       "PostListPage", {
         'type': 'search',
@@ -62,7 +81,11 @@ export class HomePage {
       });
   }
 
-  onImageLoad(imgLoader: ImgLoader){
+  toggleSearchBar() {
+    this.showSearchBar = !this.showSearchBar;
+  }
+
+  onImageLoad(imgLoader: ImgLoader) {
     imgLoader.element.parentElement.parentElement.className = "fade-in";
   }
 }

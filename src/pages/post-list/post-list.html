@@ -7,16 +7,18 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
+    <ion-spinner id="init-spinner" *ngIf="onProgress"></ion-spinner>
     <ion-grid *ngIf="posts">
         <ion-row col-md-10 offset-md-1>
-            <ion-col class="post-item" col-12 col-md-6 *ngFor="let item of posts" (tap)="goToPost(item.id, item.media_url)">
+            <ion-col class="post-item" col-12 col-md-6 *ngFor="let item of posts" (click)="goToPost(item.id, item.media_url)">
                 <ion-row>
-                    <ion-col class="post-thumbnail" col-4>
-                        <img-loader *ngIf="item.media_url" (load)="onImageLoad($event)" [src]="item.media_url.thumbnail" useImg></img-loader>
+                    <ion-col square class="post-thumbnail" col-4>
+                        <img-loader *ngIf="item.media_url" (load)="onImageLoad($event)" [src]="item.media_url.sizes.featured_thumbnail.source_url" useImg></img-loader>
                     </ion-col>
                     <ion-col *ngIf="item.title" col-8>
-                        <span class="post-title" class="post-title" [innerHTML]="item.title.rendered"></span><br>
-                        <span class="post-date">{{item.date | date}}</span>
+                        <p class="post-category" [innerHTML]="item.category_name"></p>
+                        <p class="post-title" [innerHTML]="item.title.rendered"></p>
+                        <p class="post-date">{{item.date | date}}</p>
                     </ion-col>
                 </ion-row>
             </ion-col>

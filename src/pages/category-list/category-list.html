@@ -1,18 +1,18 @@
 <ion-header>
-  <ion-navbar color="light">
-    <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-    <ion-title>Categories</ion-title>
-  </ion-navbar>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+        <ion-title>Categories</ion-title>
+    </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of categories" (tap)="goToCategory(item.id, item.name)">
+    <ion-list>
+        <button ion-item *ngFor="let item of categories" (click)="goToCategory(item.id, item.name)">
       <span [innerHTML]="item.name"></span>
-      <ion-note item-right>{{item.count}}</ion-note>
-    </button>
-  </ion-list>
-  <ion-infinite-scroll (ionInfinite)="loadMoreCategories($event)">
-    <ion-infinite-scroll-content loadingSpinner="bubbles">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+      <ion-note item-right color="danger">{{item.count}}</ion-note>
+      </button>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="loadMoreCategories($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>
