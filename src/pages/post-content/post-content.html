@@ -17,7 +17,7 @@
         <div class="post-header">
             <span class="text-category" *ngIf="postContent.category_name" [innerHTML]="postContent.category_name" ion-text color="light"></span>
             <h1 *ngIf="postContent.title" ion-text [innerHTML]="postContent.title.rendered" color="light"></h1>
-            <ion-row *ngIf="!onImgProgress">
+            <ion-row>
                 <ion-col col-6>
                     <span *ngIf="postContent.date" ion-text color="light">{{postContent.date | date}}</span>
                 </ion-col>

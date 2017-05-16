@@ -1,20 +1,34 @@
 page-post-content {
     .header-md.transparent::after,
     .header-ios.transparent::after {
+        background: transparent;
         background-image: none
     }
-    .toolbar-background.toolbar-background-md {
+    ion-header {
+        background: transparent !important;
+    }
+    ion-content {
+        margin-top: 0px !important;
+    }
+    .toolbar-background.toolbar-background-md,
+    .toolbar-background.toolbar-background-ios {
         background: transparent;
         border: none;
     }
     .hide-header {
-        .toolbar-background.toolbar-background-md {
+        transition: background 0.5s ease;
+        background: color($colors, primary, base) !important;
+        .toolbar-background.toolbar-background-md,
+        .toolbar-background.toolbar-background-ios {
             transition: background 0.5s ease;
             background: color($colors, primary, base);
         }
     }
     .show-header {
-        .toolbar-background.toolbar-background-md {
+        transition: background 0.5s ease;
+        background: transparent !important;
+        .toolbar-background.toolbar-background-md,
+        .toolbar-background.toolbar-background-ios {
             transition: background 0.5s ease;
             background: transparent;
         }

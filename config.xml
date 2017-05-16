@@ -26,8 +26,9 @@
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
-    <preference name="FadeSplashScreenDuration" value="300" />
+    <!--<preference name="FadeSplashScreenDuration" value="300" />-->
     <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="StatusBarBackgroundColor" value="#33000000"/>
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>

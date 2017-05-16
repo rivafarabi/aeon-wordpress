@@ -1,5 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, ViewController, NavParams, ToastController } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { ClientService } from '../../services/client.service';
@@ -29,6 +29,7 @@ export class PostContentPage {
 
   constructor(
     public navCtrl: NavController,
+    private viewCtrl: ViewController,
     public navParams: NavParams,
     public clientService: ClientService,
     public elementRef: ElementRef,
@@ -44,7 +45,8 @@ export class PostContentPage {
     this.getPostContent(this.postId);
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
+    this.viewCtrl.setBackButtonText("");
   }
 
   ngOnInit() {
