@@ -11,27 +11,18 @@ page-post-content {
         margin-top: 0px !important;
     }
     .toolbar-background.toolbar-background-md,
-    .toolbar-background.toolbar-background-ios {
+    .toolbar-background.toolbar-background-ios,
+    .toolbar-background.toolbar-background-wp {
         background: transparent;
         border: none;
     }
     .hide-header {
         transition: background 0.5s ease;
         background: color($colors, primary, base) !important;
-        .toolbar-background.toolbar-background-md,
-        .toolbar-background.toolbar-background-ios {
-            transition: background 0.5s ease;
-            background: color($colors, primary, base);
-        }
     }
     .show-header {
         transition: background 0.5s ease;
         background: transparent !important;
-        .toolbar-background.toolbar-background-md,
-        .toolbar-background.toolbar-background-ios {
-            transition: background 0.5s ease;
-            background: transparent;
-        }
     }
     .scroll-content {
         margin-top: 0px !important;

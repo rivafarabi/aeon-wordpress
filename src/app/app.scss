@@ -22,3 +22,16 @@
     src: url('../assets/fonts/Raleway-Bold.ttf');
     font-weight: bold;
 }
+
+ion-menu {
+    padding-top: 48px;
+}
+
+ion-list {
+    button {
+        font-size: 1rem !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 3px;
+    }
+}

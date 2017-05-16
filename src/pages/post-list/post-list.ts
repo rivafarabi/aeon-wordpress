@@ -19,6 +19,7 @@ export class PostListPage {
   private page: number;
   private onProgress: boolean;
   private onInitProgress: boolean;
+  private showSearchBar: boolean;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -78,6 +79,10 @@ export class PostListPage {
     }
     this.fetchPost(searchOptions);
     this.pageTitle = event.target.value;
+  }
+  
+  toggleSearchBar() {
+    this.showSearchBar = !this.showSearchBar;
   }
 
   onImageLoad(imgLoader: ImgLoader){
