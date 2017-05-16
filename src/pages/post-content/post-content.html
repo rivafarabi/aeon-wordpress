@@ -2,7 +2,7 @@
     <ion-navbar color="primary" no-border-bottom>
         <ion-buttons end>
             <button ion-button icon-only (tap)="toggleBookmark(postContent)">
-                <ion-icon item-right  name="ios-bookmark-outline"></ion-icon>
+                <ion-icon item-right  name="heart"></ion-icon>
             </button>
             <button ion-button icon-only *ngIf="postContent.link" (tap)="sharePost(postContent.link)">
         <ion-icon  item-right  ios="ios-share" md="md-share"></ion-icon>
