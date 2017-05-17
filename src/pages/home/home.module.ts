@@ -3,7 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { HomePage } from './home';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { MomentModule } from 'angular2-moment';
-
+import { CardList } from '../../components/card-list.module';
 @NgModule({
    declarations: [
       HomePage
@@ -11,7 +11,8 @@ import { MomentModule } from 'angular2-moment';
    imports: [
       IonicPageModule.forChild(HomePage),
       IonicImageLoader,
-      MomentModule
+      MomentModule,
+      CardList
    ],
    exports: [
       HomePage

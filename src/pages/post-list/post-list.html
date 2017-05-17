@@ -29,36 +29,7 @@
             </div>
         </ion-slide>
     </ion-slides>
-    <!--<div class="featured-media" *ngIf="!onProgress" (click)="goToPost(item.id, posts.media_url)">
-        <img-loader *ngIf="item.media_url" [src]="item.media_url.featured"></img-loader>
-        <div class="post-header">
-            <h1 *ngIf="item.title" ion-text [innerHTML]="item.title.rendered" color="light"></h1>
-            <ion-row>
-                <ion-col col-6>
-                    <span *ngIf="item.date" ion-text color="light">{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', sameElse: 'MMMM DD, YYYY'} }}</span>
-                </ion-col>
-                <ion-col col-6>
-                    <span *ngIf="item.author_name" ion-text color="light">By <b>{{item.author_name}}</b></span>
-                </ion-col>
-            </ion-row>
-        </div>
-    </div>-->
-    <ion-grid *ngIf="posts">
-        <ion-row col-md-10 offset-md-1>
-            <ion-col col-12 col-md-6 *ngFor="let item of posts | slice:1" (click)="goToPost(item.id, item.media_url)">
-                <ion-row>
-                    <ion-col square class="post-thumbnail" col-4>
-                        <img-loader *ngIf="item.media_url" (load)="onImageLoad($event)" [src]="item.media_url.sizes.thumbnail.source_url" useImg></img-loader>
-                    </ion-col>
-                    <ion-col *ngIf="item.title" col-8>
-                        <p class="post-category" [innerHTML]="item.category_name"></p>
-                        <p class="post-title" [innerHTML]="item.title.rendered"></p>
-                        <p class="post-date">{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', sameElse: 'MMMM DD, YYYY'} }}</p>
-                    </ion-col>
-                </ion-row>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+    <grid-list [postList]="posts" [start]=4 (postTarget)="toPostContent($event)"></grid-list>
     <ion-infinite-scroll (ionInfinite)="loadMorePosts($event)">
         <ion-infinite-scroll-content loadingSpinner="crescent">
         </ion-infinite-scroll-content>

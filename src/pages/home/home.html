@@ -13,30 +13,16 @@
     </ion-navbar>
 </ion-header>
 <ion-content>
-    <ion-grid>
-        <ion-row align-items-start col-md-10 offset-md-1>
-            <ion-col col-12>
+    <!--<ion-col col-12>
                 <ion-card *ngIf="posts" (click)="goToPost(posts[0].id)">
                     <img-loader *ngIf="posts[0].media_url" (load)="onImageLoad($event)" [src]="posts[0].media_url.sizes.thumbnail.source_url" useImg></img-loader>
                     <span *ngIf="posts[0].category_name" class="post-category" [innerHTML]="posts[0].category_name" ion-text color="light"></span>
                     <h2 *ngIf="posts[0].title" class="post-title" [innerHTML]="posts[0].title.rendered" ion-text color="light"></h2>
                 </ion-card>
-            </ion-col>
-            <ion-col col-6 *ngFor="let item of posts | slice: 1">
-                <ion-card *ngIf="item.media_url" (click)="goToPost(item.id)">
-                    <img-loader *ngIf="item.media_url" (load)="onImageLoad($event)" [src]="item.media_url.sizes.thumbnail.source_url" useImg></img-loader>
-                    <span *ngIf="item.category_name" class="post-category" [innerHTML]="item.category_name" ion-text color="light" text-right></span>
-                    <ion-card-content>
-                        <ion-card-title *ngIf="item.title" [innerHTML]="item.title.rendered">
-                        </ion-card-title>
-                        <p>{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', sameElse: 'MMMM DD, YYYY'} }}</p>
-                    </ion-card-content>
-                </ion-card>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+            </ion-col>-->
+    <card-list [postList]="posts" [start]=0 (postTarget)="toPostContent($event)"></card-list>
     <ion-infinite-scroll (ionInfinite)="loadMorePosts($event)">
-        <ion-infinite-scroll-content loadingSpinner="bubbles">
+        <ion-infinite-scroll-content loadingSpinner="crescent">
         </ion-infinite-scroll-content>
     </ion-infinite-scroll>
     <ion-refresher (ionRefresh)="doRefreshPost($event)">

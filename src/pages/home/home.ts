@@ -22,8 +22,7 @@ export class HomePage {
     public navCtrl: NavController,
     public platform: Platform,
     public clientService: ClientService,
-    private imageLoaderConfig: ImageLoaderConfig) {
-      imageLoaderConfig.enableSpinner(false);
+    ) {
     this.page = 1;
     this.fetchPost();
     this.showSearchBar = false;
@@ -81,11 +80,15 @@ export class HomePage {
       });
   }
 
-  toggleSearchBar() {
-    this.showSearchBar = !this.showSearchBar;
+  toPostContent(postDetail: any){
+    this.navCtrl.push(
+      "PostContentPage", {
+        'postId': postDetail.id,
+        'postMedia': postDetail.media
+      });
   }
 
-  onImageLoad(imgLoader: ImgLoader) {
-    imgLoader.element.parentElement.parentElement.className = "fade-in";
+  toggleSearchBar() {
+    this.showSearchBar = !this.showSearchBar;
   }
 }

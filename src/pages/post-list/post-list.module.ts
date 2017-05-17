@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { PostListPage } from './post-list';
-import { IonicImageLoader } from 'ionic-image-loader';
-import { SquareDirective } from '../../directive/square.directive';
-import { MomentModule } from 'angular2-moment';
+import { GridList } from '../../components/grid-list.module'
 
+import { IonicImageLoader } from 'ionic-image-loader';
+import { MomentModule } from 'angular2-moment';
 @NgModule({
    declarations: [
-      PostListPage,
-      SquareDirective],
+      PostListPage],
    imports: [
       IonicPageModule.forChild(PostListPage),
+      GridList,
       IonicImageLoader,
       MomentModule
    ],

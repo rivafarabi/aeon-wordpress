@@ -88,6 +88,14 @@ export class PostListPage {
       });
   }
 
+  toPostContent(postDetail: any){
+    this.navCtrl.push(
+      "PostContentPage", {
+        'postId': postDetail.id,
+        'postMedia': postDetail.media
+      });
+  }
+
   searchPost(event: any) {
     let searchOptions = {
       type: 'search',
