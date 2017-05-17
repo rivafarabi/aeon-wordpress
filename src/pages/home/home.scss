@@ -32,8 +32,13 @@ page-home {
         bottom: 0;
         margin: 0;
         padding: 10px;
-        background: linear-gradient(to bottom, transparent, #333) !important;
+        background: linear-gradient(to bottom, transparent, #444) !important;
         white-space: pre-line;
+    }
+    .post-title {
+        @media only screen and (max-width: 767px) {
+            font-size: 4vw;
+        }
     }
     .post-category {
         position: absolute;
@@ -41,7 +46,7 @@ page-home {
         top: 0;
         margin: 0;
         padding: 10px;
-        background: linear-gradient(to top, transparent, #333) !important;
+        background: linear-gradient(to top, transparent, #444) !important;
         white-space: pre-line;
         text-transform: uppercase;
         font-size: 0.9rem;
