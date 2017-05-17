@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { PostContentPage } from './post-content';
 import { IonicImageLoader } from 'ionic-image-loader';
+import { MomentModule } from 'angular2-moment';
 
 @NgModule({
    declarations: [
@@ -9,7 +10,8 @@ import { IonicImageLoader } from 'ionic-image-loader';
    ],
    imports: [
       IonicPageModule.forChild(PostContentPage),
-      IonicImageLoader
+      IonicImageLoader,
+      MomentModule
    ],
    exports: [PostContentPage]
 })

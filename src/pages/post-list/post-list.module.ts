@@ -3,13 +3,16 @@ import { IonicPageModule } from 'ionic-angular';
 import { PostListPage } from './post-list';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { SquareDirective } from '../../directive/square.directive';
+import { MomentModule } from 'angular2-moment';
+
 @NgModule({
    declarations: [
       PostListPage,
       SquareDirective],
    imports: [
       IonicPageModule.forChild(PostListPage),
-      IonicImageLoader
+      IonicImageLoader,
+      MomentModule
    ],
    exports: [
       PostListPage

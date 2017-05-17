@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header no-border [ngClass]="{'hide-header':showheader,'show-header':hideheader}">
     <ion-navbar color="primary" *ngIf="!showSearchBar">
         <ion-title><span [innerHTML]="pageTitle"></span></ion-title>
         <ion-buttons end>
@@ -11,19 +11,49 @@
         <ion-searchbar [showCancelButton]="true" color="primary" (search)="searchPost($event)"></ion-searchbar>
     </ion-navbar>
 </ion-header>
-<ion-content>
+<ion-content padding>
     <ion-spinner id="init-spinner" *ngIf="onProgress"></ion-spinner>
+    <ion-slides class="featured-media" *ngIf="!onProgress" loop="true" pager="true" paginationType="progress" parallax="true">
+        <ion-slide *ngFor="let item of posts | slice:0:4" (click)="goToPost(item.id, posts.media_url)">
+            <img-loader *ngIf="item.media_url" [src]="item.media_url.featured"></img-loader>
+            <div class="post-header">
+                <h1 *ngIf="item.title" ion-text [innerHTML]="item.title.rendered" color="light"></h1>
+                <ion-row>
+                    <ion-col col-6>
+                        <span *ngIf="item.date" ion-text color="light">{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', sameElse: 'MMMM DD, YYYY'} }}</span>
+                    </ion-col>
+                    <ion-col col-6>
+                        <span *ngIf="item.author_name" ion-text color="light">By <b>{{item.author_name}}</b></span>
+                    </ion-col>
+                </ion-row>
+            </div>
+        </ion-slide>
+    </ion-slides>
+    <!--<div class="featured-media" *ngIf="!onProgress" (click)="goToPost(item.id, posts.media_url)">
+        <img-loader *ngIf="item.media_url" [src]="item.media_url.featured"></img-loader>
+        <div class="post-header">
+            <h1 *ngIf="item.title" ion-text [innerHTML]="item.title.rendered" color="light"></h1>
+            <ion-row>
+                <ion-col col-6>
+                    <span *ngIf="item.date" ion-text color="light">{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', sameElse: 'MMMM DD, YYYY'} }}</span>
+                </ion-col>
+                <ion-col col-6>
+                    <span *ngIf="item.author_name" ion-text color="light">By <b>{{item.author_name}}</b></span>
+                </ion-col>
+            </ion-row>
+        </div>
+    </div>-->
     <ion-grid *ngIf="posts">
         <ion-row col-md-10 offset-md-1>
-            <ion-col class="post-item" col-12 col-md-6 *ngFor="let item of posts" (click)="goToPost(item.id, item.media_url)">
+            <ion-col col-12 col-md-6 *ngFor="let item of posts | slice:1" (click)="goToPost(item.id, item.media_url)">
                 <ion-row>
                     <ion-col square class="post-thumbnail" col-4>
-                        <img-loader *ngIf="item.media_url" (load)="onImageLoad($event)" [src]="item.media_url.sizes.featured_thumbnail.source_url" useImg></img-loader>
+                        <img-loader *ngIf="item.media_url" (load)="onImageLoad($event)" [src]="item.media_url.sizes.thumbnail.source_url" useImg></img-loader>
                     </ion-col>
                     <ion-col *ngIf="item.title" col-8>
                         <p class="post-category" [innerHTML]="item.category_name"></p>
                         <p class="post-title" [innerHTML]="item.title.rendered"></p>
-                        <p class="post-date">{{item.date | date}}</p>
+                        <p class="post-date">{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', sameElse: 'MMMM DD, YYYY'} }}</p>
                     </ion-col>
                 </ion-row>
             </ion-col>

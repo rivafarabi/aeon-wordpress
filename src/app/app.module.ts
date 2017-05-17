@@ -7,6 +7,7 @@ import { Transfer } from '@ionic-native/transfer';
 import { MyApp } from './app.component';
 
 import { IonicImageLoader, ImageLoader, ImageLoaderConfig } from 'ionic-image-loader';
+import { MomentModule } from 'angular2-moment';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { IonicImageLoader, ImageLoader, ImageLoaderConfig } from 'ionic-image-lo
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    IonicImageLoader
+    IonicImageLoader,
+    MomentModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
