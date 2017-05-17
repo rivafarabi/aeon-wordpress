@@ -20,6 +20,12 @@ export class PostListPage {
   private onProgress: boolean;
   private onInitProgress: boolean;
   private showSearchBar: boolean;
+  private start = 0;
+  private threshold = 200;
+  private slideHeaderPrevious = 0;
+  private ionScroll: any;
+  private showheader: boolean;
+  private hideheader: boolean;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -37,8 +43,18 @@ export class PostListPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad PostListPage');
   }
-  ngOnInit(){
-    this.imgThumbnail = this.elementRef.nativeElement.getElementsByClassName('post-thumbnail');
+  ngOnInit() {
+    this.ionScroll = this.elementRef.nativeElement.getElementsByClassName('scroll-content')[0];
+    this.ionScroll.addEventListener("scroll", () => {
+      if (this.ionScroll.scrollTop - this.start > this.threshold) {
+        this.showheader = true;
+        this.hideheader = false;
+      } else {
+        this.showheader = false;
+        this.hideheader = true;
+      }
+      this.slideHeaderPrevious = this.ionScroll.scrollTop - this.start;
+    });
   }
 
   fetchPost(options: any) {
