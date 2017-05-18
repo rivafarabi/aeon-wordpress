@@ -1,7 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { ImgLoader } from 'ionic-image-loader';
 import { ImageLoaderConfig } from 'ionic-image-loader';
 import { MomentModule } from 'angular2-moment';
+
 @Component({
    selector: 'card-list',
    template:
@@ -19,16 +20,19 @@ import { MomentModule } from 'angular2-moment';
                 </ion-card>
             </ion-col>
         </ion-row>
-    </ion-grid>`,
-    styles:[``]
+    </ion-grid>`
 })
-export class CardListComponent{
+export class CardListComponent implements OnInit{
    @Input('postList') posts: any;
    @Input('start') start: number;
    @Output() postTarget : EventEmitter<any> = new EventEmitter<any>();
 
    constructor(private imageLoaderConfig: ImageLoaderConfig){
       imageLoaderConfig.enableSpinner(false);
+   }
+
+   ngOnInit(){
+       this.start = (this.start != null ? this.start : 0);
    }
 
    postNav(postId, postMediaUrl){

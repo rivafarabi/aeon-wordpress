@@ -1,5 +1,8 @@
 import { Component, ElementRef } from '@angular/core';
 import { IonicPage, NavController, ViewController, NavParams, ToastController } from 'ionic-angular';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+
+
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { ClientService } from '../../services/client.service';
@@ -35,7 +38,8 @@ export class PostContentPage {
     public elementRef: ElementRef,
     private toastCtrl: ToastController,
     private socialSharing: SocialSharing,
-    private imageLoaderConfig: ImageLoaderConfig
+    private imageLoaderConfig: ImageLoaderConfig,
+    private sanitizer: DomSanitizer
   ) {
     imageLoaderConfig.enableSpinner(false);
     this.postId = this.navParams.get("postId");
@@ -67,6 +71,8 @@ export class PostContentPage {
     this.clientService.getPostContent(id)
       .subscribe(res => {
         this.postContent = res;
+        console.log(this.postContent.content.rendered);
+        this.postContent.content.bypassRendered = this.sanitizer.bypassSecurityTrustHtml(this.postContent.content.rendered);
         this.onProgress = false;
       })
   }

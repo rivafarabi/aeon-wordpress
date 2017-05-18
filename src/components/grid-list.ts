@@ -20,14 +20,17 @@ import { SquareDirective } from '../directive/square.directive';
                 </ion-row>
             </ion-col>
         </ion-row>
-    </ion-grid>`,
-    styles:[``]
+    </ion-grid>`
 })
 export class GridListComponent{
    @Input('postList') posts: any;
    @Input('start') start: number;
    @Output() postTarget : EventEmitter<any> = new EventEmitter<any>();
 
+   ngOnInit(){
+       this.start = (this.start != null ? this.start : 0);
+   }
+   
    postNav(postId, postMediaUrl){
        console.log(postId);
        this.postTarget.emit({

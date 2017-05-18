@@ -27,5 +27,5 @@
             </ion-row>
         </div>
     </div>
-    <ion-scroll class="content-container" *ngIf="!onProgress && postContent.content" [innerHTML]="postContent.content.rendered"></ion-scroll>
+    <ion-scroll class="content-container" *ngIf="!onProgress && postContent.content" [innerHTML]="postContent.content.bypassRendered"></ion-scroll>
 </ion-content>

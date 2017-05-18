@@ -77,7 +77,6 @@ page-post-content {
     }
     .content-container {
         line-height: 1.8;
-        pointer-events: none;
         font-size: 11pt;
         @media only screen and (min-width: 768px) {
             left: 25%;
@@ -97,6 +96,9 @@ page-post-content {
             pointer-events: none;
             text-decoration: none;
             color: #222;
+        }
+        iframe {
+            width: 100%;
         }
     }
 }
