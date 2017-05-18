@@ -3,8 +3,8 @@ import { Component, Input, Output, EventEmitter, ElementRef, OnInit } from '@ang
 @Component({
     selector: 'header-transparent',
     template:
-    `<ion-header no-border [ngClass]="{'hide-header':showheader,'show-header':hideheader}">
-        <ion-navbar color="primary" *ngIf="!showSearchBar">
+    `<ion-header no-border [ngClass]="{'hide-header':hideheader,'show-header':showheader}">
+        <ion-navbar color="danger" *ngIf="!showSearchBar">
             <button ion-button menuToggle *ngIf="showMenuButton"><ion-icon name="menu"></ion-icon></button>
             <ion-title><span [innerHTML]="headerTitle"></span></ion-title>
             <ion-buttons end>
@@ -16,18 +16,19 @@ import { Component, Input, Output, EventEmitter, ElementRef, OnInit } from '@ang
         <ion-navbar color="primary" *ngIf="showSearchBar">
             <ion-searchbar [showCancelButton]="true" color="primary" (search)="searchPost($event)"></ion-searchbar>
         </ion-navbar>
-    </ion-header>`
+    </ion-header>`,
 })
 export class HeaderTransparentComponent implements OnInit {
     @Input('headerTitle') headerTitle: string;
     @Input('threshold') threshold: number;
     @Input('showMenuButton') showMenuButton: boolean;
-    private start: number = 0;
-    private slideHeaderPrevious: number = 0;
-    private ionScroll: any;
-    private showheader: boolean;
-    private hideheader: boolean;
-    private headercontent: any;
+    start: number = 0;
+    slideHeaderPrevious: number = 0;
+    headerBar: any;
+    ionScroll: any;
+    showheader: boolean;
+    hideheader: boolean;
+    headercontent: any;
 
     constructor(private el: ElementRef) { }
 

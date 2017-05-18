@@ -1,32 +1,4 @@
 page-post-list {
-    .header-md::after,
-    .header-ios::after {
-        background: transparent;
-        background-image: none
-    }
-    ion-header {
-        background: transparent !important;
-    }
-    ion-content {
-        margin-top: 0px !important;
-    }
-    .toolbar-background.toolbar-background-md,
-    .toolbar-background.toolbar-background-ios,
-    .toolbar-background.toolbar-background-wp {
-        background: transparent;
-        border: none;
-    }
-    .hide-header {
-        transition: background 0.5s ease;
-        background: color($colors, primary, base) !important;
-    }
-    .show-header {
-        transition: background 0.5s ease;
-        background: transparent !important;
-    }
-    .scroll-content {
-        margin-top: 0px !important;
-    }
     ion-spinner#init-spinner {
         position: absolute;
         margin: auto;

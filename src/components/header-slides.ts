@@ -4,9 +4,11 @@ import { ImageLoaderConfig } from 'ionic-image-loader';
 import { MomentModule } from 'angular2-moment';
 
 @Component({
-   selector: 'header-slides',
-   template:
-   `<ion-slides class="featured-media" *ngIf="!onProgress" loop="true" pager="true" paginationType="progress" parallax="true">
+    selector: 'header-slides',
+    template:
+    `<div class="gradient-overlay"></div>
+    <ion-slides class="featured-media" *ngIf="!onProgress" loop="true" pager="true" paginationType="progress" parallax="true">
+        
         <ion-slide *ngFor="let item of posts | slice:start:end" (click)="postNav(item.id, posts.media_url)">
             <img-loader *ngIf="item.media_url" [src]="item.media_url.featured"></img-loader>
             <div class="post-header">
@@ -23,30 +25,30 @@ import { MomentModule } from 'angular2-moment';
         </ion-slide>
     </ion-slides>`
 })
-export class HeaderSlidesComponent implements OnInit{
-   @Input('postList') posts: any;
-   @Input('start') start: number;
-   @Input('end') end: number;
-   @Output() postTarget : EventEmitter<any> = new EventEmitter<any>();
+export class HeaderSlidesComponent implements OnInit {
+    @Input('postList') posts: any;
+    @Input('start') start: number;
+    @Input('end') end: number;
+    @Output() postTarget: EventEmitter<any> = new EventEmitter<any>();
 
-   constructor(private imageLoaderConfig: ImageLoaderConfig){
-      imageLoaderConfig.enableSpinner(false);
-   }
+    constructor(private imageLoaderConfig: ImageLoaderConfig) {
+        imageLoaderConfig.enableSpinner(false);
+    }
 
-   ngOnInit(){
-       this.start = (this.start != null ? this.start : 0);
-       this.end = (this.end != null ? this.end : 0);
-   }
+    ngOnInit() {
+        this.start = (this.start != null ? this.start : 0);
+        this.end = (this.end != null ? this.end : 4);
+    }
 
-   postNav(postId, postMediaUrl){
-       console.log(postId);
-       this.postTarget.emit({
-           id: postId,
-           media: postMediaUrl
+    postNav(postId, postMediaUrl) {
+        console.log(postId);
+        this.postTarget.emit({
+            id: postId,
+            media: postMediaUrl
         });
-   }
+    }
 
-   onImageLoad(imgLoader: ImgLoader) {
-    imgLoader.element.parentElement.parentElement.className = "fade-in";
-  }
+    onImageLoad(imgLoader: ImgLoader) {
+        imgLoader.element.parentElement.parentElement.className = "fade-in";
+    }
 }

@@ -16,11 +16,11 @@ header-transparent {
         background: transparent;
         border: none;
     }
-    .hide-header {
+    .show-header {
         transition: background 0.5s ease;
         background: color($colors, primary, base) !important;
     }
-    .show-header {
+    .hide-header {
         transition: background 0.5s ease;
         background: transparent !important;
     }
