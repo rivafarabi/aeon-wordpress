@@ -2,7 +2,6 @@ import { Component, ElementRef } from '@angular/core';
 import { IonicPage, NavController, ViewController, NavParams, ToastController } from 'ionic-angular';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
-
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { ClientService } from '../../services/client.service';

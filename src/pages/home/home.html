@@ -1,18 +1,5 @@
-<ion-header>
-    <ion-navbar color="primary" *ngIf="!showSearchBar">
-        <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-        <ion-title>Aion Wordpress</ion-title>
-        <ion-buttons end>
-            <button ion-button icon-only (click)="toggleSearchBar()">
-                <ion-icon item-right name="search"></ion-icon>
-            </button>
-        </ion-buttons>
-    </ion-navbar>
-    <ion-navbar color="primary" *ngIf="showSearchBar">
-        <ion-searchbar [showCancelButton]="true" (search)="searchPost($event)" (ionCancel)="toggleSearchBar()" [autocomplete]="on"></ion-searchbar>
-    </ion-navbar>
-</ion-header>
-<ion-content>
+<header-transparent [headerTitle]="'Aion Wordpress'" [showMenuButton]=true></header-transparent>
+<ion-content padding>
     <header-slides [postList]="posts" [start]='0' [end]='4' (postTarget)="toPostContent($event)"></header-slides>
     <card-list [postList]="posts" [start]=0 (postTarget)="toPostContent($event)"></card-list>
     <ion-infinite-scroll (ionInfinite)="loadMorePosts($event)">
@@ -25,6 +12,4 @@
     </ion-refresher>
     <ion-backdrop *ngIf="showSearchBar" disable-activated="" class="search-bar-overlay" role="presentation" tappable="" (click)="toggleSearchBar()">
     </ion-backdrop>
-
-
 </ion-content>

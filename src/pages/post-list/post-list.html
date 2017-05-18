@@ -1,16 +1,4 @@
-<ion-header no-border [ngClass]="{'hide-header':showheader,'show-header':hideheader}">
-    <ion-navbar color="primary" *ngIf="!showSearchBar">
-        <ion-title><span [innerHTML]="pageTitle"></span></ion-title>
-        <ion-buttons end>
-            <button ion-button icon-only (click)="toggleSearchBar()">
-                <ion-icon item-right name="search"></ion-icon>
-            </button>
-        </ion-buttons>
-    </ion-navbar>
-    <ion-navbar color="primary" *ngIf="showSearchBar">
-        <ion-searchbar [showCancelButton]="true" color="primary" (search)="searchPost($event)"></ion-searchbar>
-    </ion-navbar>
-</ion-header>
+<header-transparent [headerTitle]="pageTitle"></header-transparent>
 <ion-content padding>
     <ion-spinner id="init-spinner" *ngIf="onProgress"></ion-spinner>
     <header-slides [postList]="posts" [start]='0' [end]='4' (postTarget)="toPostContent($event)"></header-slides>
