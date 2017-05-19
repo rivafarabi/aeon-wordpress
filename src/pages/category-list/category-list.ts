@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import 'rxjs/Rx'
 
-import { ClientService } from '../../services/client.service'
+import { ClientProvider } from '../../providers/client.provider'
 
 @IonicPage()
 @Component({
   selector: 'page-category-list',
   templateUrl: 'category-list.html',
-  providers: [ClientService]
+  providers: [ClientProvider]
 })
 export class CategoryListPage {
   private categories: any;
@@ -16,13 +16,13 @@ export class CategoryListPage {
 
   constructor(
     public navCtrl: NavController,
-    public clientService: ClientService) {
+    public clientProvider: ClientProvider) {
     this.page = 1;
     this.fetchCategories();
   }
 
   fetchCategories() {
-    this.clientService.getListCategories(this.page)
+    this.clientProvider.getListCategories(this.page)
       .subscribe(res => {
         this.categories = res;
       })
@@ -40,7 +40,7 @@ export class CategoryListPage {
   loadMoreCategories(infiniteScroll) {
     this.page++;
     setTimeout(() => {
-      this.clientService.getListCategories(this.page)
+      this.clientProvider.getListCategories(this.page)
         .subscribe(res => {
           res.forEach(element => {
             this.categories.push(element)

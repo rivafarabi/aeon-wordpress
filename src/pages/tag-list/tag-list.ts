@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import 'rxjs/Rx'
 
-import { ClientService } from '../../services/client.service'
+import { ClientProvider } from '../../providers/client.provider'
 
 @IonicPage()
 @Component({
   selector: 'page-tag-list',
   templateUrl: 'tag-list.html',
-  providers: [ClientService]
+  providers: [ClientProvider]
 })
 export class TagListPage {
   private tags: any;
@@ -16,13 +16,13 @@ export class TagListPage {
 
   constructor(
     public navCtrl: NavController,
-    public clientService: ClientService) {
+    public clientProvider: ClientProvider) {
     this.page = 1;
     this.fetchTags();
   }
 
   fetchTags() {
-    this.clientService.getListTags(this.page)
+    this.clientProvider.getListTags(this.page)
       .subscribe(res => {
         this.tags = res;
       })
@@ -40,7 +40,7 @@ export class TagListPage {
   loadMoreTags(infiniteScroll) {
     this.page++;
     setTimeout(() => {
-      this.clientService.getListTags(this.page)
+      this.clientProvider.getListTags(this.page)
         .subscribe(res => {
           res.forEach(element => {
             this.tags.push(element)

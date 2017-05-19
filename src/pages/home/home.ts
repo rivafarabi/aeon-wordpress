@@ -4,13 +4,13 @@ import { ImgLoader } from 'ionic-image-loader';
 import { ImageLoaderConfig } from 'ionic-image-loader';
 import 'rxjs/Rx'
 
-import { ClientService } from '../../services/client.service';
+import { ClientProvider } from '../../providers/client.provider';
 
 @IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [ClientService]
+  providers: [ClientProvider]
 })
 export class HomePage {
   private posts: any;
@@ -21,7 +21,7 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     public platform: Platform,
-    public clientService: ClientService,
+    public clientProvider: ClientProvider,
     ) {
     this.page = 1;
     this.fetchPost();
@@ -33,7 +33,7 @@ export class HomePage {
     if (isRefresh) {
       this.page = 1;
     }
-    this.clientService.getListPosts(this.page)
+    this.clientProvider.getListPosts(this.page)
       .subscribe(res => {
         console.log(res);
         this.posts = res;
@@ -53,7 +53,7 @@ export class HomePage {
   loadMorePosts(infiniteScroll) {
     this.page++;
     setTimeout(() => {
-      this.clientService.getListPosts(this.page)
+      this.clientProvider.getListPosts(this.page)
         .subscribe(res => {
           res.forEach(element => {
             this.posts.push(element)

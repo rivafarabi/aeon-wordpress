@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+        <ion-title>Settings</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-list>
+        <ion-list-header>Options</ion-list-header>
+        <ion-item>
+            <ion-label>
+                Push Notification
+            </ion-label>
+            <ion-toggle checked="true" [(ngModel)]="setting.pushNotification"></ion-toggle>
+        </ion-item>
+        <ion-list-header>Legal</ion-list-header>
+        <button ion-item>Term of Services</button>
+        <button ion-item>FAQ</button>
+        <button ion-item>Credits</button>
+        <ion-list-header>Account</ion-list-header>
+        <button ion-item>Sign Out</button>
+    </ion-list>
+</ion-content>

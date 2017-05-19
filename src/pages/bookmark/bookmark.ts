@@ -3,13 +3,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ImgLoader } from 'ionic-image-loader';
 import 'rxjs/Rx'
 
-import { ClientService } from '../../services/client.service';
+import { ClientProvider } from '../../providers/client.provider';
 
 @IonicPage()
 @Component({
   selector: 'page-bookmark',
   templateUrl: 'bookmark.html',
-  providers: [ClientService]
+  providers: [ClientProvider]
 })
 export class BookmarkPage {
   private pageTitle: string;
@@ -19,7 +19,7 @@ export class BookmarkPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public clientService: ClientService) {
+    public clientProvider: ClientProvider) {
     this.pageTitle = navParams.get('name');
     this.options = {
       type: this.navParams.get('type'),

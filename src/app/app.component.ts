@@ -1,9 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
+import { OneSignal } from '@ionic-native/onesignal';
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [OneSignal]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -13,7 +15,8 @@ export class MyApp {
   pages: Array<{ title: string, component: any }>;
 
   constructor(
-    public platform: Platform
+    public platform: Platform,
+    private oneSignal: OneSignal
   ) {
     this.initializeApp();
 
@@ -22,6 +25,7 @@ export class MyApp {
       { title: 'Categories', component: "CategoryListPage" },
       { title: 'Tags', component: "TagListPage" },
       { title: 'Bookmark', component: "BookmarkPage" },
+      { title: 'Settings', component: "SettingPage" },
       { title: 'About', component: "AboutPage" },
       { title: 'Contact', component: "ContactPage" }
     ];
@@ -33,15 +37,12 @@ export class MyApp {
       StatusBar.styleDefault();
       Splashscreen.hide();
 
-      var notificationOpenedCallback = function (jsonData) {
-        alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-      };
-      
       //OneSignal Configuration
-      window["plugins"].OneSignal
-        .startInit("7c56563e-57fb-49bb-ad7b-752087c3c8bc", "613293614430")
-        .handleNotificationOpened(notificationOpenedCallback)
-        .endInit();
+      // this.oneSignal.startInit("7c56563e-57fb-49bb-ad7b-752087c3c8bc", "613293614430");
+      // this.oneSignal.handleNotificationOpened().subscribe(jsonData => {
+      //   alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      // });
+      // this.oneSignal.endInit();
     });
   }
 

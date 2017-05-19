@@ -6,7 +6,7 @@ import 'rxjs/Rx';
   providers: []
 })
 @Injectable()
-export class StorageService {
+export class StorageProvider {
   public bookmarkList: any = [];
 
   constructor(private platform: Platform) {

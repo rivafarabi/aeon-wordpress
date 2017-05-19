@@ -3,13 +3,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ImgLoader } from 'ionic-image-loader';
 import 'rxjs/Rx'
 
-import { ClientService } from '../../services/client.service';
+import { ClientProvider } from '../../providers/client.provider';
 
 @IonicPage()
 @Component({
   selector: 'page-post-list',
   templateUrl: 'post-list.html',
-  providers: [ClientService]
+  providers: [ClientProvider]
 })
 export class PostListPage {
   private pageTitle: string;
@@ -24,7 +24,7 @@ export class PostListPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public elementRef: ElementRef,
-    public clientService: ClientService) {
+    public clientProvider: ClientProvider) {
     this.pageTitle = navParams.get('name');
     this.options = {
       type: this.navParams.get('type'),
@@ -40,7 +40,7 @@ export class PostListPage {
 
   fetchPost(options: any) {
     this.onProgress = true;
-    this.clientService.getListPosts(this.page, this.options)
+    this.clientProvider.getListPosts(this.page, this.options)
       .subscribe(res => {
         this.onInitProgress = (this.page == 1 ? false : true);
         this.posts = res;
@@ -51,7 +51,7 @@ export class PostListPage {
   loadMorePosts(infiniteScroll) {
     this.page++;
     setTimeout(() => {
-      this.clientService.getListPosts(this.page)
+      this.clientProvider.getListPosts(this.page)
         .subscribe(res => {
           res.forEach(element => {
             this.posts.push(element)

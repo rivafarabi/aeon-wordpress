@@ -1,10 +1,10 @@
 import { Component, ElementRef } from '@angular/core';
-import { IonicPage, NavController, ViewController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, ViewController, NavParams, ToastController, ModalController } from 'ionic-angular';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { ClientService } from '../../services/client.service';
+import { ClientProvider } from '../../providers/client.provider';
 import { ImgLoader } from 'ionic-image-loader';
 import { ImageLoaderConfig } from 'ionic-image-loader';
 
@@ -13,7 +13,7 @@ import 'rxjs/Rx';
 @Component({
   selector: 'page-post-content',
   templateUrl: 'post-content.html',
-  providers: [ClientService, SocialSharing]
+  providers: [ClientProvider, SocialSharing]
 })
 export class PostContentPage {
   private postId: number;
@@ -30,10 +30,11 @@ export class PostContentPage {
   private onImgProgress: boolean;
 
   constructor(
-    public navCtrl: NavController,
+    navCtrl: NavController,
     private viewCtrl: ViewController,
     public navParams: NavParams,
-    public clientService: ClientService,
+    public modalCtrl: ModalController,
+    public clientProvider: ClientProvider,
     public elementRef: ElementRef,
     private toastCtrl: ToastController,
     private socialSharing: SocialSharing,
@@ -67,7 +68,7 @@ export class PostContentPage {
   }
 
   getPostContent(id) {
-    this.clientService.getPostContent(id)
+    this.clientProvider.getPostContent(id)
       .subscribe(res => {
         this.postContent = res;
         console.log(this.postContent.content.rendered);
@@ -87,9 +88,34 @@ export class PostContentPage {
     //     toast.present();
     //   })
   }
-
   sharePost(link) {
     this.socialSharing.share("", "", null, link);
   }
+  presentProfileModal() {
+    let commentModal = this.modalCtrl.create(CommentModal, { id: this.postId });
+    commentModal.present();
+  }
+}
 
+@Component({
+  selector: 'modal-comment',
+  templateUrl: 'comment-modal.html',
+  providers: [ClientProvider, SocialSharing]
+})
+class CommentModal {
+  postID: number;
+  comments: any;
+  constructor(private clientProvider: ClientProvider, private navParams: NavParams) {
+    this.postID = this.navParams.get('id');
+  }
+  getCommnent(){
+    this.clientProvider.getComments(this.postID)
+    .subscribe(res => {
+      console.log(res);
+      this.comments = res;
+    })
+  }
+  postComment(){
+
+  }
 }

@@ -6,7 +6,7 @@ import { Post } from '../model/post.model';
 import { Endpoint } from '../constants/endpoint.constant';
 
 @Injectable()
-export class ClientService {
+export class ClientProvider {
     private api: Endpoint = new Endpoint();
     constructor(private http: Http) {
 
@@ -60,10 +60,18 @@ export class ClientService {
             });
     }
 
-    getListComments() {
-        return this.http.get(this.api.GET_COMMENTS)
+    getComments(id: number) {
+        return this.http.get(this.api.GET_COMMENTS + id)
             .map((res: Response) => res.json())
             .map(res => {
+                return res;
+            });
+    }
+
+    postCommnent(commentDetail: any){
+        return this.http.post(this.api.GET_COMMENTS, {})
+        .map((res) => res.json())
+        .map(res => {
                 return res;
             });
     }
