@@ -8,7 +8,6 @@ import { MomentModule } from 'angular2-moment';
     template:
     `<div class="gradient-overlay"></div>
     <ion-slides class="featured-media" *ngIf="!onProgress" loop="true" pager="true" paginationType="progress" parallax="true">
-        
         <ion-slide *ngFor="let item of posts | slice:start:end" (click)="postNav(item.id, posts.media_url)">
             <img-loader *ngIf="item.media_url" [src]="item.media_url.featured"></img-loader>
             <div class="post-header">

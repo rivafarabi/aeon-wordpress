@@ -22,7 +22,6 @@ export class MyApp {
       { title: 'Categories', component: "CategoryListPage" },
       { title: 'Tags', component: "TagListPage" },
       { title: 'Bookmark', component: "BookmarkPage" },
-      
       { title: 'About', component: "AboutPage" },
       { title: 'Contact', component: "ContactPage" }
     ];
@@ -33,6 +32,16 @@ export class MyApp {
     this.platform.ready().then(() => {
       StatusBar.styleDefault();
       Splashscreen.hide();
+
+      var notificationOpenedCallback = function (jsonData) {
+        alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      };
+      
+      //OneSignal Configuration
+      window["plugins"].OneSignal
+        .startInit("7c56563e-57fb-49bb-ad7b-752087c3c8bc", "613293614430")
+        .handleNotificationOpened(notificationOpenedCallback)
+        .endInit();
     });
   }
 
