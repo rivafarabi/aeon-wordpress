@@ -60,8 +60,8 @@ export class ClientProvider {
             });
     }
 
-    getComments(id: number) {
-        return this.http.get(this.api.GET_COMMENTS + id)
+    getComments(id: number, page: number) {
+        return this.http.get(`${this.api.GET_COMMENTS}?post=${id}&page=${page}`)
             .map((res: Response) => res.json())
             .map(res => {
                 return res;

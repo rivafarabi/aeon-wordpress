@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Comments</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (tap)="dismiss()">
+                <ion-icon item-right name="close"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <div class="no-item" *ngIf="comments == null || comments.length == 0">
+        <ion-icon name="ios-chatbubbles-outline"></ion-icon>
+        <p>There is no comment for this post yet.
+    </div>
+    <ion-list>
+        <ion-item *ngFor="let item of comments">
+            <ion-avatar item-left>
+                <img [src]="item.author_avatar_urls[48]">
+            </ion-avatar>
+            <p class="comment-author">{{item.author_name}}</p>
+            <p class="comment-content" [innerHTML]="item.content.rendered"></p>
+            <p class="comment-date">{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', sameElse: 'MMMM DD, YYYY'} }}
+                <p>
+        </ion-item>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="loadMoreComments($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <ion-input type="text" placeholder="What's your opinion?'">
+        </ion-input>
+        <ion-buttons end>
+            <button ion-button icon-only (tap)="sendComment()">
+                <ion-icon item-right name="send" color="primary"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

@@ -91,31 +91,8 @@ export class PostContentPage {
   sharePost(link) {
     this.socialSharing.share("", "", null, link);
   }
-  presentProfileModal() {
-    let commentModal = this.modalCtrl.create(CommentModal, { id: this.postId });
+  openCommentModal() {
+    let commentModal = this.modalCtrl.create("CommentModal", { id: this.postId });
     commentModal.present();
-  }
-}
-
-@Component({
-  selector: 'modal-comment',
-  templateUrl: 'comment-modal.html',
-  providers: [ClientProvider, SocialSharing]
-})
-class CommentModal {
-  postID: number;
-  comments: any;
-  constructor(private clientProvider: ClientProvider, private navParams: NavParams) {
-    this.postID = this.navParams.get('id');
-  }
-  getCommnent(){
-    this.clientProvider.getComments(this.postID)
-    .subscribe(res => {
-      console.log(res);
-      this.comments = res;
-    })
-  }
-  postComment(){
-
   }
 }

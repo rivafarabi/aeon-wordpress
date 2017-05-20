@@ -1,0 +1,34 @@
+modal-comment {
+    .no-item {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+        align-items: center;
+        ion-icon {
+            font-size: 150px;
+        }
+        p {
+            font-weight: 700;
+        }
+    }
+    ion-item {
+        p {
+            white-space: normal;
+            line-height: 20px !important;
+            &.comment-author {
+                font-weight: 700;
+            }
+            &.comment-content {
+                font-size: 1.2rem !important;
+            }
+            &.comment-date {
+                font-size: 1rem;
+                text-align: right;
+            }
+        }
+    }
+}
