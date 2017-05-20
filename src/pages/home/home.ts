@@ -13,20 +13,23 @@ import { ClientProvider } from '../../providers/client.provider';
   providers: [ClientProvider]
 })
 export class HomePage {
-  private posts: any;
-  private page: number;
-  private showSearchBar: boolean;
-  private searchString: string;
+  posts: any;
+  page: number;
+  showSearchBar: boolean;
+  searchString: string;
 
   constructor(
     public navCtrl: NavController,
     public platform: Platform,
     public clientProvider: ClientProvider,
-    ) {
+  ) { 
     this.page = 1;
     this.fetchPost();
     this.showSearchBar = false;
     this.searchString = "";
+  }
+
+  ionViewDidLoad() {
   }
 
   fetchPost(isRefresh?: boolean) {
@@ -73,14 +76,7 @@ export class HomePage {
     )
   }
 
-  goToPost(id) {
-    this.navCtrl.push(
-      "PostContentPage", {
-        'postId': id
-      });
-  }
-
-  toPostContent(postDetail: any){
+  toPostContent(postDetail: any) {
     this.navCtrl.push(
       "PostContentPage", {
         'postId': postDetail.id,

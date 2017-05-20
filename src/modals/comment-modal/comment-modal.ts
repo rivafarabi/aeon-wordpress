@@ -18,7 +18,8 @@ export class CommentModal {
   constructor(
     private viewCtrl: ViewController,
     private clientProvider: ClientProvider,
-    private navParams: NavParams) {
+    private navParams: NavParams
+  ) {
     this.postID = this.navParams.get('id');
     this.page = 1;
     this.getCommnent();

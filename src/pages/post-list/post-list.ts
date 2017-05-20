@@ -1,6 +1,5 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ImgLoader } from 'ionic-image-loader';
 import 'rxjs/Rx'
 
 import { ClientProvider } from '../../providers/client.provider';
@@ -12,20 +11,20 @@ import { ClientProvider } from '../../providers/client.provider';
   providers: [ClientProvider]
 })
 export class PostListPage {
-  private pageTitle: string;
-  private options: any;
-  private posts: any;
-  private imgThumbnail: any;
-  private page: number;
-  private onProgress: boolean;
-  private onInitProgress: boolean;
-  private showSearchBar: boolean;
+  pageTitle: string;
+  options: any;
+  posts: any;
+  page: number;
+  onProgress: boolean;
+  onInitProgress: boolean;
+  showSearchBar: boolean;
 
-  constructor(public navCtrl: NavController,
+  constructor(
+    public navCtrl: NavController,
     public navParams: NavParams,
-    public elementRef: ElementRef,
-    public clientProvider: ClientProvider) {
-    this.pageTitle = navParams.get('name');
+    public clientProvider: ClientProvider
+  ) {
+    this.pageTitle = this.navParams.get('name');
     this.options = {
       type: this.navParams.get('type'),
       id: this.navParams.get('id')
@@ -36,6 +35,9 @@ export class PostListPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PostListPage');
+  }
+
+  ionViewDidEnter(){
   }
 
   fetchPost(options: any) {
@@ -80,9 +82,5 @@ export class PostListPage {
   
   toggleSearchBar() {
     this.showSearchBar = !this.showSearchBar;
-  }
-
-  onImageLoad(imgLoader: ImgLoader){
-    imgLoader.element.parentElement.parentElement.parentElement.parentElement.className = "fade-in";
   }
 }

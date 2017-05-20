@@ -92,7 +92,10 @@ export class PostContentPage {
     this.socialSharing.share("", "", null, link);
   }
   openCommentModal() {
-    let commentModal = this.modalCtrl.create("CommentModal", { id: this.postId });
+    let commentModal = this.modalCtrl.create("CommentModal", { 
+      id: this.postContent.id,
+      url: this.postContent.link
+    });
     commentModal.present();
   }
 }

@@ -8,3 +8,7 @@ export class Endpoint {
     public GET_MEDIA = `${this.WP_URL}/media/`;
     public GET_USER = `${this.WP_URL}/users/`;
 }
+
+export class Disqus{
+    public SHORTNAME = "slashgeardotcom";
+}
