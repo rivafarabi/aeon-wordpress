@@ -38,11 +38,19 @@ export class MyApp {
       Splashscreen.hide();
 
       //OneSignal Configuration
-      // this.oneSignal.startInit("7c56563e-57fb-49bb-ad7b-752087c3c8bc", "613293614430");
-      // this.oneSignal.handleNotificationOpened().subscribe(jsonData => {
-      //   alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-      // });
-      // this.oneSignal.endInit();
+      if (this.platform.is('android')) {
+        let kOSSettingsKeyAutoPrompt: boolean = true;
+        let kOSSettingsKeyInAppLaunchURL: boolean = false 
+
+        this.oneSignal.startInit("7c56563e-57fb-49bb-ad7b-752087c3c8bc", "613293614430");
+        this.oneSignal.handleNotificationOpened().subscribe(jsonData => {
+          this.nav.push("PostContentPage",{
+            postId: jsonData.notification.payload.additionalData.id
+          })
+        });
+        
+      this.oneSignal.endInit();
+      }
     });
   }
 

@@ -43,7 +43,6 @@ export class PostContentPage {
   ) {
     imageLoaderConfig.enableSpinner(false);
     this.postId = this.navParams.get("postId");
-    this.postMedia = this.navParams.get("postMedia");
     this.onProgress = true;
     this.onImgProgress = true;
     this.getPostContent(this.postId);

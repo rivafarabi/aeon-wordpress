@@ -27,9 +27,8 @@
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
-    <!--<preference name="FadeSplashScreenDuration" value="300" />-->
     <preference name="SplashShowOnlyFirstTime" value="false" />
-    <preference name="StatusBarBackgroundColor" value="#33000000"/>
+    <preference name="StatusBarBackgroundColor" value="#33000000" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
@@ -42,4 +41,5 @@
     <plugin name="cordova-plugin-file" spec="~4.3.2" />
     <plugin name="cordova-plugin-file-transfer" spec="~1.6.2" />
     <plugin name="cordova-sqlite-storage" spec="~2.0.3" />
+    <plugin name="onesignal-cordova-plugin" spec="~2.1.1" />
 </widget>
