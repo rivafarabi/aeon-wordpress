@@ -8,8 +8,7 @@ import { GridList } from '../../components/grid-list.module'
 import { IonicImageLoader } from 'ionic-image-loader';
 import { MomentModule } from 'angular2-moment';
 @NgModule({
-   declarations: [
-      PostListPage],
+   declarations: [PostListPage],
    imports: [
       IonicPageModule.forChild(PostListPage),
       HeaderTransparent,

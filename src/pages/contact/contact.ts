@@ -18,10 +18,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ContactPage {
 
   constructor(
-     public navCtrl: NavController, 
-     public navParams: NavParams
+    public navCtrl: NavController,
+    public navParams: NavParams
     //  private googleMaps: GoogleMaps
-    ) {}
+  ) { }
 
   // ionViewDidLoad() {
   //   console.log('ionViewDidLoad CommentListPage');

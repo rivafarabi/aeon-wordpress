@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, ModalController } from 'ionic-angular';
 import { OneSignal } from '@ionic-native/onesignal';
 import { Setting } from '../../model/setting.model';
 
@@ -11,7 +11,8 @@ import { Setting } from '../../model/setting.model';
 export class SettingPage {
     setting: Setting = new Setting(true);
     constructor(
-        public navCtrl: NavController,
+        private navCtrl: NavController,
+        private modalCtrl: ModalController,
         private oneSignal: OneSignal
     ) { }
 
@@ -27,6 +28,11 @@ export class SettingPage {
             this.oneSignal.setSubscription(true);
             this.setting.pushNotification = true;
         }
+    }
+
+    openModal(modalName: string){
+        let modal = this.modalCtrl.create(modalName);
+        modal.present();
     }
 
 }

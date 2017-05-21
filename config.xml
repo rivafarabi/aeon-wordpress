@@ -40,6 +40,6 @@
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
     <plugin name="cordova-plugin-file" spec="~4.3.2" />
     <plugin name="cordova-plugin-file-transfer" spec="~1.6.2" />
-    <plugin name="cordova-sqlite-storage" spec="~2.0.3" />
     <plugin name="onesignal-cordova-plugin" spec="~2.1.1" />
+    <plugin name="cordova-sqlite-storage" spec="~2.0.3" />
 </widget>

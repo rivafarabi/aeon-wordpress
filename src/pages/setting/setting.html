@@ -14,9 +14,9 @@
             <ion-toggle checked="true" [(ngModel)]="setting.pushNotification"></ion-toggle>
         </ion-item>
         <ion-list-header>Legal</ion-list-header>
-        <button ion-item>Term of Services</button>
-        <button ion-item>FAQ</button>
-        <button ion-item>Credits</button>
+        <button ion-item (click)="openModal('TosModal')">Term of Services</button>
+        <button ion-item (click)="openModal('FaqModal')">FAQ</button>
+        <button ion-item (click)="openModal('CreditsModal')">Credits</button>
         <ion-list-header>Account</ion-list-header>
         <button ion-item>Sign Out</button>
     </ion-list>

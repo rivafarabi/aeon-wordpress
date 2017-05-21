@@ -2,41 +2,40 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ImgLoader } from 'ionic-image-loader';
 import 'rxjs/Rx'
+import {Observable} from 'rxjs/Observable';
 
-import { ClientProvider } from '../../providers/client.provider';
+import { StorageProvider } from '../../providers/storage.provider';
 
 @IonicPage()
 @Component({
   selector: 'page-bookmark',
   templateUrl: 'bookmark.html',
-  providers: [ClientProvider]
+  providers: [StorageProvider]
 })
 export class BookmarkPage {
-  private pageTitle: string;
-  private options: any;
-  private posts: any;
-  private page: number;
+  pageTitle: string;
+  options: any;
+  posts: any;
+  page: number;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public clientProvider: ClientProvider) {
-    this.pageTitle = navParams.get('name');
-    this.options = {
-      type: this.navParams.get('type'),
-      id: this.navParams.get('id')
-    }
-    this.page = 1;
-    this.fetchPost(this.options);
+    public storageProvider: StorageProvider
+  ) {
+    this.fetchPost();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PostListPage');
   }
-  fetchPost(options: any) {
-    
-  }
 
-  
+  fetchPost() {
+    let fetch = Observable.fromPromise(this.storageProvider.fetchBookmark());
+    fetch.subscribe(res => {
+      this.posts = res;
+      console.log(this.posts);
+    })
+  }
 
   goToPost(id, media) {
     this.navCtrl.push(
@@ -51,7 +50,7 @@ export class BookmarkPage {
       type: 'search',
       id: event.target.value
     }
-    this.fetchPost(searchOptions);
+    this.fetchPost();
     this.pageTitle = event.target.value;
   }
 

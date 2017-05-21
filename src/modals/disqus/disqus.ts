@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, ViewController, NavParams } from 'ionic-angular';
 import { DisqusModule } from 'ng2-awesome-disqus';
 import { ClientProvider } from '../../providers/client.provider';
-import { Disqus } from '../../constants/endpoint.constant';
+import { DisqusConstant } from '../../constants/variables.constant';
 
 @IonicPage()
 @Component({
@@ -11,7 +11,7 @@ import { Disqus } from '../../constants/endpoint.constant';
   providers: [ClientProvider]
 })
 export class DisqusModal {
-  disqus: Disqus = new Disqus();
+  disqus: DisqusConstant = new DisqusConstant();
   shortname: string;
   postUrl: string;
 
