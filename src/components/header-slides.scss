@@ -11,7 +11,7 @@ header-slides {
         top: -16px;
         left: -16px;
         width: calc(100% + 32px);
-        height: 300px;
+        height: $header-slides-height;
         background-color: gray;
         div.post-header {
             position: absolute;
@@ -27,6 +27,7 @@ header-slides {
             span {
                 text-align: right;
                 font-weight: 300;
+                font-size: $header-slides-subheader;
             }
         }
         img-loader {
@@ -34,7 +35,7 @@ header-slides {
             background-repeat: no-repeat !important;
             background-position-x: center !important;
             background-size: cover !important;
-            height: 300px !important;
+            height: $header-slides-height !important;
             border: none !important;
             -webkit-filter: brightness(50%);
         }

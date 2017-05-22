@@ -13,8 +13,13 @@ export class ClientProvider {
     }
 
     getListPosts(page: number, options?: any) {
-        let opts: string;
-        opts = options == null ? '' : `&${options.type}=${options.id}`;
+        let opts: string = "";
+        if (options != null) {
+            options.forEach(opt => {
+                opts = opts + `&${opt.type}=${opt.id}`;
+            })
+        }
+        console.log(opts);
         return this.http.get(`${this.api.GET_POSTS}?page=${page}${opts}`)
             .map(res => {
                 let postJson = res.json();
@@ -68,10 +73,10 @@ export class ClientProvider {
             });
     }
 
-    postCommnent(commentDetail: any){
+    postCommnent(commentDetail: any) {
         return this.http.post(this.api.GET_COMMENTS, {})
-        .map((res) => res.json())
-        .map(res => {
+            .map((res) => res.json())
+            .map(res => {
                 return res;
             });
     }

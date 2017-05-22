@@ -25,10 +25,10 @@ export class PostListPage {
     public clientProvider: ClientProvider
   ) {
     this.pageTitle = this.navParams.get('name');
-    this.options = {
+    this.options = [{
       type: this.navParams.get('type'),
       id: this.navParams.get('id')
-    }
+    }]
     this.page = 1;
     this.fetchPost(this.options);
   }
@@ -76,7 +76,8 @@ export class PostListPage {
       type: 'search',
       id: event.target.value
     }
-    this.fetchPost(searchOptions);
+    this.options.push(searchOptions);
+    this.fetchPost(this.options);
     this.pageTitle = event.target.value;
   }
   
