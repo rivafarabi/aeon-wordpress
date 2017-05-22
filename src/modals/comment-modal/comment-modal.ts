@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, ViewController, NavParams, ToastController, ModalController } from 'ionic-angular';
-
 import { MomentModule } from 'angular2-moment';
+
 import { ClientProvider } from '../../providers/client.provider';
 
 @IonicPage()
