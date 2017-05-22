@@ -9,8 +9,7 @@ import 'rxjs/Rx';
 })
 @Injectable()
 export class StorageProvider {
-  public bookmark: any = [];
-
+  tempBookmark: any;
   constructor(
     private platform: Platform,
     private storage: Storage
@@ -28,40 +27,40 @@ export class StorageProvider {
 
   saveBookmark(postItem: any) {
     let bookmark: any;
-    let tempBookmark = this.fetchBookmark();
-    let fetch = Observable.fromPromise(this.fetchBookmark());
-    fetch.subscribe(res => {
-      tempBookmark = res; 
-      console.log(tempBookmark);
-    })
-    if (tempBookmark == null) {
-      bookmark = [];
-    } else {
-      bookmark = tempBookmark;
-    }
-    console.log(bookmark);
-    return this.storage.set('bookmark', bookmark);
+    return this.fetchBookmark()
+      .then(res => {
+        this.tempBookmark = res;
+        bookmark = (this.tempBookmark == null ? [] : this.tempBookmark);
+        bookmark.push(postItem);
+        return this.storage.set('bookmark', bookmark)
+          .then(() => {
+            return true;
+          })
+          .catch(() => {
+            return false;
+          })
+      })
   }
 
   isDuplicate(postItem: any) {
-    let result = false;
-    console.log(this.bookmark);
-    this.bookmark.some(item => {
-      console.log(item);
-      if (item == postItem) {
-        result = true;
-        console.log(result);
-        return true
-      }
-    });
-    return result;
+    let result: any;
+    let bookmark: any;
+    return this.fetchBookmark()
+      .then(res => {
+        bookmark = res.filter(item => item.id == postItem.id)[0];
+        return bookmark;
+      })
   }
 
   removeBookmark(postItem: any) {
-    let response = false;
-    this.bookmark.push(postItem);
-
-    return response;
+    let result: any;
+    let bookmark: any;
+    return this.fetchBookmark()
+      .then(res => {
+        bookmark = res.filter(item => item.id != postItem.id);
+        this.storage.set('bookmark', bookmark);
+        return bookmark;
+      })
   }
 
 

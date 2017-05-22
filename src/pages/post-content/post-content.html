@@ -4,12 +4,16 @@
             <button ion-button icon-only (tap)="openCommentModal()">
                 <ion-icon item-right  name="chatbubbles"></ion-icon>
             </button>
-            <button ion-button icon-only (tap)="toggleBookmark(postContent)">
-                <ion-icon item-right  name="heart"></ion-icon>
-            </button>
+
             <button ion-button icon-only *ngIf="postContent.link" (tap)="sharePost(postContent.link)">
         <ion-icon  item-right  ios="ios-share" md="md-share"></ion-icon>
       </button>
+            <button *ngIf="!isBookmarked" ion-button icon-only (tap)="toggleBookmark(postContent)">
+                <ion-icon item-right  name="heart"></ion-icon>
+            </button>
+            <button *ngIf="isBookmarked" ion-button icon-only (tap)="toggleBookmark(postContent)">
+                <ion-icon item-right color="danger" name="heart"></ion-icon>
+            </button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>

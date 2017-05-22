@@ -1,15 +1,15 @@
 import { Component, ElementRef } from '@angular/core';
 import { IonicPage, NavController, ViewController, NavParams, ToastController, ModalController } from 'ionic-angular';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
-
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { NativeStorage } from '@ionic-native/native-storage';
-import { ClientProvider } from '../../providers/client.provider';
-import { StorageProvider } from '../../providers/storage.provider';
 import { ImgLoader } from 'ionic-image-loader';
 import { ImageLoaderConfig } from 'ionic-image-loader';
-
 import 'rxjs/Rx';
+
+import { ClientProvider } from '../../providers/client.provider';
+import { StorageProvider } from '../../providers/storage.provider';
+
 @IonicPage()
 @Component({
   selector: 'page-post-content',
@@ -17,25 +17,25 @@ import 'rxjs/Rx';
   providers: [ClientProvider, StorageProvider, SocialSharing]
 })
 export class PostContentPage {
-  private postId: number;
-  private postMedia: string;
-  private postContent: any = [];
-  private start = 0;
-  private threshold = 200;
-  private slideHeaderPrevious = 0;
-  private ionScroll: any;
-  private showheader: boolean;
-  private hideheader: boolean;
-  private headercontent: any;
-  private onProgress: boolean;
-  private onImgProgress: boolean;
-  isSaved: boolean;
-  
+  postId: number;
+  postMedia: string;
+  postContent: any = [];
+  start = 0;
+  threshold = 200;
+  slideHeaderPrevious = 0;
+  ionScroll: any;
+  showheader: boolean;
+  hideheader: boolean;
+  headercontent: any;
+  onProgress: boolean;
+  onImgProgress: boolean;
+  isBookmarked: boolean;
+
   constructor(
-    navCtrl: NavController,
+    private navCtrl: NavController,
     private viewCtrl: ViewController,
-    public navParams: NavParams,
-    public modalCtrl: ModalController,
+    private navParams: NavParams,
+    private modalCtrl: ModalController,
     public clientProvider: ClientProvider,
     public storageProvider: StorageProvider,
     public elementRef: ElementRef,
@@ -75,27 +75,46 @@ export class PostContentPage {
         this.postContent = res;
         this.postContent.content.bypassRendered = this.sanitizer.bypassSecurityTrustHtml(this.postContent.content.rendered);
         this.onProgress = false;
+        this.storageProvider.isDuplicate(res)
+          .then(res => {
+            this.isBookmarked = (res == null ? false : true);
+          })
       })
-      this.isSaved = this.storageProvider.isDuplicate(this.postContent);
-      console.log(`isSaved : ${this.isSaved}`);
+
   }
 
   toggleBookmark(post) {
-    this.storageProvider.saveBookmark(post)
-      .then(() => {
-        let toast = this.toastCtrl.create({
-          message: 'Bookmark added!',
-          duration: 3000,
-          position: 'bottom'
+    if (!this.isBookmarked) {
+      this.storageProvider.saveBookmark(post)
+        .then(() => {
+          let toast = this.toastCtrl.create({
+            message: 'Bookmark added!',
+            duration: 3000,
+            position: 'bottom'
+          })
+          toast.present();
+          this.isBookmarked = true;
         })
-        toast.present();
-      })
+    } else {
+      this.storageProvider.removeBookmark(post)
+        .then(() => {
+          let toast = this.toastCtrl.create({
+            message: 'Post removed from bookmark.',
+            duration: 3000,
+            position: 'bottom'
+          })
+          toast.present();
+          this.isBookmarked = false;
+        })
+    }
   }
+
   sharePost(link) {
     this.socialSharing.share("", "", null, link);
   }
+
   openCommentModal() {
-    let commentModal = this.modalCtrl.create("CommentModal", { 
+    let commentModal = this.modalCtrl.create("CommentModal", {
       id: this.postContent.id,
       url: this.postContent.link
     });
