@@ -7,7 +7,7 @@ import { ClientProvider } from '../../providers/client.provider';
 @IonicPage()
 @Component({
   selector: 'modal-comment',
-  templateUrl: 'comment-modal.html',
+  templateUrl: 'comment.html',
   providers: [ClientProvider]
 })
 export class CommentModal {

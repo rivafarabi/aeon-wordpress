@@ -1,7 +1,8 @@
 <header-transparent [headerTitle]="'Aion Wordpress'" [showMenuButton]=true></header-transparent>
 <ion-content padding>
     <header-slides [postList]="posts" [start]='0' [end]='4' (postTarget)="toPostContent($event)"></header-slides>
-    <card-list [postList]="posts" [start]=0 (postTarget)="toPostContent($event)"></card-list>
+    <!--<card-list [postList]="posts" [start]=0 (postTarget)="toPostContent($event)"></card-list>-->
+    <big-card-list [postList]="posts" [start]=0 (postTarget)="toPostContent($event)"></big-card-list>
     <ion-infinite-scroll (ionInfinite)="loadMorePosts($event)">
         <ion-infinite-scroll-content loadingSpinner="crescent">
         </ion-infinite-scroll-content>

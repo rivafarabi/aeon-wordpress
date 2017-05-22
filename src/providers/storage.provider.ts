@@ -1,12 +1,8 @@
 import { Component, Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
-@Component({
-  providers: []
-})
 @Injectable()
 export class StorageProvider {
   tempBookmark: any;

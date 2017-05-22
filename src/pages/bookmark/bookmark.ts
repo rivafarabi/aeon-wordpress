@@ -37,11 +37,11 @@ export class BookmarkPage {
     })
   }
 
-  goToPost(id, media) {
+  toPostContent(postDetail: any){
     this.navCtrl.push(
       "PostContentPage", {
-        'postId': id,
-        'postMedia': media
+        'postId': postDetail.id,
+        'postMedia': postDetail.media
       });
   }
 
@@ -53,8 +53,4 @@ export class BookmarkPage {
     this.fetchPost();
     this.pageTitle = event.target.value;
   }
-
-  // onImageLoad(imgLoader: ImgLoader){
-  //   imgLoader.element.parentElement.parentElement.parentElement.className = "fade-in";
-  // }
 }

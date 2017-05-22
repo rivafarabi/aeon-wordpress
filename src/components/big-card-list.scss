@@ -1,0 +1,56 @@
+big-card-list {
+    ion-card {
+        position: relative;
+        width: 100% !important;
+        margin: 0px !important;
+        background: #fff;
+        border-radius: $big-card-list-radius !important;
+        opacity: 0;
+        &.fade-in {
+            opacity: 1;
+            transition: all 1.0s ease;
+        }
+        img {
+            object-fit: cover;
+            background-color: gray;
+            height: $big-card-list-image-height;
+            @media only screen and (min-width: 768px) {
+                height: $big-card-list-image-height-md;
+            }
+        }
+        span.post-category {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            padding: 10px;
+            background: linear-gradient(to top, transparent, #000) !important;
+            white-space: pre-line;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+        div {
+            background: linear-gradient(to bottom, transparent, #000) !important;
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            padding-top: 10px;
+            ion-card-title {
+                padding: 10px !important;
+                font-weight: 700;
+                color: color($colors, light, base) !important;
+                font-size: $big-card-list-title-font-size !important;
+                @media only screen and (min-width: 768px) {
+                    font-size: $big-card-list-title-font-size-md !important;
+                }
+            }
+            p {
+                margin: $big-card-list-date-margin;
+                color: color($colors, light, base) !important;
+                text-align: right;
+                font-size: $card-list-date-font-size !important;
+            }
+        }
+    }
+}
