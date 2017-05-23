@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ImgLoader } from 'ionic-image-loader';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx'
-import {Observable} from 'rxjs/Observable';
 
 import { StorageProvider } from '../../providers/storage.provider';
 
@@ -33,11 +33,10 @@ export class BookmarkPage {
     let fetch = Observable.fromPromise(this.storageProvider.fetchBookmark());
     fetch.subscribe(res => {
       this.posts = res;
-      console.log(this.posts);
     })
   }
 
-  toPostContent(postDetail: any){
+  toPostContent(postDetail: any) {
     this.navCtrl.push(
       "PostContentPage", {
         'postId': postDetail.id,

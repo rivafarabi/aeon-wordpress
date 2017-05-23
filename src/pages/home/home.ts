@@ -15,6 +15,7 @@ import { ClientProvider } from '../../providers/client.provider';
 export class HomePage {
   posts: any;
   page: number;
+  onProgress: boolean;
   showSearchBar: boolean;
   searchString: string;
 
@@ -29,13 +30,11 @@ export class HomePage {
     this.searchString = "";
   }
 
-  ionViewDidLoad() {
-  }
-
   fetchPost(isRefresh?: boolean) {
     if (isRefresh) {
       this.page = 1;
     }
+    this.onProgress = true;
     this.clientProvider.getListPosts(this.page)
       .subscribe(res => {
         console.log(res);
@@ -44,13 +43,10 @@ export class HomePage {
   }
 
   doRefreshPost(refresher) {
-    console.log('Begin async operation', refresher);
     this.fetchPost(true);
     setTimeout(() => {
-      console.log('Async operation has ended');
       refresher.complete();
     }, 2000);
-
   }
 
   loadMorePosts(infiniteScroll) {

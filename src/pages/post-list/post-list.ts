@@ -25,22 +25,19 @@ export class PostListPage {
     public clientProvider: ClientProvider
   ) {
     this.pageTitle = this.navParams.get('name');
-    this.options = [{
-      type: this.navParams.get('type'),
-      id: this.navParams.get('id')
-    }]
+    // this.options = [{
+    //   type: this.navParams.get('type'),
+    //   id: this.navParams.get('id')
+    // }]
+    this.options = this.navParams.get('opt');
     this.page = 1;
     this.fetchPost(this.options);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PostListPage');
-  }
-
-  ionViewDidEnter(){
-  }
-
-  fetchPost(options: any) {
+  fetchPost(opt: any, searchOpt?: any, isRefresh?: boolean) {
+    if (isRefresh) {
+      this.page = 1;
+    }
     this.onProgress = true;
     this.clientProvider.getListPosts(this.page, this.options)
       .subscribe(res => {
@@ -48,6 +45,13 @@ export class PostListPage {
         this.posts = res;
         this.onProgress = false;
       })
+  }
+
+  doRefreshPost(refresher) {
+    this.fetchPost(this.options, true);
+    setTimeout(() => {
+      refresher.complete();
+    }, 2000);
   }
 
   loadMorePosts(infiniteScroll) {
@@ -72,13 +76,13 @@ export class PostListPage {
   }
 
   searchPost(event: any) {
-    let searchOptions = {
-      type: 'search',
-      id: event.target.value
-    }
-    this.options.push(searchOptions);
-    this.fetchPost(this.options);
-    this.pageTitle = event.target.value;
+    this.options.push({
+      'type': 'search',
+      'id': event.target.value
+    });
+    // this.fetchPost(this.options);
+    // this.pageTitle = event.target.value;
+    this.navCtrl.push("PostListPage", { opt: this.options });
   }
   
   toggleSearchBar() {

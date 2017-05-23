@@ -1,8 +1,12 @@
 <header-transparent [headerTitle]="'Aion Wordpress'" [showMenuButton]=true></header-transparent>
 <ion-content padding>
+    <!--<ion-spinner id="init-spinner" *ngIf="onProgress"></ion-spinner>-->
+    <!--Header Slides Component-->
     <header-slides [postList]="posts" [start]='0' [end]='4' (postTarget)="toPostContent($event)"></header-slides>
-    <!--<card-list [postList]="posts" [start]=0 (postTarget)="toPostContent($event)"></card-list>-->
-    <big-card-list [postList]="posts" [start]=0 (postTarget)="toPostContent($event)"></big-card-list>
+
+    <!--Post List Component-->
+    <card-list [postList]="posts" [start]=0 (postTarget)="toPostContent($event)"></card-list>
+
     <ion-infinite-scroll (ionInfinite)="loadMorePosts($event)">
         <ion-infinite-scroll-content loadingSpinner="crescent">
         </ion-infinite-scroll-content>
@@ -11,6 +15,4 @@
         <ion-refresher-content>
         </ion-refresher-content>
     </ion-refresher>
-    <ion-backdrop *ngIf="showSearchBar" disable-activated="" class="search-bar-overlay" role="presentation" tappable="" (click)="toggleSearchBar()">
-    </ion-backdrop>
 </ion-content>

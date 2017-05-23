@@ -31,9 +31,11 @@ export class CategoryListPage {
   goToCategory(id, name) {
     this.navCtrl.push(
       "PostListPage", {
-        'type': 'categories',
-        'id': id,
-        'name': name
+        'opt': [{
+          'type': 'categories',
+          'id': id,
+          'name': name
+        }]
       });
   }
 

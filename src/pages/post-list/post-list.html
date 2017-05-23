@@ -1,10 +1,18 @@
 <header-transparent [headerTitle]="pageTitle"></header-transparent>
 <ion-content padding>
     <ion-spinner id="init-spinner" *ngIf="onProgress"></ion-spinner>
+    <!--Header Slides Component-->
     <header-slides [postList]="posts" [start]='0' [end]='4' (postTarget)="toPostContent($event)"></header-slides>
+
+    <!--Post List Component-->
     <grid-list [postList]="posts" [start]=4 (postTarget)="toPostContent($event)"></grid-list>
+
     <ion-infinite-scroll (ionInfinite)="loadMorePosts($event)">
         <ion-infinite-scroll-content loadingSpinner="crescent">
         </ion-infinite-scroll-content>
     </ion-infinite-scroll>
+    <ion-refresher (ionRefresh)="doRefreshPost($event)">
+        <ion-refresher-content>
+        </ion-refresher-content>
+    </ion-refresher>
 </ion-content>

@@ -6,8 +6,7 @@ import { MomentModule } from 'angular2-moment';
 
 import { HeaderTransparent } from '../../components/header-transparent.module';
 import { HeaderSlides } from '../../components/header-slides.module';
-import { CardList } from '../../components/card-list.module';
-import { BigCardList } from '../../components/big-card-list.module';
+import { CardList } from '../../components/post-list/card-list/card-list.module';
 
 @NgModule({
    declarations: [
@@ -19,8 +18,7 @@ import { BigCardList } from '../../components/big-card-list.module';
       MomentModule,
       HeaderTransparent,
       HeaderSlides,
-      CardList,
-      BigCardList
+      CardList
    ],
    exports: [
       HomePage

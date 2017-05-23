@@ -1,7 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { IonicImageLoader } from 'ionic-image-loader';
-import { MomentModule } from 'angular2-moment';
+import { Component } from '@angular/core';
 import { SquareDirective } from '../directive/square.directive';
+import { PostListComponent } from '../post-list.component';
+
 @Component({
    selector: 'grid-list',
    template:
@@ -22,20 +22,4 @@ import { SquareDirective } from '../directive/square.directive';
         </ion-row>
     </ion-grid>`
 })
-export class GridListComponent{
-   @Input('postList') posts: any;
-   @Input('start') start: number;
-   @Output() postTarget : EventEmitter<any> = new EventEmitter<any>();
-
-   ngOnInit(){
-       this.start = (this.start != null ? this.start : 0);
-   }
-   
-   postNav(postId, postMediaUrl){
-       console.log(postId);
-       this.postTarget.emit({
-           id: postId,
-           media: postMediaUrl
-        });
-   }
-}
+export class GridListComponent extends PostListComponent {}

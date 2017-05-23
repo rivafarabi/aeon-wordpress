@@ -1,12 +1,10 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { ImgLoader } from 'ionic-image-loader';
-import { ImageLoaderConfig } from 'ionic-image-loader';
-import { MomentModule } from 'angular2-moment';
+import { Component } from '@angular/core';
+import { PostListComponent } from '../post-list.component';
 
 @Component({
-   selector: 'card-list',
-   template:
-   `<ion-grid>
+    selector: 'card-list',
+    template:
+    `<ion-grid>
         <ion-row align-items-start col-md-10 offset-md-1>
             <ion-col col-6 col-md-4 *ngFor="let item of posts | slice:start">
                 <ion-card *ngIf="item.media_url" (click)="postNav(item.id)">
@@ -22,28 +20,5 @@ import { MomentModule } from 'angular2-moment';
         </ion-row>
     </ion-grid>`
 })
-export class CardListComponent implements OnInit{
-   @Input('postList') posts: any;
-   @Input('start') start: number;
-   @Output() postTarget : EventEmitter<any> = new EventEmitter<any>();
-
-   constructor(private imageLoaderConfig: ImageLoaderConfig){
-      imageLoaderConfig.enableSpinner(false);
-   }
-
-   ngOnInit(){
-       this.start = (this.start != null ? this.start : 0);
-   }
-
-   postNav(postId, postMediaUrl){
-       console.log(postId);
-       this.postTarget.emit({
-           id: postId,
-           media: postMediaUrl
-        });
-   }
-
-   onImageLoad(imgLoader: ImgLoader) {
-    imgLoader.element.parentElement.parentElement.className = "fade-in";
-  }
+export class CardListComponent extends PostListComponent {
 }
