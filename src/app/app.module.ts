@@ -3,6 +3,7 @@ import { HttpModule } from '@angular/http';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { File } from '@ionic-native/file';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { Transfer } from '@ionic-native/transfer';
 import { IonicStorageModule } from '@ionic/storage';
 import { MyApp } from './app.component';
@@ -31,7 +32,8 @@ import { MomentModule } from 'angular2-moment';
     ImageLoader,
     ImageLoaderConfig,
     File,
-    Transfer
+    Transfer,
+    NativePageTransitions
   ]
 })
 export class AppModule { }

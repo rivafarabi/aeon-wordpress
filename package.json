@@ -22,6 +22,7 @@
     "@ionic-native/core": "^3.9.2",
     "@ionic-native/file": "^3.4.4",
     "@ionic-native/google-maps": "^3.8.1",
+    "@ionic-native/native-page-transitions": "^3.10.3",
     "@ionic-native/native-storage": "^3.4.4",
     "@ionic-native/onesignal": "^3.9.2",
     "@ionic-native/social-sharing": "^3.4.4",

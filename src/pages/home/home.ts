@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, Platform, NavController } from 'ionic-angular';
 import { ImgLoader } from 'ionic-image-loader';
 import { ImageLoaderConfig } from 'ionic-image-loader';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import 'rxjs/Rx'
 
 import { ClientProvider } from '../../providers/client.provider';
@@ -23,11 +24,16 @@ export class HomePage {
     public navCtrl: NavController,
     public platform: Platform,
     public clientProvider: ClientProvider,
-  ) { 
+    private nativePageTransitions: NativePageTransitions
+  ) {
     this.page = 1;
     this.fetchPost();
     this.showSearchBar = false;
     this.searchString = "";
+  }
+
+  ionViewWillLeave() {
+
   }
 
   fetchPost(isRefresh?: boolean) {
@@ -73,6 +79,12 @@ export class HomePage {
   }
 
   toPostContent(postDetail: any) {
+    let opt: NativeTransitionOptions = {
+      duration: 100,
+      iosdelay: 50,
+      androiddelay: 100
+    };
+    this.nativePageTransitions.fade(opt);
     this.navCtrl.push(
       "PostContentPage", {
         'postId': postDetail.id,

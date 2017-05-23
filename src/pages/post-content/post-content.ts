@@ -3,6 +3,7 @@ import { IonicPage, NavController, ViewController, NavParams, ToastController, M
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { NativeStorage } from '@ionic-native/native-storage';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { ImgLoader } from 'ionic-image-loader';
 import { ImageLoaderConfig } from 'ionic-image-loader';
 import 'rxjs/Rx';
@@ -41,6 +42,7 @@ export class PostContentPage {
     public elementRef: ElementRef,
     private toastCtrl: ToastController,
     private socialSharing: SocialSharing,
+    private nativePageTransitions: NativePageTransitions,
     private imageLoaderConfig: ImageLoaderConfig,
     private sanitizer: DomSanitizer
   ) {
@@ -53,6 +55,15 @@ export class PostContentPage {
 
   ionViewWillEnter() {
     this.viewCtrl.setBackButtonText("");
+  }
+
+  ionViewWillLeave(){
+    let opt: NativeTransitionOptions = {
+      duration: 100,
+      iosdelay: 0,
+      androiddelay: 0
+    };
+    this.nativePageTransitions.fade(opt);
   }
 
   ngOnInit() {

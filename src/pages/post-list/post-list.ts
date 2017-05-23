@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import 'rxjs/Rx'
 
 import { ClientProvider } from '../../providers/client.provider';
@@ -22,6 +23,7 @@ export class PostListPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    private nativePageTransitions: NativePageTransitions,
     public clientProvider: ClientProvider
   ) {
     this.pageTitle = this.navParams.get('name');
@@ -32,6 +34,15 @@ export class PostListPage {
     this.options = this.navParams.get('opt');
     this.page = 1;
     this.fetchPost(this.options);
+  }
+
+  ionViewWillLeave() {
+    let opt: NativeTransitionOptions = {
+      duration: 300,
+      iosdelay: 50,
+      androiddelay: 100
+    };
+    this.nativePageTransitions.fade(opt);
   }
 
   fetchPost(opt: any, searchOpt?: any, isRefresh?: boolean) {
@@ -67,7 +78,13 @@ export class PostListPage {
     }, 500)
   }
 
-  toPostContent(postDetail: any){
+  toPostContent(postDetail: any) {
+    let opt: NativeTransitionOptions = {
+      duration: 300,
+      iosdelay: 50,
+      androiddelay: 100
+    };
+    this.nativePageTransitions.fade(opt);
     this.navCtrl.push(
       "PostContentPage", {
         'postId': postDetail.id,
@@ -84,7 +101,7 @@ export class PostListPage {
     // this.pageTitle = event.target.value;
     this.navCtrl.push("PostListPage", { opt: this.options });
   }
-  
+
   toggleSearchBar() {
     this.showSearchBar = !this.showSearchBar;
   }
