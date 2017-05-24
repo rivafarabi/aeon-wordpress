@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ModalController } from 'ionic-angular';
+import { IonicPage, ModalController } from 'ionic-angular';
 import { OneSignal } from '@ionic-native/onesignal';
 import { Setting } from '../../model/setting.model';
 
@@ -11,7 +11,6 @@ import { Setting } from '../../model/setting.model';
 export class SettingPage {
     setting: Setting = new Setting(true);
     constructor(
-        private navCtrl: NavController,
         private modalCtrl: ModalController,
         private oneSignal: OneSignal
     ) { }

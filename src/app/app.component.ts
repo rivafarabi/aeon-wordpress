@@ -2,8 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { OneSignal } from '@ionic-native/onesignal';
+import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 
-import { OneSignalConstant } from '../constants/variables.constant';
+import { OneSignalConstant, AdMobConstant } from '../constants/variables.constant';
 
 @Component({
   templateUrl: 'app.html',
@@ -13,12 +14,14 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = "WelcomePage";
-  oneSignalConstant: OneSignalConstant;
+  oneSignalConstant: OneSignalConstant = new OneSignalConstant();
+  adMobConstant: AdMobConstant = new AdMobConstant();
   pages: Array<{ title: string, component: any }>;
 
   constructor(
     public platform: Platform,
-    private oneSignal: OneSignal
+    private oneSignal: OneSignal,
+    private admobFree: AdMobFree
   ) {
     this.initializeApp();
 
@@ -54,6 +57,20 @@ export class MyApp {
         });
         this.oneSignal.endInit();
       }
+
+      //AdMob Configuration
+      const bannerConfig: AdMobFreeBannerConfig = {
+        isTesting: true,
+        autoShow: true
+      };
+      this.admobFree.banner.config(bannerConfig);
+
+      this.admobFree.banner.prepare()
+        .then(() => {
+          // banner Ad is ready
+          // if we set autoShow to false, then we will need to call the show method here
+        })
+        .catch(e => console.log(e));
     });
   }
 

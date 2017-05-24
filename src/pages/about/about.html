@@ -4,5 +4,16 @@
         <ion-title>About</ion-title>
     </ion-navbar>
 </ion-header>
-<ion-content>
+<ion-content padding>
+    <div class="about-name">
+        <img src="assets/img/app_logo.png" />
+        <p>Aion Wordpress Demo</p>
+        <p>Riva Farabi</p>
+        <p>2017</p>
+    </div>
+    <ion-list>
+        <button ion-item (click)="openModal('TosModal')">Term of Services</button>
+        <button ion-item (click)="openModal('FaqModal')">FAQ</button>
+        <button ion-item (click)="openModal('CreditsModal')">Credits</button>
+    </ion-list>
 </ion-content>

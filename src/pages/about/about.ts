@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, ModalController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -7,5 +7,12 @@ import { IonicPage } from 'ionic-angular';
    templateUrl: 'about.html'
 })
 export class AboutPage {
-   constructor() { }
+   constructor(
+        private modalCtrl: ModalController
+   ) { }
+   
+   openModal(modalName: string){
+        let modal = this.modalCtrl.create(modalName);
+        modal.present();
+    }
 }

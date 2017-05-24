@@ -6,6 +6,8 @@ import { File } from '@ionic-native/file';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { Transfer } from '@ionic-native/transfer';
 import { IonicStorageModule } from '@ionic/storage';
+import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
+
 import { MyApp } from './app.component';
 
 import { IonicImageLoader, ImageLoader, ImageLoaderConfig } from 'ionic-image-loader';
@@ -33,7 +35,8 @@ import { MomentModule } from 'angular2-moment';
     ImageLoaderConfig,
     File,
     Transfer,
-    NativePageTransitions
+    NativePageTransitions,
+    AdMobFree
   ]
 })
 export class AppModule { }

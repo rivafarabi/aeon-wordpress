@@ -3,6 +3,11 @@ export class OneSignalConstant {
     public GOOGLE_PROJECT_ID = "613293614430"; /*"YOUR_GOOGLE_PROJECT_ID";*/
 }
 
+export class AdMobConstant {
+    public GOOGLE_AD_ID = "";
+    public IOS_AD_ID = "";
+}
+
 export class DisqusConstant{
     public SHORTNAME = "slashgeardotcom";
 }
