@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, Slides } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -7,5 +7,14 @@ import { IonicPage, NavController } from 'ionic-angular';
    templateUrl: 'welcome.html'
 })
 export class WelcomePage {
+    @ViewChild(Slides) slides: Slides;
    constructor(public navCtrl: NavController) { }
+
+   next(){
+       this.slides.slideNext();
+   }
+   
+   skip(){
+       this.navCtrl.setRoot("HomePage");
+   }
 }

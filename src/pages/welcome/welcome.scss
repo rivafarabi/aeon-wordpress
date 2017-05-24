@@ -1,0 +1,16 @@
+page-welcome {
+    background-color: color($colors, primary, base);
+    .slide-zoom {
+        height: 80%;
+    }
+    ion-card {
+        height: 80%;
+        width: 80% !important;
+        margin: auto !important;
+    }
+    ion-buttons {
+        button {
+            font-weight: 700 !important;
+        }
+    }
+}

@@ -1,7 +1,37 @@
-<ion-slides>
+<ion-slides pager>
     <ion-slide>
         <ion-card>
             HELLO!
         </ion-card>
+        <h3 ion-text color="light">Explore your wordpress articles on the go!</h3>
+    </ion-slide>
+    <ion-slide>
+        <ion-card>
+            HELLO!
+        </ion-card>
+        <h3 ion-text color="light">Comment, share, and love your favorite post!</h3>
+    </ion-slide>
+    <ion-slide>
+        <ion-card>
+            HELLO!
+        </ion-card>
+        <h3 ion-text color="light">Now enjoy the demo!</h3>
     </ion-slide>
 </ion-slides>
+<ion-footer>
+    <ion-toolbar color="primary">
+        <ion-buttons left>
+            <button ion-button *ngIf="!slides.isEnd()" (click)="skip()">
+                Skip
+            </button>
+        </ion-buttons>
+        <ion-buttons right>
+            <button ion-button *ngIf="!slides.isEnd()" (click)="next()">
+                Next
+            </button>
+            <button ion-button *ngIf="slides.isEnd()" (click)="skip()">
+                OK, Thanks!
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>
