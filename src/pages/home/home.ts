@@ -48,7 +48,7 @@ export class HomePage {
       })
   }
 
-  doRefreshPost(refresher) {
+  refresh(refresher) {
     this.fetchPost(true);
     setTimeout(() => {
       refresher.complete();

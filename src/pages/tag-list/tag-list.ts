@@ -18,10 +18,10 @@ export class TagListPage {
     public navCtrl: NavController,
     public clientProvider: ClientProvider) {
     this.page = 1;
-    this.fetchTags();
+    this.fetch();
   }
 
-  fetchTags() {
+  fetch() {
     this.clientProvider.getListTags(this.page)
       .subscribe(res => {
         this.tags = res;
@@ -37,7 +37,7 @@ export class TagListPage {
       });
   }
 
-  loadMoreTags(infiniteScroll) {
+  loadMore(infiniteScroll) {
     this.page++;
     setTimeout(() => {
       this.clientProvider.getListTags(this.page)

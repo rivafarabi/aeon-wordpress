@@ -1,17 +1,17 @@
 <ion-header>
     <ion-navbar color="primary">
         <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-        <ion-title>Tags</ion-title>
+        <ion-title>Search for:</ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content>
-    <ion-list>
-        <button ion-item *ngFor="let item of tags" (click)="goToTag(item.id, item.name)">
-            <span [innerHTML]="item.name"></span>
-        </button>
-    </ion-list>
+    <grid-list [postList]="posts" (postTarget)="toPostContent($event)"></grid-list>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
         <ion-infinite-scroll-content loadingSpinner="bubbles">
         </ion-infinite-scroll-content>
     </ion-infinite-scroll>
+    <ion-refresher (ionRefresh)="refresh($event)">
+        <ion-refresher-content>
+        </ion-refresher-content>
+    </ion-refresher>
 </ion-content>

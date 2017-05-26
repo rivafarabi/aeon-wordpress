@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import 'rxjs/Rx'
 
-import { ClientProvider } from '../../providers/client.provider'
+import { ClientProvider } from '../../../providers/client.provider'
 
 @IonicPage()
 @Component({
-  selector: 'page-category-list',
-  templateUrl: 'category-list.html',
+  selector: 'page-categories-tab',
+  templateUrl: 'categories-tab.html',
   providers: [ClientProvider]
 })
-export class CategoryListPage {
+export class CategoriesTabPage {
   private categories: any;
   private page: number;
 
@@ -28,14 +28,12 @@ export class CategoryListPage {
       })
   }
 
-  goToCategory(id, name) {
+  goTocCategory(id, name) {
     this.navCtrl.push(
       "PostListPage", {
-        'opt': [{
-          'type': 'categories',
-          'id': id,
-          'name': name
-        }]
+        'type': 'categories',
+        'id': id,
+        'name': name
       });
   }
 

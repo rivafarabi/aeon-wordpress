@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import 'rxjs/Rx'
 
-import { ClientProvider } from '../../providers/client.provider';
+import { ClientProvider } from '../../../providers/client.provider';
 
 @IonicPage()
 @Component({
@@ -11,7 +11,7 @@ import { ClientProvider } from '../../providers/client.provider';
   templateUrl: 'post-list.html',
   providers: [ClientProvider]
 })
-export class PostListPage {
+export class PostsTabPage {
   pageTitle: string;
   options: any;
   posts: any;
@@ -33,7 +33,7 @@ export class PostListPage {
     // }]
     this.options = this.navParams.get('opt');
     this.page = 1;
-    this.fetch(this.options);
+    this.fetchPost(this.options);
   }
 
   ionViewWillLeave() {
@@ -45,7 +45,7 @@ export class PostListPage {
     this.nativePageTransitions.fade(opt);
   }
 
-  fetch(opt: any, searchOpt?: any, isRefresh?: boolean) {
+  fetchPost(opt: any, searchOpt?: any, isRefresh?: boolean) {
     if (isRefresh) {
       this.page = 1;
     }
@@ -59,7 +59,7 @@ export class PostListPage {
   }
 
   refresh(refresher) {
-    this.fetch(this.options, true);
+    this.fetchPost(this.options, true);
     setTimeout(() => {
       refresher.complete();
     }, 2000);

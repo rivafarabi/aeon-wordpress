@@ -1,25 +1,9 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { PostListPage } from './post-list';
-import { IonicImageLoader } from 'ionic-image-loader';
-import { MomentModule } from 'angular2-moment';
-
-import { HeaderTransparent } from '../../components/header-transparent.module';
-import { HeaderSlides } from '../../components/header-slides.module';
-import { GridList } from '../../components/post-list/grid-list/grid-list.module';
+import { SearchPage } from './search';
 
 @NgModule({
-   declarations: [PostListPage],
-   imports: [
-      IonicPageModule.forChild(PostListPage),
-      HeaderTransparent,
-      HeaderSlides,
-      GridList,
-      IonicImageLoader,
-      MomentModule
-   ],
-   exports: [
-      PostListPage
-   ]
+   declarations: [SearchPage],
+   imports: [IonicPageModule.forChild(SearchPage)]
 })
-export class PostListPageModule { }
+export class SearchPageModule { }

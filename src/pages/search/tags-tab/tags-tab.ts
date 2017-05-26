@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import 'rxjs/Rx'
 
-import { ClientProvider } from '../../providers/client.provider'
+import { ClientProvider } from '../../../providers/client.provider'
 
 @IonicPage()
 @Component({
-  selector: 'page-category-list',
-  templateUrl: 'category-list.html',
+  selector: 'page-tags-tab',
+  templateUrl: 'tags-tab.html',
   providers: [ClientProvider]
 })
-export class CategoryListPage {
-  private categories: any;
+export class TagsTabPage {
+  private tags: any;
   private page: number;
 
   constructor(
@@ -22,30 +22,28 @@ export class CategoryListPage {
   }
 
   fetch() {
-    this.clientProvider.getListCategories(this.page)
+    this.clientProvider.getListTags(this.page)
       .subscribe(res => {
-        this.categories = res;
+        this.tags = res;
       })
   }
 
-  goToCategory(id, name) {
+  goToTag(id, name) {
     this.navCtrl.push(
       "PostListPage", {
-        'opt': [{
-          'type': 'categories',
-          'id': id,
-          'name': name
-        }]
+        'type': 'tags',
+        'id': id,
+        'name': name
       });
   }
 
   loadMore(infiniteScroll) {
     this.page++;
     setTimeout(() => {
-      this.clientProvider.getListCategories(this.page)
+      this.clientProvider.getListTags(this.page)
         .subscribe(res => {
           res.forEach(element => {
-            this.categories.push(element)
+            this.tags.push(element)
           });
           infiniteScroll.complete();
         })

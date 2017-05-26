@@ -1,4 +1,17 @@
-<header-transparent [headerTitle]="'Aion Wordpress'" [showMenuButton]=true></header-transparent>
+<header-transparent>
+    <ion-navbar color="dark" *ngIf="!showSearchBar">
+        <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+        <ion-title><span>Aion Wordpress</span></ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="toggleSearchBar()">
+                    <ion-icon item-right name="search"></ion-icon>
+                </button>
+        </ion-buttons>
+    </ion-navbar>
+    <ion-navbar color="primary" *ngIf="showSearchBar">
+        <ion-searchbar [showCancelButton]="true" color="primary" (search)="searchPost($event)"></ion-searchbar>
+    </ion-navbar>
+</header-transparent>
 <ion-content padding>
     <!--<ion-spinner id="init-spinner" *ngIf="onProgress"></ion-spinner>-->
     <!--Header Slides Component-->
@@ -11,7 +24,7 @@
         <ion-infinite-scroll-content loadingSpinner="crescent">
         </ion-infinite-scroll-content>
     </ion-infinite-scroll>
-    <ion-refresher (ionRefresh)="doRefreshPost($event)">
+    <ion-refresher (ionRefresh)="refresh($event)">
         <ion-refresher-content>
         </ion-refresher-content>
     </ion-refresher>

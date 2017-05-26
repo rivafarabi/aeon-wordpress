@@ -4,24 +4,14 @@ import { Component, Input, Output, EventEmitter, ElementRef, OnInit } from '@ang
     selector: 'header-transparent',
     template:
     `<ion-header no-border [ngClass]="{'hide-header':hideheader,'show-header':showheader}">
-        <ion-navbar color="danger" *ngIf="!showSearchBar">
-            <button ion-button menuToggle *ngIf="showMenuButton"><ion-icon name="menu"></ion-icon></button>
-            <ion-title><span [innerHTML]="headerTitle"></span></ion-title>
-            <ion-buttons end>
-                <button ion-button icon-only (click)="toggleSearchBar()">
-                    <ion-icon item-right name="search"></ion-icon>
-                </button>
-            </ion-buttons>
-        </ion-navbar>
-        <ion-navbar color="primary" *ngIf="showSearchBar">
-            <ion-searchbar [showCancelButton]="true" color="primary" (search)="searchPost($event)"></ion-searchbar>
-        </ion-navbar>
+       <ng-content></ng-content>
     </ion-header>`,
 })
 export class HeaderTransparentComponent implements OnInit {
     @Input('headerTitle') headerTitle: string;
     @Input('threshold') threshold: number;
     @Input('showMenuButton') showMenuButton: boolean;
+    
     start: number = 0;
     slideHeaderPrevious: number = 0;
     headerBar: any;

@@ -1,26 +1,5 @@
-<ion-header>
-    <ion-navbar color="primary">
-        <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-        <ion-title></ion-title>
-    </ion-navbar>
-    <ion-toolbar>
-        <ion-searchbar animated=true color="primary" (ionInput)="searchPost($event)"></ion-searchbar>
-    </ion-toolbar>
-</ion-header>
-<ion-content padding>
-    <ion-spinner id="init-spinner" *ngIf="onProgress"></ion-spinner>
-    <!--Header Slides Component-->
-    <header-slides [postList]="posts" [start]='0' [end]='4' (postTarget)="toPostContent($event)"></header-slides>
-
-    <!--Post List Component-->
-    <grid-list [postList]="posts" [start]=4 (postTarget)="toPostContent($event)"></grid-list>
-
-    <ion-infinite-scroll (ionInfinite)="loadMorePosts($event)">
-        <ion-infinite-scroll-content loadingSpinner="crescent">
-        </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-    <ion-refresher (ionRefresh)="doRefreshPost($event)">
-        <ion-refresher-content>
-        </ion-refresher-content>
-    </ion-refresher>
-</ion-content>
+<ion-tabs>
+    <ion-tab [root]="tab1Root"></ion-tab>
+    <ion-tab [root]="tab2Root"></ion-tab>
+    <ion-tab [root]="tab3Root"></ion-tab>
+</ion-tabs>
