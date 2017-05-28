@@ -1,5 +1,5 @@
-<ion-tabs>
-    <ion-tab [root]="tab1Root"></ion-tab>
-    <ion-tab [root]="tab2Root"></ion-tab>
-    <ion-tab [root]="tab3Root"></ion-tab>
+<ion-tabs tabsPlacement="top">
+    <ion-tab [root]="tab1Root" [rootParams]="searchParams" tabTitle="Posts" tabsHideOnSubPages="true"></ion-tab>
+    <ion-tab [root]="tab2Root" [rootParams]="searchParams" tabTitle="Categories" tabsHideOnSubPages="true"></ion-tab>
+    <ion-tab [root]="tab3Root" [rootParams]="searchParams" tabTitle="Tags" tabsHideOnSubPages="true"></ion-tab>
 </ion-tabs>

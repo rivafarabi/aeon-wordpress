@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Navbar } from 'ionic-angular';
 import 'rxjs/Rx'
 
 import { ClientProvider } from '../../../providers/client.provider'
@@ -11,14 +11,25 @@ import { ClientProvider } from '../../../providers/client.provider'
   providers: [ClientProvider]
 })
 export class CategoriesTabPage {
-  private categories: any;
-  private page: number;
+  @ViewChild(Navbar) navBar: Navbar;
+  categories: any;
+  page: number;
+  pageTitle: string;
 
   constructor(
     public navCtrl: NavController,
-    public clientProvider: ClientProvider) {
+    public clientProvider: ClientProvider,
+    private navParams: NavParams
+  ) {
+    this.pageTitle = this.navParams.data.name;
     this.page = 1;
     this.fetch();
+  }
+
+  ionViewDidLoad() {
+    this.navBar.backButtonClick = (e: UIEvent) => {
+      this.navCtrl.parent.viewCtrl.dismiss();
+    };
   }
 
   fetch() {

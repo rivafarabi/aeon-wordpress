@@ -24,7 +24,7 @@ export class BookmarkPage {
     private nativePageTransitions: NativePageTransitions,
     public storageProvider: StorageProvider
   ) {
-    this.fetchPost();
+    this.fetch();
   }
 
   ionViewWillLeave(){
@@ -36,7 +36,7 @@ export class BookmarkPage {
     this.nativePageTransitions.fade(opt);
   }
 
-  fetchPost() {
+  fetch() {
     let fetch = Observable.fromPromise(this.storageProvider.fetchBookmark());
     fetch.subscribe(res => {
       this.posts = res;
@@ -57,12 +57,12 @@ export class BookmarkPage {
       });
   }
 
-  searchPost(event: any) {
+  search(event: any) {
     let searchOptions = {
       type: 'search',
       id: event.target.value
     }
-    this.fetchPost();
+    this.fetch();
     this.pageTitle = event.target.value;
   }
 }

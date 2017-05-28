@@ -4,22 +4,6 @@ import { PostListComponent } from '../post-list.component';
 
 @Component({
    selector: 'grid-list',
-   template:
-   `<ion-grid *ngIf="posts">
-        <ion-row col-md-10 offset-md-1>
-            <ion-col col-12 col-md-6 *ngFor="let item of posts | slice:start" (click)="postNav(item.id, item.media_url)">
-                <ion-row>
-                    <ion-col square class="post-thumbnail" col-4>
-                        <img-loader *ngIf="item.media_url" (load)="onImageLoad($event)" [src]="item.media_url.sizes.thumbnail.source_url" useImg></img-loader>
-                    </ion-col>
-                    <ion-col *ngIf="item.title" col-8>
-                        <p class="post-category" [innerHTML]="item.category_name"></p>
-                        <p class="post-title" [innerHTML]="item.title.rendered"></p>
-                        <p class="post-date">{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', sameElse: 'MMMM DD, YYYY'} }}</p>
-                    </ion-col>
-                </ion-row>
-            </ion-col>
-        </ion-row>
-    </ion-grid>`
+   templateUrl: 'grid-list.html'
 })
 export class GridListComponent extends PostListComponent {}

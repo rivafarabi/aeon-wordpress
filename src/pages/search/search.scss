@@ -1,4 +1,4 @@
-page-post-list {
+page-post-tab {
     ion-spinner#init-spinner {
         position: absolute;
         margin: auto;
@@ -6,5 +6,13 @@ page-post-list {
         right: 0;
         bottom: 0;
         left: 0;
+    }
+}
+
+page-posts-tab,
+page-categories-tab,
+page-tags-tab {
+    ion-navbar.show-back-button .back-button {
+        display: inline-block;
     }
 }

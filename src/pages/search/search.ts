@@ -7,7 +7,7 @@ import { ClientProvider } from '../../providers/client.provider';
 
 @IonicPage()
 @Component({
-  selector: 'page-searc',
+  selector: 'page-search',
   templateUrl: 'search.html',
   providers: [ClientProvider]
 })
@@ -15,8 +15,10 @@ export class SearchPage {
   tab1Root = "PostsTabPage";
   tab2Root = "CategoriesTabPage";
   tab3Root = "TagsTabPage";
-
-  constructor() {
-
+  searchParams : any;
+  constructor(public navParams: NavParams) {
+    this.searchParams = {
+      name: this.navParams.get('name')
+    }
   }
 }

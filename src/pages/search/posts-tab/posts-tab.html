@@ -1,10 +1,9 @@
 <ion-header>
-    <ion-navbar color="primary">
-        <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-        <ion-title>Search for:</ion-title>
+    <ion-navbar color="primary" class="show-back-button">
+        <ion-title>Search for: {{pageTitle}}</ion-title>
     </ion-navbar>
 </ion-header>
-<ion-content>
+<ion-content padding>
     <grid-list [postList]="posts" (postTarget)="toPostContent($event)"></grid-list>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
         <ion-infinite-scroll-content loadingSpinner="bubbles">

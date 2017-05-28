@@ -27,35 +27,40 @@ export class HomePage {
     private nativePageTransitions: NativePageTransitions
   ) {
     this.page = 1;
-    this.fetchPost();
+    this.fetch();
     this.showSearchBar = false;
     this.searchString = "";
   }
 
   ionViewWillLeave() {
-
+    this.showSearchBar = false;
+    let opt: NativeTransitionOptions = {
+      duration: 300,
+      iosdelay: 50,
+      androiddelay: 100
+    };
+    this.nativePageTransitions.fade(opt);
   }
 
-  fetchPost(isRefresh?: boolean) {
-    if (isRefresh) {
-      this.page = 1;
-    }
+  fetch() {
     this.onProgress = true;
     this.clientProvider.getListPosts(this.page)
       .subscribe(res => {
         console.log(res);
         this.posts = res;
+        this.onProgress = false;
       })
   }
 
   refresh(refresher) {
-    this.fetchPost(true);
+    this.page = 1;
+    this.fetch();
     setTimeout(() => {
       refresher.complete();
     }, 2000);
   }
 
-  loadMorePosts(infiniteScroll) {
+  loadMore(infiniteScroll) {
     this.page++;
     setTimeout(() => {
       this.clientProvider.getListPosts(this.page)
@@ -68,11 +73,10 @@ export class HomePage {
     }, 500)
   }
 
-  searchPost(event: any) {
+  search(event: any) {
     this.navCtrl.push(
-      "PostListPage", {
+      "SearchPage", {
         'type': 'search',
-        'id': event.target.value,
         'name': event.target.value
       }
     )

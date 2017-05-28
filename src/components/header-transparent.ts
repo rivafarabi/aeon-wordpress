@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter, ElementRef, OnInit } from '@ang
 @Component({
     selector: 'header-transparent',
     template:
-    `<ion-header no-border [ngClass]="{'hide-header':hideheader,'show-header':showheader}">
+    `<ion-header no-border [ngClass]="{'hide-header':hideHeader,'show-header':showHeader}">
        <ng-content></ng-content>
     </ion-header>`,
 })
@@ -16,8 +16,8 @@ export class HeaderTransparentComponent implements OnInit {
     slideHeaderPrevious: number = 0;
     headerBar: any;
     ionScroll: any;
-    showheader: boolean;
-    hideheader: boolean;
+    showHeader: boolean;
+    hideHeader: boolean;
     headercontent: any;
 
     constructor(private el: ElementRef) { }
@@ -27,11 +27,11 @@ export class HeaderTransparentComponent implements OnInit {
         this.ionScroll = this.el.nativeElement.parentNode.getElementsByClassName('scroll-content')[0];
         this.ionScroll.addEventListener("scroll", () => {
             if (this.ionScroll.scrollTop - this.start > this.threshold) {
-                this.showheader = true;
-                this.hideheader = false;
+                this.showHeader = true;
+                this.hideHeader = false;
             } else {
-                this.showheader = false;
-                this.hideheader = true;
+                this.showHeader = false;
+                this.hideHeader = true;
             }
             this.slideHeaderPrevious = this.ionScroll.scrollTop - this.start;
         });

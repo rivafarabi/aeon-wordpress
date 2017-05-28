@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Navbar } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import 'rxjs/Rx'
 
@@ -7,11 +7,12 @@ import { ClientProvider } from '../../../providers/client.provider';
 
 @IonicPage()
 @Component({
-  selector: 'page-post-list',
-  templateUrl: 'post-list.html',
+  selector: 'page-posts-tab',
+  templateUrl: 'posts-tab.html',
   providers: [ClientProvider]
 })
 export class PostsTabPage {
+  @ViewChild(Navbar) navBar: Navbar;
   pageTitle: string;
   options: any;
   posts: any;
@@ -26,14 +27,19 @@ export class PostsTabPage {
     private nativePageTransitions: NativePageTransitions,
     public clientProvider: ClientProvider
   ) {
-    this.pageTitle = this.navParams.get('name');
-    // this.options = [{
-    //   type: this.navParams.get('type'),
-    //   id: this.navParams.get('id')
-    // }]
-    this.options = this.navParams.get('opt');
+    this.pageTitle = this.navParams.data.name;
+    this.options = [{
+      type: 'search',
+      id: this.navParams.data.name
+    }]
     this.page = 1;
-    this.fetchPost(this.options);
+    this.fetch(this.options);
+  }
+
+  ionViewDidLoad() {
+    this.navBar.backButtonClick = (e: UIEvent) => {
+      this.navCtrl.parent.viewCtrl.dismiss();
+    };
   }
 
   ionViewWillLeave() {
@@ -43,13 +49,12 @@ export class PostsTabPage {
       androiddelay: 100
     };
     this.nativePageTransitions.fade(opt);
+
   }
 
-  fetchPost(opt: any, searchOpt?: any, isRefresh?: boolean) {
-    if (isRefresh) {
-      this.page = 1;
-    }
+  fetch(opt: any, searchOpt?: any) {
     this.onProgress = true;
+    console.log(this.options);
     this.clientProvider.getListPosts(this.page, this.options)
       .subscribe(res => {
         this.onInitProgress = (this.page == 1 ? false : true);
@@ -59,7 +64,8 @@ export class PostsTabPage {
   }
 
   refresh(refresher) {
-    this.fetchPost(this.options, true);
+    this.page = 1;
+    this.fetch(this.options);
     setTimeout(() => {
       refresher.complete();
     }, 2000);
@@ -97,7 +103,7 @@ export class PostsTabPage {
       'type': 'search',
       'id': event.target.value
     });
-    // this.fetchPost(this.options);
+    // this.fetch(this.options);
     // this.pageTitle = event.target.value;
     this.navCtrl.push("PostListPage", { opt: this.options });
   }

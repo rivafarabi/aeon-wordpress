@@ -45,10 +45,7 @@ export class PostListPage {
     this.nativePageTransitions.fade(opt);
   }
 
-  fetch(opt: any, searchOpt?: any, isRefresh?: boolean) {
-    if (isRefresh) {
-      this.page = 1;
-    }
+  fetch(opt: any, searchOpt?: any) {
     this.onProgress = true;
     this.clientProvider.getListPosts(this.page, this.options)
       .subscribe(res => {
@@ -59,7 +56,8 @@ export class PostListPage {
   }
 
   refresh(refresher) {
-    this.fetch(this.options, true);
+    this.page = 1;
+    this.fetch(this.options);
     setTimeout(() => {
       refresher.complete();
     }, 2000);

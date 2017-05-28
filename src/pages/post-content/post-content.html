@@ -1,10 +1,9 @@
 <ion-header no-border [ngClass]="{'hide-header':showheader,'show-header':hideheader}">
     <ion-navbar color="primary" no-border-bottom>
-        <ion-buttons end>
+        <ion-buttons start>
             <button ion-button icon-only (tap)="openCommentModal()">
                 <ion-icon item-right  name="chatbubbles"></ion-icon>
             </button>
-
             <button ion-button icon-only *ngIf="postContent.link" (tap)="sharePost(postContent.link)">
         <ion-icon  item-right  ios="ios-share" md="md-share"></ion-icon>
       </button>
