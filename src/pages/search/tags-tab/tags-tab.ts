@@ -12,18 +12,24 @@ import { ClientProvider } from '../../../providers/client.provider'
 })
 export class TagsTabPage {
   @ViewChild(Navbar) navBar: Navbar;
+  options: any;
   tags: any;
   page: number;
   pageTitle: string;
+  showSearchBar: boolean;
 
   constructor(
     public navCtrl: NavController,
     public clientProvider: ClientProvider,
     private navParams: NavParams
   ) {
-    this.pageTitle = this.navParams.data.name;
-    this.page = 1;
-    this.fetch();
+    this.init();
+  }
+
+  ionViewWillEnter(){
+   if (this.options[0].id != this.navParams.data.name) {
+      this.init();
+    }
   }
 
   ionViewDidLoad() {
@@ -32,8 +38,22 @@ export class TagsTabPage {
     };
   }
 
-  fetch() {
-    this.clientProvider.getListTags(this.page)
+  ionViewWillLeave() {
+    this.showSearchBar = false;
+  }
+
+  init(){
+    this.pageTitle = this.navParams.data.name;
+    this.options = [{
+      type: 'search',
+      id: this.navParams.data.name
+    }]
+    this.page = 1;
+    this.fetch(this.options);
+  }
+
+  fetch(opt: any) {
+    this.clientProvider.getListTags(this.page, this.options)
       .subscribe(res => {
         this.tags = res;
       })
@@ -51,7 +71,7 @@ export class TagsTabPage {
   loadMore(infiniteScroll) {
     this.page++;
     setTimeout(() => {
-      this.clientProvider.getListTags(this.page)
+      this.clientProvider.getListTags(this.page, this.options)
         .subscribe(res => {
           res.forEach(element => {
             this.tags.push(element)
@@ -59,6 +79,15 @@ export class TagsTabPage {
           infiniteScroll.complete();
         })
     }, 500)
+  }
+
+  search(event: any) {
+    this.navParams.data.name = event.target.value;
+    this.init();
+  }
+
+  toggleSearchBar() {
+    this.showSearchBar = !this.showSearchBar;
   }
 
 }

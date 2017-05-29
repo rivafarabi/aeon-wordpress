@@ -12,18 +12,24 @@ import { ClientProvider } from '../../../providers/client.provider'
 })
 export class CategoriesTabPage {
   @ViewChild(Navbar) navBar: Navbar;
-  categories: any;
-  page: number;
   pageTitle: string;
+  categories: any;
+  options: any;
+  page: number;
+  showSearchBar: boolean;
 
   constructor(
     public navCtrl: NavController,
     public clientProvider: ClientProvider,
     private navParams: NavParams
   ) {
-    this.pageTitle = this.navParams.data.name;
-    this.page = 1;
-    this.fetch();
+    this.init();
+  }
+
+  ionViewWillEnter() {
+    if (this.options[0].id != this.navParams.data.name) {
+      this.init();
+    }
   }
 
   ionViewDidLoad() {
@@ -32,8 +38,22 @@ export class CategoriesTabPage {
     };
   }
 
-  fetch() {
-    this.clientProvider.getListCategories(this.page)
+  ionViewWillLeave() {
+    this.showSearchBar = false;
+  }
+
+  init() {
+    this.pageTitle = this.navParams.data.name;
+    this.options = [{
+      type: 'search',
+      id: this.navParams.data.name
+    }]
+    this.page = 1;
+    this.fetch(this.options);
+  }
+
+  fetch(opt: any) {
+    this.clientProvider.getListCategories(this.page, this.options)
       .subscribe(res => {
         this.categories = res;
       })
@@ -51,7 +71,7 @@ export class CategoriesTabPage {
   loadMore(infiniteScroll) {
     this.page++;
     setTimeout(() => {
-      this.clientProvider.getListCategories(this.page)
+      this.clientProvider.getListCategories(this.page, this.options)
         .subscribe(res => {
           res.forEach(element => {
             this.categories.push(element)
@@ -61,4 +81,12 @@ export class CategoriesTabPage {
     }, 500)
   }
 
+  search(event: any) {
+    this.navParams.data.name = event.target.value;
+    this.init();
+  }
+
+  toggleSearchBar() {
+    this.showSearchBar = !this.showSearchBar;
+  }
 }

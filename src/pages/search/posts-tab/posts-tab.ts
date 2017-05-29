@@ -13,10 +13,10 @@ import { ClientProvider } from '../../../providers/client.provider';
 })
 export class PostsTabPage {
   @ViewChild(Navbar) navBar: Navbar;
-  pageTitle: string;
   options: any;
   posts: any;
   page: number;
+  pageTitle: string;
   onProgress: boolean;
   onInitProgress: boolean;
   showSearchBar: boolean;
@@ -27,13 +27,13 @@ export class PostsTabPage {
     private nativePageTransitions: NativePageTransitions,
     public clientProvider: ClientProvider
   ) {
-    this.pageTitle = this.navParams.data.name;
-    this.options = [{
-      type: 'search',
-      id: this.navParams.data.name
-    }]
-    this.page = 1;
-    this.fetch(this.options);
+    this.init();
+  }
+
+  ionViewWillEnter() {
+    if (this.options[0].id != this.navParams.data.name) {
+      this.init()
+    }
   }
 
   ionViewDidLoad() {
@@ -43,18 +43,21 @@ export class PostsTabPage {
   }
 
   ionViewWillLeave() {
-    let opt: NativeTransitionOptions = {
-      duration: 300,
-      iosdelay: 50,
-      androiddelay: 100
-    };
-    this.nativePageTransitions.fade(opt);
-
+    this.showSearchBar = false;
   }
 
-  fetch(opt: any, searchOpt?: any) {
+  init(){
+    this.pageTitle = this.navParams.data.name;
+    this.options = [{
+      type: 'search',
+      id: this.navParams.data.name
+    }]
+    this.page = 1;
+    this.fetch(this.options);
+  }
+
+  fetch(opt: any) {
     this.onProgress = true;
-    console.log(this.options);
     this.clientProvider.getListPosts(this.page, this.options)
       .subscribe(res => {
         this.onInitProgress = (this.page == 1 ? false : true);
@@ -98,14 +101,9 @@ export class PostsTabPage {
       });
   }
 
-  searchPost(event: any) {
-    this.options.push({
-      'type': 'search',
-      'id': event.target.value
-    });
-    // this.fetch(this.options);
-    // this.pageTitle = event.target.value;
-    this.navCtrl.push("PostListPage", { opt: this.options });
+  search(event: any) {
+    this.navParams.data.name = event.target.value;
+    this.init();
   }
 
   toggleSearchBar() {

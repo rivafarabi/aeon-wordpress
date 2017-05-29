@@ -47,13 +47,25 @@ export class ClientProvider {
             })
     }
 
-    getListCategories(page: number) {
-        return this.http.get(`${this.api.GET_CATEGORIES}?page=${page}`)
+    getListCategories(page: number, options?: any) {
+        let opts: string = "";
+        if (options != null) {
+            options.forEach(opt => {
+                opts = opts + `&${opt.type}=${opt.id}`;
+            })
+        }
+        return this.http.get(`${this.api.GET_CATEGORIES}?page=${page}${opts}`)
             .map((res: Response) => res.json())
     }
 
-    getListTags(page: number) {
-        return this.http.get(`${this.api.GET_TAGS}?page=${page}`)
+    getListTags(page: number, options?: any) {
+        let opts: string = "";
+        if (options != null) {
+            options.forEach(opt => {
+                opts = opts + `&${opt.type}=${opt.id}`;
+            })
+        }
+        return this.http.get(`${this.api.GET_TAGS}?page=${page}${opts}`)
             .map((res: Response) => res.json())
     }
 
