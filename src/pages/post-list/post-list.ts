@@ -90,14 +90,13 @@ export class PostListPage {
       });
   }
 
-  searchPost(event: any) {
-    this.options.push({
-      'type': 'search',
-      'id': event.target.value
-    });
-    // this.fetchPost(this.options);
-    // this.pageTitle = event.target.value;
-    this.navCtrl.push("PostListPage", { opt: this.options });
+  search(event: any) {
+    this.navCtrl.push(
+      "SearchPage", {
+        'type': 'search',
+        'name': event.target.value
+      }
+    )
   }
 
   toggleSearchBar() {

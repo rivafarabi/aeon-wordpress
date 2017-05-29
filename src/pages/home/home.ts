@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, Platform, NavController } from 'ionic-angular';
+import { IonicPage, Platform, NavController, Keyboard } from 'ionic-angular';
 import { ImgLoader } from 'ionic-image-loader';
 import { ImageLoaderConfig } from 'ionic-image-loader';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
@@ -24,12 +24,14 @@ export class HomePage {
     public navCtrl: NavController,
     public platform: Platform,
     public clientProvider: ClientProvider,
+    private keyboard: Keyboard,
     private nativePageTransitions: NativePageTransitions
   ) {
     this.page = 1;
     this.fetch();
     this.showSearchBar = false;
     this.searchString = "";
+    this.keyboard.hasFocusedTextInput();
   }
 
   ionViewWillLeave() {

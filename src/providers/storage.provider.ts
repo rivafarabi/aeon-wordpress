@@ -1,5 +1,4 @@
 import { Component, Injectable } from '@angular/core';
-import { Platform } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import 'rxjs/Rx';
 
@@ -7,12 +6,8 @@ import 'rxjs/Rx';
 export class StorageProvider {
   tempBookmark: any;
   constructor(
-    private platform: Platform,
     private storage: Storage
   ) {
-    this.platform.ready().then(() => {
-
-    });
   }
 
   fetchBookmark() {
