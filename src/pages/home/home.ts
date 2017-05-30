@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
-import { IonicPage, Platform, NavController, Keyboard } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, Platform, NavController, Searchbar } from 'ionic-angular';
 import { ImgLoader } from 'ionic-image-loader';
 import { ImageLoaderConfig } from 'ionic-image-loader';
+import { Keyboard } from '@ionic-native/keyboard';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import 'rxjs/Rx'
 
 import { ClientProvider } from '../../providers/client.provider';
+import { KeyboardAttachDirective } from '../../directive/keyboard-attach.directive';
 
 @IonicPage()
 @Component({
@@ -14,6 +16,7 @@ import { ClientProvider } from '../../providers/client.provider';
   providers: [ClientProvider]
 })
 export class HomePage {
+  @ViewChild('searchbar') searchbar: Searchbar;
   posts: any;
   page: number;
   onProgress: boolean;
@@ -30,8 +33,6 @@ export class HomePage {
     this.page = 1;
     this.fetch();
     this.showSearchBar = false;
-    this.searchString = "";
-    this.keyboard.hasFocusedTextInput();
   }
 
   ionViewWillLeave() {
@@ -42,6 +43,10 @@ export class HomePage {
       androiddelay: 100
     };
     this.nativePageTransitions.fade(opt);
+  }
+
+  ionViewDidLoad() {
+    this.keyboard.disableScroll(true);
   }
 
   fetch() {
@@ -75,15 +80,6 @@ export class HomePage {
     }, 500)
   }
 
-  search(event: any) {
-    this.navCtrl.push(
-      "SearchPage", {
-        'type': 'search',
-        'name': event.target.value
-      }
-    )
-  }
-
   toPostContent(postDetail: any) {
     let opt: NativeTransitionOptions = {
       duration: 100,
@@ -98,7 +94,25 @@ export class HomePage {
       });
   }
 
+  search(event: any) {
+    this.navCtrl.push(
+      "SearchPage", {
+        'type': 'search',
+        'name': event.target.value
+      }
+    )
+  }
+  
+  searchBlurred(event:any){
+    this.showSearchBar = false;
+  }
+
   toggleSearchBar() {
     this.showSearchBar = !this.showSearchBar;
+    if (this.showSearchBar) {
+      setTimeout(() => {
+        this.searchbar.setFocus();
+      }, 150);
+    }
   }
 }

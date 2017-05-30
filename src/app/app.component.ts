@@ -33,7 +33,7 @@ export class MyApp {
       { title: 'Settings', component: "SettingPage" },
       { title: 'About', component: "AboutPage" },
       { title: 'Contact', component: "ContactPage" },
-      
+
       { title: 'Login', component: "LoginPage" }
     ];
   }
@@ -67,12 +67,9 @@ export class MyApp {
       };
       this.admobFree.banner.config(bannerConfig);
 
-      this.admobFree.banner.prepare()
-        .then(() => {
-          // banner Ad is ready
-          // if we set autoShow to false, then we will need to call the show method here
-        })
-        .catch(e => console.log(e));
+      // this.admobFree.banner.prepare()
+      //   .then(() => { })
+      //   .catch(e => console.log(e));
     });
   }
 

@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Searchbar } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import 'rxjs/Rx'
 
@@ -12,6 +12,7 @@ import { ClientProvider } from '../../providers/client.provider';
   providers: [ClientProvider]
 })
 export class PostListPage {
+  @ViewChild('searchbar') searchbar: Searchbar;
   pageTitle: string;
   options: any;
   posts: any;
@@ -34,9 +35,11 @@ export class PostListPage {
     this.options = this.navParams.get('opt');
     this.page = 1;
     this.fetch(this.options);
+    this.showSearchBar = false;
   }
 
   ionViewWillLeave() {
+    this.showSearchBar = false;
     let opt: NativeTransitionOptions = {
       duration: 300,
       iosdelay: 50,
@@ -99,7 +102,17 @@ export class PostListPage {
     )
   }
 
+  searchBlurred(event:any){
+    console.log(event);
+    this.showSearchBar = false;
+  }
+
   toggleSearchBar() {
     this.showSearchBar = !this.showSearchBar;
+    if (this.showSearchBar) {
+      setTimeout(() => {
+        this.searchbar.setFocus();
+      }, 150);
+    }
   }
 }

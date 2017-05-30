@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Navbar } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Navbar, Searchbar } from 'ionic-angular';
+import { Keyboard } from '@ionic-native/keyboard';
 import 'rxjs/Rx'
 
 import { ClientProvider } from '../../../providers/client.provider'
@@ -11,6 +12,7 @@ import { ClientProvider } from '../../../providers/client.provider'
   providers: [ClientProvider]
 })
 export class CategoriesTabPage {
+  @ViewChild('searchbar') searchbar: Searchbar;
   @ViewChild(Navbar) navBar: Navbar;
   pageTitle: string;
   categories: any;
@@ -21,7 +23,8 @@ export class CategoriesTabPage {
   constructor(
     public navCtrl: NavController,
     public clientProvider: ClientProvider,
-    private navParams: NavParams
+    private navParams: NavParams,
+    private keyboard: Keyboard,
   ) {
     this.init();
   }
@@ -36,6 +39,7 @@ export class CategoriesTabPage {
     this.navBar.backButtonClick = (e: UIEvent) => {
       this.navCtrl.parent.viewCtrl.dismiss();
     };
+    this.keyboard.disableScroll(true);
   }
 
   ionViewWillLeave() {
@@ -86,7 +90,16 @@ export class CategoriesTabPage {
     this.init();
   }
 
+  searchBlurred(event:any){
+    this.showSearchBar = false;
+  }
+
   toggleSearchBar() {
     this.showSearchBar = !this.showSearchBar;
+    if (this.showSearchBar) {
+      setTimeout(() => {
+        this.searchbar.setFocus();
+      }, 150);
+    }
   }
 }
