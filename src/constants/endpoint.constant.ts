@@ -1,10 +1,10 @@
-export class Endpoint {
-    private WP_URL = "https://www.slashgear.com/wp-json/wp/v2";
-    public GET_POSTS = `${this.WP_URL}/posts`;
-    public GET_CATEGORIES = `${this.WP_URL}/categories/`;
-    public GET_TAGS = `${this.WP_URL}/tags/`;
-    public GET_PAGES = `${this.WP_URL}/pages/`;
-    public GET_COMMENTS = `${this.WP_URL}/comments/`;
-    public GET_MEDIA = `${this.WP_URL}/media/`;
-    public GET_USER = `${this.WP_URL}/users/`;
+const WP_URL = "https://www.slashgear.com";
+export const WP_API = {
+    GET_POSTS : `${WP_URL}/wp-json/wp/v2/posts`,
+    GET_CATEGORIES : `${WP_URL}/wp-json/wp/v2/categories/`,
+    GET_TAGS : `${WP_URL}/wp-json/wp/v2/tags/`,
+    GET_PAGES : `${WP_URL}/wp-json/wp/v2/pages/`,
+    GET_COMMENTS : `${WP_URL}/wp-json/wp/v2/comments/`,
+    GET_MEDIA : `${WP_URL}/wp-json/wp/v2/media/`,
+    GET_USER : `${WP_URL}/wp-json/wp/v2/users/`,
 }

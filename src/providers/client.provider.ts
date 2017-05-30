@@ -3,13 +3,11 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/Rx';
 
 import { Post } from '../model/post.model';
-import { Endpoint } from '../constants/endpoint.constant';
+import { WP_API } from '../constants/endpoint.constant';
 
 @Injectable()
 export class ClientProvider {
-    private api: Endpoint = new Endpoint();
     constructor(private http: Http) {
-
     }
 
     getListPosts(page: number, options?: any) {
@@ -20,7 +18,7 @@ export class ClientProvider {
             })
         }
         console.log(opts);
-        return this.http.get(`${this.api.GET_POSTS}?page=${page}${opts}`)
+        return this.http.get(`${WP_API.GET_POSTS}?page=${page}${opts}`)
             .map(res => {
                 let postJson = res.json();
                 postJson.forEach(postItem => {
@@ -54,7 +52,7 @@ export class ClientProvider {
                 opts = opts + `&${opt.type}=${opt.id}`;
             })
         }
-        return this.http.get(`${this.api.GET_CATEGORIES}?page=${page}${opts}`)
+        return this.http.get(`${WP_API.GET_CATEGORIES}?page=${page}${opts}`)
             .map((res: Response) => res.json())
     }
 
@@ -65,12 +63,12 @@ export class ClientProvider {
                 opts = opts + `&${opt.type}=${opt.id}`;
             })
         }
-        return this.http.get(`${this.api.GET_TAGS}?page=${page}${opts}`)
+        return this.http.get(`${WP_API.GET_TAGS}?page=${page}${opts}`)
             .map((res: Response) => res.json())
     }
 
     getListPages() {
-        return this.http.get(this.api.GET_PAGES)
+        return this.http.get(WP_API.GET_PAGES)
             .map((res: Response) => res.json())
             .map(res => {
                 return res;
@@ -78,7 +76,7 @@ export class ClientProvider {
     }
 
     getComments(id: number, page: number) {
-        return this.http.get(`${this.api.GET_COMMENTS}?post=${id}&page=${page}`)
+        return this.http.get(`${WP_API.GET_COMMENTS}?post=${id}&page=${page}`)
             .map((res: Response) => res.json())
             .map(res => {
                 return res;
@@ -86,7 +84,7 @@ export class ClientProvider {
     }
 
     postCommnent(commentDetail: any) {
-        return this.http.post(this.api.GET_COMMENTS, {})
+        return this.http.post(WP_API.GET_COMMENTS, {})
             .map((res) => res.json())
             .map(res => {
                 return res;
@@ -94,7 +92,7 @@ export class ClientProvider {
     }
 
     getMedia(id: number) {
-        return this.http.get(this.api.GET_MEDIA + id)
+        return this.http.get(WP_API.GET_MEDIA + id)
             .map((res: Response) => res.json())
             .map(res => {
                 let thumbnail_src = (res.media_details.sizes.thumbnail.source_url != null ? res.media_details.sizes.thumbnail.source_url : res.media_details.sizes.featured_thumbnail.source_url)
@@ -106,7 +104,7 @@ export class ClientProvider {
     }
 
     getAuthor(id: number) {
-        return this.http.get(this.api.GET_USER + id)
+        return this.http.get(WP_API.GET_USER + id)
             .map((res: Response) => res.json())
             .map(res => {
                 return res.name;
@@ -114,7 +112,7 @@ export class ClientProvider {
     }
 
     getCategory(id: number) {
-        return this.http.get(this.api.GET_CATEGORIES + id)
+        return this.http.get(WP_API.GET_CATEGORIES + id)
             .map((res: Response) => res.json())
             .map(res => {
                 return res.name;
@@ -122,7 +120,7 @@ export class ClientProvider {
     }
 
     getPostContent(id: number) {
-        return this.http.get(`${this.api.GET_POSTS}/${id}`)
+        return this.http.get(`${WP_API.GET_POSTS}/${id}`)
             .map((res: Response) => res.json())
             .map(res => {
                 if (res.featured_media) {
