@@ -23,7 +23,9 @@ export class BookmarkPage {
     public navParams: NavParams,
     private nativePageTransitions: NativePageTransitions,
     public storageProvider: StorageProvider
-  ) {
+  ) { }
+
+  ionViewWillEnter(){
     this.fetch();
   }
 
