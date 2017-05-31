@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/Rx';
-
+import { AuthProvider } from './auth.provider';
 import { Post } from '../model/post.model';
 import { WP_API } from '../constants/endpoint.constant';
 
 @Injectable()
 export class ClientProvider {
-    constructor(private http: Http) {
+    constructor(private http: Http, private auth: AuthProvider) {
     }
 
     getListPosts(page: number, options?: any) {
@@ -144,5 +144,9 @@ export class ClientProvider {
                 console.log(res);
                 return res;
             });
+    }
+
+    fetchToken(){
+        return this.auth.getToken();
     }
 }

@@ -32,9 +32,7 @@ export class MyApp {
       { title: 'Bookmark', component: "BookmarkPage" },
       { title: 'Settings', component: "SettingPage" },
       { title: 'About', component: "AboutPage" },
-      { title: 'Contact', component: "ContactPage" },
-
-      { title: 'Login', component: "LoginPage" }
+      { title: 'Contact', component: "ContactPage" }
     ];
   }
 
