@@ -8,11 +8,13 @@ import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/na
 import { Transfer } from '@ionic-native/transfer';
 import { IonicStorageModule } from '@ionic/storage';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
-
-import { MyApp } from './app.component';
-
 import { IonicImageLoader, ImageLoader, ImageLoaderConfig } from 'ionic-image-loader';
 import { MomentModule } from 'angular2-moment';
+import { MyApp } from './app.component';
+
+import { AuthProvider } from '../providers/auth.provider';
+import { ClientProvider } from '../providers/client.provider';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { MomentModule } from 'angular2-moment';
     Transfer,
     Keyboard,
     NativePageTransitions,
-    AdMobFree
+    AdMobFree,
+    AuthProvider,
+    ClientProvider
   ]
 })
 export class AppModule { }

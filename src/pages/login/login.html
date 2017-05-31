@@ -1,20 +1,22 @@
-<ion-header>
+<ion-header no-border>
     <ion-navbar color="primary">
+        <ion-title>Sign In</ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content padding>
     <ion-list>
         <ion-item>
-            <ion-label floating>Email</ion-label>
-            <ion-input type="email"></ion-input>
+            <ion-label floating>Username</ion-label>
+            <ion-input type="text"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>Password</ion-label>
             <ion-input type="password"></ion-input>
         </ion-item>
+        <ion-item></ion-item>
     </ion-list>
-    <button ion-button full>Log In</button>
-    <p text-center>
-        Don't have an account? <span ion-text color="primary" (click)="goToRegister()">Sign Up!</span>
+    <p text-right>
+        <button ion-button outline strong>Sign In</button><br>
+        <button ion-button outline strong (click)="goToRegister()">Register</button>
     </p>
 </ion-content>

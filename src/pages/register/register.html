@@ -1,19 +1,33 @@
-<ion-header>
+<ion-header no-border>
     <ion-navbar color="primary">
+        <ion-title>Register</ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <ion-item>
-        <ion-label floating>Email</ion-label>
-        <ion-input type="email"></ion-input>
-    </ion-item>
-    <ion-item>
-        <ion-label floating>Password</ion-label>
-        <ion-input type="password"></ion-input>
-    </ion-item>
-    <ion-item>
-        <ion-label floating>Confirm Password</ion-label>
-        <ion-input type="password"></ion-input>
-    </ion-item>
-    <button ion-button full>Sign Up</button>
+    <ion-list>
+        <ion-item>
+            <ion-label floating>Username</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>First Name</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Last Name</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password"></ion-input>
+        </ion-item>
+        <ion-item></ion-item>
+    </ion-list>
+    <p text-right>
+        <button ion-button outline strong (click)="register()">Register</button>
+    </p>
 </ion-content>
