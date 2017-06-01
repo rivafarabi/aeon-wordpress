@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Navbar, Searchbar } from 'ionic-angular';
-import { Keyboard } from '@ionic-native/keyboard';
 import 'rxjs/Rx'
 
 import { ClientProvider } from '../../../providers/client.provider'
@@ -23,7 +22,7 @@ export class TagsTabPage {
   constructor(
     public navCtrl: NavController,
     public clientProvider: ClientProvider,
-    private keyboard: Keyboard,
+    
     private navParams: NavParams
   ) {
     this.init();
@@ -39,7 +38,6 @@ export class TagsTabPage {
     this.navBar.backButtonClick = (e: UIEvent) => {
       this.navCtrl.parent.viewCtrl.dismiss();
     };
-    this.keyboard.disableScroll(true);
   }
 
   ionViewWillLeave() {

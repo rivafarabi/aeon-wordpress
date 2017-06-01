@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, ModalController } from 'ionic-angular';
 import { OneSignal } from '@ionic-native/onesignal';
-import { Setting } from '../../model/setting.model';
+import { Setting } from '../../models/setting.model';
 
 @IonicPage()
 @Component({

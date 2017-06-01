@@ -4,7 +4,8 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { OneSignal } from '@ionic-native/onesignal';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 
-import { OneSignalConstant, AdMobConstant } from '../constants/variables.constant';
+import { OneSignalConst, AdMobConst } from '../constants/variables.constant';
+import { AuthProvider } from '../providers/auth.provider';
 
 @Component({
   templateUrl: 'app.html',
@@ -14,11 +15,11 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = "WelcomePage";
-  oneSignalConstant: OneSignalConstant = new OneSignalConstant();
-  adMobConstant: AdMobConstant = new AdMobConstant();
   pages: Array<{ title: string, component: any }>;
-
+  isAuth;
+  
   constructor(
+    private auth: AuthProvider,
     public platform: Platform,
     private oneSignal: OneSignal,
     private admobFree: AdMobFree
@@ -36,19 +37,23 @@ export class MyApp {
     ];
   }
 
+  checkAuth() {
+    this.isAuth =  this.auth.getToken().then(res => { return res; })
+  }
+
   initializeApp() {
     this.platform.ready().then(() => {
       StatusBar.styleDefault();
       Splashscreen.hide();
 
-      //OneSignal Configuration
+      //OneSignal Config
       if (this.platform.is('android')) {
         let kOSSettingsKeyAutoPrompt: boolean = true;
         let kOSSettingsKeyInAppLaunchURL: boolean = false
 
         this.oneSignal.startInit(
-          this.oneSignalConstant.APP_ID,
-          this.oneSignalConstant.GOOGLE_PROJECT_ID
+          OneSignalConst.APP_ID,
+          OneSignalConst.GOOGLE_PROJECT_ID
         );
         this.oneSignal.handleNotificationOpened().subscribe(jsonData => {
           this.nav.push("PostContentPage", {
@@ -58,7 +63,7 @@ export class MyApp {
         this.oneSignal.endInit();
       }
 
-      //AdMob Configuration
+      //AdMob Config
       const bannerConfig: AdMobFreeBannerConfig = {
         isTesting: true,
         autoShow: true
@@ -75,5 +80,9 @@ export class MyApp {
     if (this.nav.getActive().name != page.component) {
       this.nav.setRoot(page.component);
     }
+  }
+
+  logout() {
+    this.auth.logout();
   }
 }

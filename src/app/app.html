@@ -10,11 +10,14 @@
             <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
                 {{p.title}}
             </button>
-            <button menuClose ion-item (click)="nav.push('LoginPage')">
+            <button menuClose ion-item (click)="nav.push('LoginPage')" *ngIf="!isAuth">
                 Login
             </button>
-            <button menuClose ion-item (click)="nav.push('RegisterPage')">
+            <button menuClose ion-item (click)="nav.push('RegisterPage')" *ngIf="!isAuth">
                 Register
+            </button>
+            <button menuClose ion-item (click)="logout()" *ngIf="isAuth">
+                Log Out
             </button>
         </ion-list>
     </ion-content>

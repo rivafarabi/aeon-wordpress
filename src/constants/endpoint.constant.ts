@@ -1,4 +1,4 @@
-const WP_URL = "https://www.slashgear.com";
+const WP_URL = "http://localhost/wordpress";
 
 export const WP_API = {
     GET_POSTS : `${WP_URL}/wp-json/wp/v2/posts`,
@@ -12,6 +12,6 @@ export const WP_API = {
 
 export const WP_USER = {
     REGISTER : `${WP_URL}/wp-json/wp/v2/users/`,
-    GET_TOKEN : `${WP_URL}/jwt-auth/v1/token`,
-    VALIDATE: `${WP_URL}/jwt-auth/v1/token/validate`
+    GET_TOKEN : `${WP_URL}/wp-json/jwt-auth/v1/token`,
+    VALIDATE: `${WP_URL}/wp-json/jwt-auth/v1/token/validate`
 }

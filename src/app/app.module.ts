@@ -3,7 +3,6 @@ import { HttpModule } from '@angular/http';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { File } from '@ionic-native/file';
-import { Keyboard } from '@ionic-native/keyboard';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { Transfer } from '@ionic-native/transfer';
 import { IonicStorageModule } from '@ionic/storage';
@@ -38,7 +37,6 @@ import { ClientProvider } from '../providers/client.provider';
     ImageLoaderConfig,
     File,
     Transfer,
-    Keyboard,
     NativePageTransitions,
     AdMobFree,
     AuthProvider,

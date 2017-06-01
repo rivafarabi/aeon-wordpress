@@ -8,26 +8,27 @@ import { WP_USER } from '../constants/endpoint.constant';
 @Injectable()
 export class AuthProvider {
     constructor(private http: Http, private storage: Storage) {
-
     }
 
     register(registerData) {
-        this.http.post(WP_USER.REGISTER, registerData)
+        return this.http.post(WP_USER.REGISTER, registerData)
             .map((res: Response) => res.json())
             .map(res => {
-                this.login({
-                    username: registerData.username,
-                    password: registerData.password
+                console.log(res);
+                return this.login({username: registerData.username, password: registerData.password})
+                .then(res => {
+                    return res
                 })
             })
     }
 
     login(loginData) {
-        this.http.post(WP_USER.GET_TOKEN, loginData)
-            .map((res: Response) => res.json())
-            .map(res => {
-                this.storage.set('token', res)
-            })
+        return this.http.post(WP_USER.GET_TOKEN, loginData).toPromise()
+        .then(success => { 
+            this.saveToken(success);
+            return success; 
+        })
+        .catch(error => { return error; })
     }
 
     logout() {
@@ -35,15 +36,13 @@ export class AuthProvider {
     }
 
     validateToken() {
-        return this.http.post(WP_USER.VALIDATE, this.getToken())
-            .map((res: Response) => res.json())
-            .map(res => {
-                if (res.data.status == 200) {
-                    return true
-                } else { 
-                    return false 
-                }
-            })
+        return this.http.post(WP_USER.VALIDATE, this.getToken()).toPromise()
+        .then(sucess => { return sucess; })
+        .catch(error => { return error; })
+    }
+
+    saveToken(token){
+        this.storage.set('token', token);
     }
 
     getToken() {

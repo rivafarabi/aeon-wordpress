@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, Platform, NavController, Searchbar } from 'ionic-angular';
 import { ImgLoader } from 'ionic-image-loader';
 import { ImageLoaderConfig } from 'ionic-image-loader';
-import { Keyboard } from '@ionic-native/keyboard';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import 'rxjs/Rx'
 
@@ -27,7 +26,6 @@ export class HomePage {
     public navCtrl: NavController,
     public platform: Platform,
     public clientProvider: ClientProvider,
-    private keyboard: Keyboard,
     private nativePageTransitions: NativePageTransitions
   ) {
     this.page = 1;
@@ -43,10 +41,6 @@ export class HomePage {
       androiddelay: 100
     };
     this.nativePageTransitions.fade(opt);
-  }
-
-  ionViewDidLoad() {
-    this.keyboard.disableScroll(true);
   }
 
   fetch() {

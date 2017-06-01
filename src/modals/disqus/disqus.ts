@@ -11,7 +11,6 @@ import { DisqusConstant } from '../../constants/variables.constant';
   providers: [ClientProvider]
 })
 export class DisqusModal {
-  disqus: DisqusConstant = new DisqusConstant();
   shortname: string;
   postUrl: string;
 
@@ -20,7 +19,7 @@ export class DisqusModal {
     private clientProvider: ClientProvider,
     private navParams: NavParams
   ) {
-    this.shortname = this.disqus.SHORTNAME;
+    this.shortname = DisqusConstant.SHORTNAME;
     this.postUrl = this.navParams.get("url");
   }
 

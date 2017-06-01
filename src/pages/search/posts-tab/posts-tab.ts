@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Navbar, Searchbar } from 'ionic-angular';
-import { Keyboard } from '@ionic-native/keyboard';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import 'rxjs/Rx'
 
@@ -26,7 +25,7 @@ export class PostsTabPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private keyboard: Keyboard,
+    
     private nativePageTransitions: NativePageTransitions,
     public clientProvider: ClientProvider
   ) {
@@ -43,7 +42,6 @@ export class PostsTabPage {
     this.navBar.backButtonClick = (e: UIEvent) => {
       this.navCtrl.parent.viewCtrl.dismiss();
     };
-    this.keyboard.disableScroll(true);
   }
 
   ionViewWillLeave() {

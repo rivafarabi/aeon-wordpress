@@ -7,7 +7,15 @@
                 <ion-card-content>
                     <ion-card-title *ngIf="item.title" [innerHTML]="item.title.rendered">
                     </ion-card-title>
-                    <p>{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', sameElse: 'MMMM DD, YYYY'} }}</p>
+                    <p class="post-date">{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', sameElse: 'MMMM DD, YYYY'} }}</p>
+                </ion-card-content>
+            </ion-card>
+            <ion-card class="no-image-card fade-in" *ngIf="!item.media_url" (click)="postNav(item.id)">
+                <ion-card-content>
+                    <p class="post-category" [innerHTML]="item.category_name"></p>
+                    <ion-card-title *ngIf="item.title" [innerHTML]="item.title.rendered">
+                    </ion-card-title>
+                    <p class="post-date">{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', sameElse: 'MMMM DD, YYYY'} }}</p>
                 </ion-card-content>
             </ion-card>
         </ion-col>

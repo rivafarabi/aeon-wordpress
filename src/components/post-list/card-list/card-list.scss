@@ -6,6 +6,7 @@ card-list {
         background: #fff;
         border-radius: 1px !important;
         opacity: 0;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
         &.fade-in {
             opacity: 1;
             transition: all 1.0s ease;
@@ -40,13 +41,40 @@ card-list {
                     font-size: $card-list-title-font-size-md !important;
                 }
             }
-            p {
+            p.post-date {
                 position: absolute;
                 bottom: 0;
                 right: 0;
                 margin: $card-list-date-margin;
                 text-align: right;
                 font-size: $card-list-date-font-size !important;
+            }
+        }
+        &.no-image-card {
+            ion-card-content {
+                height: $card-list-height + $card-list-image-height;
+                @media only screen and (min-width: 768px) {
+                    height: $card-list-height + $card-list-image-height-md;
+                }
+                ion-card-title {
+                    font-size: $card-list-no-image-title-font-size !important;
+                    @media only screen and (min-width: 768px) {
+                        font-size: $card-list-no-image-title-font-size-md !important;
+                    }
+                }
+                p {
+                    &.post-date {
+                        margin: $card-list-date-margin;
+                    }
+                    &.post-category {
+                        padding: 10px 0px;
+                        white-space: pre-line;
+                        text-transform: uppercase;
+                        font-size: 0.9rem;
+                        font-weight: 700;
+                        letter-spacing: 3px;
+                    }
+                }
             }
         }
     }
