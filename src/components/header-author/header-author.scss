@@ -1,0 +1,30 @@
+header-author {
+    div.header-container {
+        padding: 100px 16px 60px 16px;
+        position: relative;
+        top: -16px;
+        left: -16px;
+        width: calc(100% + 32px);
+        height: 300px;
+        text-align: center;
+        div.header-bg {
+            background-image: url('../assets/img/header-author-bg.jpg');
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-size: cover;
+            -webkit-filter: brightness(50%);
+        }
+        div.header-content {
+            position: relative;
+            img.author-thumbnail {
+                height: 100px;
+                width: 100px;
+                background-color: #fff;
+                border-radius: 50px;
+            }
+        }
+    }
+}

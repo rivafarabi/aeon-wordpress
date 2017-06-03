@@ -23,7 +23,7 @@ export class HeaderTransparentComponent implements OnInit {
     constructor(private el: ElementRef) { }
 
     ngOnInit() {
-        this.threshold = (this.threshold != null ? this.threshold : 200);
+        this.threshold = (this.threshold != null ? this.threshold : 150);
         this.ionScroll = this.el.nativeElement.parentNode.getElementsByClassName('scroll-content')[0];
         this.ionScroll.addEventListener("scroll", () => {
             if (this.ionScroll.scrollTop - this.start > this.threshold) {

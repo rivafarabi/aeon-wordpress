@@ -1,4 +1,4 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, ViewController, NavParams, ToastController, ModalController } from 'ionic-angular';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { SocialSharing } from '@ionic-native/social-sharing';
@@ -20,13 +20,7 @@ import { StorageProvider } from '../../providers/storage.provider';
 export class PostContentPage {
   postId: number;
   postMedia: string;
-  postContent: any = [];
-  start = 0;
-  threshold = 200;
-  slideHeaderPrevious = 0;
-  ionScroll: any;
-  showheader: boolean;
-  hideheader: boolean;
+  post: any = [];
   headercontent: any;
   onProgress: boolean;
   onImgProgress: boolean;
@@ -39,7 +33,6 @@ export class PostContentPage {
     private modalCtrl: ModalController,
     public clientProvider: ClientProvider,
     public storageProvider: StorageProvider,
-    public elementRef: ElementRef,
     private toastCtrl: ToastController,
     private socialSharing: SocialSharing,
     private nativePageTransitions: NativePageTransitions,
@@ -50,14 +43,14 @@ export class PostContentPage {
     this.postId = this.navParams.get("postId");
     this.onProgress = true;
     this.onImgProgress = true;
-    this.getPostContent(this.postId);
+    this.fetch(this.postId);
   }
 
   ionViewWillEnter() {
     this.viewCtrl.setBackButtonText("");
   }
 
-  ionViewWillLeave(){
+  ionViewWillLeave() {
     let opt: NativeTransitionOptions = {
       duration: 100,
       iosdelay: 0,
@@ -66,25 +59,11 @@ export class PostContentPage {
     this.nativePageTransitions.fade(opt);
   }
 
-  ngOnInit() {
-    this.ionScroll = this.elementRef.nativeElement.getElementsByClassName('scroll-content')[0];
-    this.ionScroll.addEventListener("scroll", () => {
-      if (this.ionScroll.scrollTop - this.start > this.threshold) {
-        this.showheader = true;
-        this.hideheader = false;
-      } else {
-        this.showheader = false;
-        this.hideheader = true;
-      }
-      this.slideHeaderPrevious = this.ionScroll.scrollTop - this.start;
-    });
-  }
-
-  getPostContent(id) {
+  fetch(id) {
     this.clientProvider.getPostContent(id)
       .subscribe(res => {
-        this.postContent = res;
-        this.postContent.content.bypassRendered = this.sanitizer.bypassSecurityTrustHtml(this.postContent.content.rendered);
+        this.post = res;
+        this.post.content.bypassRendered = this.sanitizer.bypassSecurityTrustHtml(this.post.content.rendered);
         this.onProgress = false;
         this.storageProvider.isDuplicate(res)
           .then(res => {
@@ -94,7 +73,7 @@ export class PostContentPage {
 
   }
 
-  toggleBookmark(post) {
+  bookmark(post) {
     if (!this.isBookmarked) {
       this.storageProvider.saveBookmark(post)
         .then(() => {
@@ -120,15 +99,26 @@ export class PostContentPage {
     }
   }
 
-  sharePost(link) {
+  share(link) {
     this.socialSharing.share("", "", null, link);
   }
 
-  openCommentModal() {
+  openComment() {
     let commentModal = this.modalCtrl.create("CommentModal", {
-      id: this.postContent.id,
-      url: this.postContent.link
+      id: this.post.id,
+      url: this.post.link
     });
     commentModal.present();
+  }
+
+  goToAuthor(id: number, name: string) {
+    this.navCtrl.push("AuthorPage", {
+      'opt': [{
+        'type': 'author',
+        'id': id
+      }],
+      'id': id,
+      'name': name
+    })
   }
 }

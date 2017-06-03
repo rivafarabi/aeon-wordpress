@@ -1,4 +1,4 @@
-const WP_URL = "http://localhost/wordpress";
+const WP_URL = "https://www.slashgear.com/";
 
 export const WP_API = {
     GET_POSTS : `${WP_URL}/wp-json/wp/v2/posts`,

@@ -1,37 +1,51 @@
-<ion-header no-border [ngClass]="{'hide-header':showheader,'show-header':hideheader}">
+<header-transparent>
     <ion-navbar color="primary" no-border-bottom>
         <ion-buttons end>
-            <button ion-button icon-only (tap)="openCommentModal()">
+            <button ion-button icon-only (tap)="openComment()">
                 <ion-icon item-right  name="chatbubbles"></ion-icon>
             </button>
-            <button ion-button icon-only *ngIf="postContent.link" (tap)="sharePost(postContent.link)">
+            <button ion-button icon-only *ngIf="post.link" (tap)="share(post.link)">
         <ion-icon  item-right  ios="ios-share" md="md-share"></ion-icon>
       </button>
-            <button *ngIf="!isBookmarked" ion-button icon-only (tap)="toggleBookmark(postContent)">
+            <button *ngIf="!isBookmarked" ion-button icon-only (tap)="bookmark(post)">
                 <ion-icon item-right  name="heart"></ion-icon>
             </button>
-            <button *ngIf="isBookmarked" ion-button icon-only (tap)="toggleBookmark(postContent)">
+            <button *ngIf="isBookmarked" ion-button icon-only (tap)="bookmark(post)">
                 <ion-icon item-right color="danger" name="heart"></ion-icon>
             </button>
         </ion-buttons>
     </ion-navbar>
-</ion-header>
+</header-transparent>
 <ion-content padding>
     <ion-spinner *ngIf="onProgress"></ion-spinner>
     <div class="featured-media" *ngIf="!onProgress">
-        <img-loader *ngIf="postContent.media_url" [src]="postContent.media_url.featured"></img-loader>
+        <img-loader *ngIf="post.media_url" [src]="post.media_url.featured"></img-loader>
         <div class="post-header">
-            <span class="text-category" *ngIf="postContent.category_name" [innerHTML]="postContent.category_name" ion-text color="light"></span>
-            <h1 *ngIf="postContent.title" ion-text [innerHTML]="postContent.title.rendered" color="light"></h1>
-            <ion-row>
-                <ion-col col-6>
-                    <span *ngIf="postContent.date" ion-text color="light">{{postContent.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', sameElse: 'MMMM DD, YYYY'} }}</span>
-                </ion-col>
-                <ion-col col-6>
-                    <span *ngIf="postContent.author_name" ion-text color="light">By <b>{{postContent.author_name}}</b></span>
-                </ion-col>
-            </ion-row>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <span class="text-category" *ngIf="post.category_name" [innerHTML]="post.category_name" ion-text color="light"></span>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col>
+                        <h1 *ngIf="post.title" ion-text [innerHTML]="post.title.rendered" color="light"></h1>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-6>
+                        <button ion-button outline color="light" round block small *ngIf="post.author_name" (click)="goToAuthor(post.author, post.author_name)">
+                        {{post.author_name}}
+                        </button>
+                    </ion-col>
+
+                    <ion-col col-6>
+                        <button ion-button clear block small color="light" *ngIf="post.date">{{post.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', lastWeek: '[last] dddd',  sameElse: 'MMMM DD, YYYY'} }}</button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
         </div>
     </div>
-    <ion-scroll class="content-container" *ngIf="!onProgress && postContent.content" [innerHTML]="postContent.content.bypassRendered"></ion-scroll>
+    <ion-scroll class="content-container" *ngIf="!onProgress && post.content" [innerHTML]="post.content.bypassRendered"></ion-scroll>
 </ion-content>

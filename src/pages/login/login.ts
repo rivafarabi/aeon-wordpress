@@ -20,7 +20,11 @@ export class LoginPage {
     ) { }
 
     ionViewWillLoad() {
-        this.auth.getToken().then(res => this.navCtrl.setRoot("HomePage"))
+        this.auth.getToken().then(res => {
+            if (res != null) {
+                this.navCtrl.setRoot("HomePage");
+            }
+        })
     }
 
     submit() {

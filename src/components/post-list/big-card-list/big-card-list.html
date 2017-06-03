@@ -5,7 +5,7 @@
                 <img-loader *ngIf="item.media_url" (load)="onImageLoad($event)" [src]="item.media_url.sizes.thumbnail.source_url" useImg></img-loader>
                 <span *ngIf="item.category_name" class="post-category" [innerHTML]="item.category_name" ion-text color="light" text-right></span>
                 <div>
-                    <p>{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', sameElse: 'MMMM DD, YYYY'} }}</p>
+                    <p>{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', lastWeek: '[last] dddd', sameElse: 'MMMM DD, YYYY'} }}</p>
                     <ion-card-title *ngIf="item.title" [innerHTML]="item.title.rendered">
                     </ion-card-title>
                 </div>

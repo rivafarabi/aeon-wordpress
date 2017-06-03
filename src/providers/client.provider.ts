@@ -31,13 +31,13 @@ export class ClientProvider {
                     if (postItem.author) {
                         this.getAuthor(postItem.author)
                             .subscribe(res => {
-                                postItem.author_name = res;
+                                postItem.author_name = res.name;
                             })
                     }
                     if (postItem.categories) {
                         this.getCategory(postItem.categories[0])
                             .subscribe(res => {
-                                postItem.category_name = res;
+                                postItem.category_name = res.name;
                             })
                     }
                 });
@@ -107,7 +107,7 @@ export class ClientProvider {
         return this.http.get(WP_API.GET_USER + id)
             .map((res: Response) => res.json())
             .map(res => {
-                return res.name;
+                return res;
             });
     }
 
@@ -115,7 +115,7 @@ export class ClientProvider {
         return this.http.get(WP_API.GET_CATEGORIES + id)
             .map((res: Response) => res.json())
             .map(res => {
-                return res.name;
+                return res;
             })
     }
 
@@ -132,13 +132,13 @@ export class ClientProvider {
                 if (res.author) {
                     this.getAuthor(res.author)
                         .subscribe(resAuthor => {
-                            res.author_name = resAuthor;
+                            res.author_name = resAuthor.name;
                         })
                 }
                 if (res.categories) {
                     this.getCategory(res.categories[0])
                         .subscribe(resCategory => {
-                            res.category_name = resCategory;
+                            res.category_name = resCategory.name;
                         })
                 }
                 console.log(res);

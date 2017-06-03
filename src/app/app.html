@@ -1,23 +1,28 @@
 <ion-menu [content]="content">
-    <ion-header>
-        <ion-toolbar color="primary">
-            <ion-title>Menu</ion-title>
-        </ion-toolbar>
-    </ion-header>
-
     <ion-content>
+        <div class="header-container">
+            <div class="header-bg"></div>
+            <div class="header-content">
+                <ion-grid>
+                    <ion-row *ngIf="!isAuth">
+                        <ion-col col-6>
+                            <button menuClose ion-button block round outline color="light" (click)="nav.push('LoginPage')">Login</button>
+                        </ion-col>
+                        <ion-col col-6>
+                            <button menuClose ion-button block round outline color="light" (click)="nav.push('RegisterPage')">Register</button>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row *ngIf="isAuth">
+                        <ion-col col-6>
+                            <button menuClose ion-button block round outline color="light" (click)="logout()">Log Out</button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </div>
+        </div>
         <ion-list>
             <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
                 {{p.title}}
-            </button>
-            <button menuClose ion-item (click)="nav.push('LoginPage')" *ngIf="!isAuth">
-                Login
-            </button>
-            <button menuClose ion-item (click)="nav.push('RegisterPage')" *ngIf="!isAuth">
-                Register
-            </button>
-            <button menuClose ion-item (click)="logout()" *ngIf="isAuth">
-                Log Out
             </button>
         </ion-list>
     </ion-content>

@@ -8,7 +8,7 @@
                 <ion-col *ngIf="item.title" col-8>
                     <p class="post-category" [innerHTML]="item.category_name"></p>
                     <p class="post-title" [innerHTML]="item.title.rendered"></p>
-                    <p class="post-date">{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', sameElse: 'MMMM DD, YYYY'} }}</p>
+                    <p class="post-date">{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', lastWeek: '[last] dddd', sameElse: 'MMMM DD, YYYY'} }}</p>
                 </ion-col>
             </ion-row>
         </ion-col>

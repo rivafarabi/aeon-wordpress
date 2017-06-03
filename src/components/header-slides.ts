@@ -14,7 +14,7 @@ import { MomentModule } from 'angular2-moment';
                 <h1 *ngIf="item.title" ion-text [innerHTML]="item.title.rendered" color="light"></h1>
                 <ion-row>
                     <ion-col col-6>
-                        <span *ngIf="item.date" ion-text color="light">{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', sameElse: 'MMMM DD, YYYY'} }}</span>
+                        <span *ngIf="item.date" ion-text color="light">{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', lastWeek: '[last] dddd', sameElse: 'MMMM DD, YYYY'} }}</span>
                     </ion-col>
                     <ion-col col-6>
                         <span *ngIf="item.author_name" ion-text color="light">By <b>{{item.author_name}}</b></span>
