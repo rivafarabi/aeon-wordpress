@@ -12,13 +12,7 @@ export class WelcomePage {
     constructor(
         public navCtrl: NavController,
         private storage: Storage
-    ) {
-        this.storage.get('isInit').then((val) => {
-            if (val != null) {
-                this.skip();
-            }
-        });
-    }
+    ) {}
 
     next() {
         this.slides.slideNext();

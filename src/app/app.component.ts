@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
+import { Storage } from '@ionic/storage';
 import { OneSignal } from '@ionic-native/onesignal';
 import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 
@@ -14,13 +15,14 @@ import { AuthProvider } from '../providers/auth.provider';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = "WelcomePage";
+  rootPage: any;
   pages: Array<{ title: string, component: any }>;
   isAuth;
   
   constructor(
     private auth: AuthProvider,
     public platform: Platform,
+    private storage: Storage,
     private oneSignal: OneSignal,
     private admobFree: AdMobFree
   ) {
@@ -45,6 +47,13 @@ export class MyApp {
     this.platform.ready().then(() => {
       StatusBar.styleDefault();
       Splashscreen.hide();
+
+      this.storage.get('isInit').then((val) => {
+            if (val != null) {
+                this.rootPage = "HomePage";
+            }
+            else this.rootPage = "WelcomePage";
+        });
 
       //OneSignal Config
       if (this.platform.is('android')) {
