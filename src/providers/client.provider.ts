@@ -56,6 +56,17 @@ export class ClientProvider {
             .map((res: Response) => res.json())
     }
 
+    getListAuthors(page: number, options?: any) {
+        let opts: string = "";
+        if (options != null) {
+            options.forEach(opt => {
+                opts = opts + `&${opt.type}=${opt.id}`;
+            })
+        }
+        return this.http.get(`${WP_API.GET_USER}?page=${page}${opts}`)
+            .map((res: Response) => res.json())
+    }
+
     getListTags(page: number, options?: any) {
         let opts: string = "";
         if (options != null) {

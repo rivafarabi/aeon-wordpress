@@ -13,7 +13,7 @@ import { ClientProvider } from '../../providers/client.provider';
 })
 export class SearchPage {
   tab1Root = "PostsTabPage";
-  tab2Root = "CategoriesTabPage";
+  tab2Root = "AuthorsTabPage";
   tab3Root = "TagsTabPage";
   searchParams : any;
   constructor(public navParams: NavParams) {

@@ -6,15 +6,15 @@ import { ClientProvider } from '../../../providers/client.provider'
 
 @IonicPage()
 @Component({
-  selector: 'page-categories-tab',
-  templateUrl: 'categories-tab.html',
+  selector: 'page-authors-tab',
+  templateUrl: 'authors-tab.html',
   providers: [ClientProvider]
 })
-export class CategoriesTabPage {
+export class AuthorsTabPage {
   @ViewChild('searchbar') searchbar: Searchbar;
   @ViewChild(Navbar) navBar: Navbar;
   pageTitle: string;
-  categories: any;
+  authors: any;
   options: any;
   page: number;
   showSearchBar: boolean;
@@ -55,28 +55,30 @@ export class CategoriesTabPage {
   }
 
   fetch(opt: any) {
-    this.clientProvider.getListCategories(this.page, this.options)
+    this.clientProvider.getListAuthors(this.page, this.options)
       .subscribe(res => {
-        this.categories = res;
+        this.authors = res;
       })
   }
 
-  goTocCategory(id, name) {
-    this.navCtrl.push(
-      "PostListPage", {
-        'type': 'categories',
-        'id': id,
-        'name': name
-      });
+  goToAuthor(id, name) {
+    this.navCtrl.push("AuthorPage", {
+      'opt': [{
+        'type': 'author',
+        'id': id
+      }],
+      'id': id,
+      'name': name
+    })
   }
 
   loadMore(infiniteScroll) {
     this.page++;
     setTimeout(() => {
-      this.clientProvider.getListCategories(this.page, this.options)
+      this.clientProvider.getListAuthors(this.page, this.options)
         .subscribe(res => {
           res.forEach(element => {
-            this.categories.push(element)
+            this.authors.push(element)
           });
           infiniteScroll.complete();
         })

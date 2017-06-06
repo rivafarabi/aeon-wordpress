@@ -11,8 +11,11 @@
 </ion-header>
 <ion-content>
     <ion-list>
-        <button ion-item *ngFor="let item of categories" (click)="goToCategory(item.id, item.name)">
-            <span [innerHTML]="item.name"></span>
+        <button ion-item *ngFor="let item of authors" (click)="goToAuthor(item.id, item.name)">
+            <ion-avatar item-left>
+                <img [src]="item.avatar_urls[96]">
+            </ion-avatar>
+            <h2 [innerHTML]="item.name"></h2>
         </button>
     </ion-list>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
