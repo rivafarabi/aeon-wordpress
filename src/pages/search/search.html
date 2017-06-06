@@ -1,5 +1,11 @@
-<ion-tabs tabsPlacement="top">
-    <ion-tab [root]="tab1Root" [rootParams]="searchParams" tabTitle="Posts" tabsHideOnSubPages="true"></ion-tab>
-    <ion-tab [root]="tab2Root" [rootParams]="searchParams" tabTitle="Authors" tabsHideOnSubPages="true"></ion-tab>
-    <ion-tab [root]="tab3Root" [rootParams]="searchParams" tabTitle="Tags" tabsHideOnSubPages="true"></ion-tab>
+<ion-tabs showWhen="android" tabsPlacement="top">
+    <ion-tab [root]="tab1Root" [rootParams]="searchParams" tabIcon="paper" tabTitle="Posts" tabsHideOnSubPages="true"></ion-tab>
+    <ion-tab [root]="tab2Root" [rootParams]="searchParams" tabIcon="person" tabTitle="Authors" tabsHideOnSubPages="true"></ion-tab>
+    <ion-tab [root]="tab3Root" [rootParams]="searchParams" tabIcon="pricetags" tabTitle="Tags" tabsHideOnSubPages="true"></ion-tab>
+</ion-tabs>
+
+<ion-tabs showWhen="ios" tabsPlacement="bottom">
+    <ion-tab [root]="tab1Root" [rootParams]="searchParams" tabIcon="paper" tabTitle="Posts" tabsHideOnSubPages="true"></ion-tab>
+    <ion-tab [root]="tab2Root" [rootParams]="searchParams" tabIcon="person" tabTitle="Authors" tabsHideOnSubPages="true"></ion-tab>
+    <ion-tab [root]="tab3Root" [rootParams]="searchParams" tabIcon="pricetags" tabTitle="Tags" tabsHideOnSubPages="true"></ion-tab>
 </ion-tabs>
