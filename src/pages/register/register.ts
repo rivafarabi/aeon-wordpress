@@ -3,6 +3,7 @@ import { IonicPage, ViewController, LoadingController, AlertController } from 'i
 
 import { Register } from '../../models/user.model';
 import { AuthProvider } from '../../providers/auth.provider';
+import { Observable } from 'rxjs/Observable';
 
 @IonicPage()
 @Component({
@@ -37,18 +38,20 @@ export class RegisterPage {
             });
             loader.present();
             this.auth.register(this.register)
-                  .subscribe(() => {
+                  .subscribe(res => {
                         loader.dismiss();
                         this.dismiss();
                   },
                   err => {
+                        err = err.json();
                         loader.dismiss();
                         let alert = this.alertCtrl.create({
-                              title: 'Login Error',
-                              subTitle: 'Please check your username or password and try again.',
+                              title: 'Register Error',
+                              subTitle: err.message,
                               buttons: ['Dismiss']
                         });
                         alert.present();
                   })
+                  
       }
 }

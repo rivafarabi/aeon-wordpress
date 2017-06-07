@@ -1,4 +1,4 @@
-const WP_URL = "https://aeon-wp.000webhostapp.com";
+const WP_URL = "http://localhost/wordpress";
 
 export const WP_API = {
     GET_POSTS : `${WP_URL}/wp-json/wp/v2/posts`,
