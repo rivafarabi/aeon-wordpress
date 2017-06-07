@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import 'rxjs/Rx';
 import { AuthProvider } from './auth.provider';
 import { Post } from '../model/post.model';
@@ -7,15 +7,17 @@ import { WP_API } from '../constants/endpoint.constant';
 
 @Injectable()
 export class ClientProvider {
+    token: any
     constructor(private http: Http, private auth: AuthProvider) {
+        this.auth.getToken().then(res => {
+            this.token = res;
+        })
     }
 
     getListPosts(page: number, options?: any) {
         let opts: string = "";
         if (options != null) {
-            options.forEach(opt => {
-                opts = opts + `&${opt.type}=${opt.id}`;
-            })
+            opts = this.transParams(options);
         }
         console.log(opts);
         return this.http.get(`${WP_API.GET_POSTS}?page=${page}${opts}`)
@@ -48,9 +50,7 @@ export class ClientProvider {
     getListCategories(page: number, options?: any) {
         let opts: string = "";
         if (options != null) {
-            options.forEach(opt => {
-                opts = opts + `&${opt.type}=${opt.id}`;
-            })
+            opts = this.transParams(options);
         }
         return this.http.get(`${WP_API.GET_CATEGORIES}?page=${page}${opts}`)
             .map((res: Response) => res.json())
@@ -59,9 +59,7 @@ export class ClientProvider {
     getListAuthors(page: number, options?: any) {
         let opts: string = "";
         if (options != null) {
-            options.forEach(opt => {
-                opts = opts + `&${opt.type}=${opt.id}`;
-            })
+            opts = this.transParams(options);
         }
         return this.http.get(`${WP_API.GET_USER}?page=${page}${opts}`)
             .map((res: Response) => res.json())
@@ -95,13 +93,22 @@ export class ClientProvider {
     }
 
     postCommnent(commentDetail: any) {
-        let body = this.auth.getToken();
-        console.log(body);
-        // return this.http.post(WP_API.GET_COMMENTS, body)
-        //     .map((res) => res.json())
-        //     .map(res => {
-        //         return res;
-        //     });
+        console.log(this.token);
+        let opts: string = "";
+        if (commentDetail != null) {
+            opts = this.transParams(commentDetail);
+        }
+
+        let headers = new Headers({'Content-Type': 'application/json'});  
+        headers.append('Authorization','Bearer ')
+        let options = new RequestOptions({headers: headers});
+
+        // console.log(body);
+        return this.http.post(`${WP_API.GET_COMMENTS}?${opts}`, commentDetail, options)
+            .map((res) => res.json())
+            .map(res => {
+                return res;
+            });
     }
 
     getMedia(id: number) {
@@ -159,7 +166,17 @@ export class ClientProvider {
             });
     }
 
-    fetchToken(){
+    transParams(param: any){
+        let opts: string = "";
+        if (param != null) {
+            param.forEach(opt => {
+                opts = opts + `&${opt.type}=${opt.id}`;
+            })
+        }
+        return opts;
+    }
+
+    fetchToken() {
         return this.auth.getToken();
     }
 }

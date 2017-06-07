@@ -41,15 +41,15 @@ export class CommentModal {
 
   postComment() {
     this.clientProvider.postCommnent(this.commentDetail)
-      // .subscribe(res => {
-      //   console.log(res);
-      //   let toast = this.toastCtrl.create({
-      //     message: 'Comment Submitted.',
-      //     duration: 3000,
-      //     position: 'bottom'
-      //   })
-      //   toast.present();
-      // })
+      .subscribe(res => {
+        console.log(res);
+        let toast = this.toastCtrl.create({
+          message: 'Comment Submitted.',
+          duration: 3000,
+          position: 'bottom'
+        })
+        toast.present();
+      })
   }
 
   loadMoreComments(infiniteScroll) {
