@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, ViewController, LoadingController, AlertController } from 'ionic-angular';
 
 import { Register } from '../../models/user.model';
 import { AuthProvider } from '../../providers/auth.provider';
@@ -14,7 +14,7 @@ export class RegisterPage {
 
       constructor(
             private auth: AuthProvider,
-            private navCtrl: NavController,
+            private viewCtrl: ViewController,
             private loadingCtrl: LoadingController,
             private alertCtrl: AlertController
       ) { }
@@ -22,9 +22,13 @@ export class RegisterPage {
       ionViewWillLoad() {
             this.auth.getToken().then(res => {
                   if (res != null) {
-                        this.navCtrl.setRoot("HomePage");
+                        this.dismiss();
                   }
             })
+      }
+
+      dismiss() {
+            this.viewCtrl.dismiss();
       }
 
       submit() {
@@ -35,7 +39,7 @@ export class RegisterPage {
             this.auth.register(this.register)
                   .subscribe(() => {
                         loader.dismiss();
-                        this.navCtrl.setRoot("HomePage");
+                        this.dismiss();
                   },
                   err => {
                         loader.dismiss();

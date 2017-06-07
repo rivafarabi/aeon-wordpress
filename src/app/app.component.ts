@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, ModalController } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 import { Storage } from '@ionic/storage';
 import { OneSignal } from '@ionic-native/onesignal';
@@ -18,10 +18,11 @@ export class MyApp {
   rootPage: any;
   pages: Array<{ title: string, component: any }>;
   isAuth;
-  
+
   constructor(
     private auth: AuthProvider,
     public platform: Platform,
+    private modalCtrl: ModalController,
     private storage: Storage,
     private oneSignal: OneSignal,
     private admobFree: AdMobFree
@@ -40,7 +41,9 @@ export class MyApp {
   }
 
   checkAuth() {
-    this.isAuth =  this.auth.getToken().then(res => { return res; })
+    this.auth.getToken().then(res => {
+        this.isAuth = ((res == null) ? false : true);
+    })
   }
 
   initializeApp() {
@@ -49,11 +52,11 @@ export class MyApp {
       Splashscreen.hide();
 
       this.storage.get('isInit').then((val) => {
-            if (val != null) {
-                this.rootPage = "HomePage";
-            }
-            else this.rootPage = "WelcomePage";
-        });
+        if (val != null) {
+          this.rootPage = "HomePage";
+        }
+        else this.rootPage = "WelcomePage";
+      });
 
       //OneSignal Config
       if (this.platform.is('android')) {
@@ -83,6 +86,7 @@ export class MyApp {
       //   .then(() => { })
       //   .catch(e => console.log(e));
     });
+    this.checkAuth();
   }
 
   openPage(page) {
@@ -91,7 +95,16 @@ export class MyApp {
     }
   }
 
+  openModal(modalName) {
+    let modal = this.modalCtrl.create(modalName);
+    modal.present();
+  }
+
   logout() {
-    this.auth.logout();
+    this.auth.logout()
+      .then(success => {
+        console.log(success);
+        this.checkAuth();
+      })
   }
 }

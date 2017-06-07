@@ -95,11 +95,13 @@ export class ClientProvider {
     }
 
     postCommnent(commentDetail: any) {
-        return this.http.post(WP_API.GET_COMMENTS, {})
-            .map((res) => res.json())
-            .map(res => {
-                return res;
-            });
+        let body = this.auth.getToken();
+        console.log(body);
+        // return this.http.post(WP_API.GET_COMMENTS, body)
+        //     .map((res) => res.json())
+        //     .map(res => {
+        //         return res;
+        //     });
     }
 
     getMedia(id: number) {

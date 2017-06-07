@@ -1,10 +1,4 @@
 page-register {
-    ion-content {
-        @media only screen and (min-width: 768px) {
-            margin-left: 25%;
-            width: 50%;
-        }
-    }
     ion-item {
         background: transparent !important;
         &.item-input:last-child {

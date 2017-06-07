@@ -1,4 +1,4 @@
-<ion-menu [content]="content">
+<ion-menu [content]="content" (ionOpen)="checkAuth()" (ionClose)="checkAuth()">
     <ion-content>
         <div class="header-container">
             <div class="header-bg"></div>
@@ -6,11 +6,14 @@
                 <ion-grid>
                     <ion-row *ngIf="!isAuth">
                         <ion-col col-6>
-                            <button menuClose ion-button block round outline color="light" (click)="nav.push('LoginPage')">Login</button>
+                            <button menuClose ion-button block round outline color="light" (click)="openModal('LoginPage')">Login</button>
                         </ion-col>
                         <ion-col col-6>
-                            <button menuClose ion-button block round outline color="light" (click)="nav.push('RegisterPage')">Register</button>
+                            <button menuClose ion-button block round outline color="light" (click)="openModal('RegisterPage')">Register</button>
                         </ion-col>
+                    </ion-row>
+                    <ion-row *ngIf="isAuth">
+                        <ion-avatar></ion-avatar>
                     </ion-row>
                     <ion-row *ngIf="isAuth">
                         <ion-col col-6>

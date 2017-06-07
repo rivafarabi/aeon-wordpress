@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, ViewController, LoadingController, AlertController, ModalController } from 'ionic-angular';
 
 import { Login } from '../../models/user.model';
 import { AuthProvider } from '../../providers/auth.provider';
@@ -14,17 +14,22 @@ export class LoginPage {
 
     constructor(
         private auth: AuthProvider,
-        private navCtrl: NavController,
+        private viewCtrl: ViewController,
         private loadingCtrl: LoadingController,
-        private alertCtrl: AlertController
+        private alertCtrl: AlertController,
+        private modalCtrl: ModalController
     ) { }
 
     ionViewWillLoad() {
         this.auth.getToken().then(res => {
             if (res != null) {
-                this.navCtrl.setRoot("HomePage");
+                this.dismiss();
             }
         })
+    }
+
+    dismiss() {
+        this.viewCtrl.dismiss();
     }
 
     submit() {
@@ -37,7 +42,7 @@ export class LoginPage {
                 loader.dismiss();
                 console.log(res.status);
                 if (res.status == 200) {
-                    this.navCtrl.setRoot("HomePage");
+                    this.dismiss();
                 }
                 else {
                     let alert = this.alertCtrl.create({
@@ -51,6 +56,7 @@ export class LoginPage {
     }
 
     goToPage(page: string) {
-        this.navCtrl.push(page);
+        let modal = this.modalCtrl.create(page);
+        modal.present();
     }
 }

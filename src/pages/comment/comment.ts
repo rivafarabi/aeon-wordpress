@@ -13,12 +13,14 @@ import { ClientProvider } from '../../providers/client.provider';
 export class CommentModal {
   postID: number;
   comments: any;
+  commentDetail: any;
   page: number;
 
   constructor(
     private viewCtrl: ViewController,
     private clientProvider: ClientProvider,
-    private navParams: NavParams
+    private navParams: NavParams,
+    private toastCtrl: ToastController
   ) {
     this.postID = this.navParams.get('id');
     this.page = 1;
@@ -38,7 +40,16 @@ export class CommentModal {
   }
 
   postComment() {
-
+    this.clientProvider.postCommnent(this.commentDetail)
+      // .subscribe(res => {
+      //   console.log(res);
+      //   let toast = this.toastCtrl.create({
+      //     message: 'Comment Submitted.',
+      //     duration: 3000,
+      //     position: 'bottom'
+      //   })
+      //   toast.present();
+      // })
   }
 
   loadMoreComments(infiniteScroll) {

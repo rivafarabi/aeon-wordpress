@@ -32,7 +32,9 @@ export class AuthProvider {
     }
 
     logout() {
-        this.removeToken();
+        return this.storage.remove('token')
+        .then(sucess => { return sucess; })
+        .catch(error => { return error; })
     }
 
     validateToken() {
@@ -49,10 +51,6 @@ export class AuthProvider {
         return this.storage.get('token').then(res => {
             return res;
         });
-    }
-
-    removeToken() {
-        this.storage.remove('token');
     }
 
 }
