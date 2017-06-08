@@ -94,10 +94,7 @@ export class ClientProvider {
     }
 
     postCommnent(param: any) {
-        console.log(this.jwtToken);
-        let paramString: string = "";
-        paramString = this.transParams(param);
-
+        let paramString: string = this.transParams(param);
         let headers = new Headers({'Content-Type': 'application/json'});
         headers.append('Authorization','Bearer ' + this.jwtToken.token)
         let options = new RequestOptions({ headers: headers });
