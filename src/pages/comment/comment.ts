@@ -13,7 +13,7 @@ import { ClientProvider } from '../../providers/client.provider';
 export class CommentModal {
   postID: number;
   comments: any;
-  commentDetail: any;
+  commentInput: any;
   page: number;
 
   constructor(
@@ -24,14 +24,14 @@ export class CommentModal {
   ) {
     this.postID = this.navParams.get('id');
     this.page = 1;
-    this.getCommnent();
+    this.fetch();
   }
 
   dismiss() {
     this.viewCtrl.dismiss();
   }
 
-  getCommnent() {
+  fetch() {
     this.clientProvider.getComments(this.postID, this.page)
       .subscribe(res => {
         console.log(res.length);
@@ -40,16 +40,35 @@ export class CommentModal {
   }
 
   postComment() {
-    this.clientProvider.postCommnent(this.commentDetail)
-      .subscribe(res => {
-        console.log(res);
+    let opts = [{
+      'type': 'content',
+      'id': this.commentInput
+    }, {
+      'type': 'post',
+      'id': this.postID
+    }];
+    this.clientProvider.postCommnent(opts)
+      .subscribe(
+      success => {
         let toast = this.toastCtrl.create({
           message: 'Comment Submitted.',
           duration: 3000,
           position: 'bottom'
         })
         toast.present();
+        this.fetch();
+        this.commentInput = "";
+      },
+      err => {
+        console.log(err);
+        let toast = this.toastCtrl.create({
+          message: 'Comment Failed.',
+          duration: 3000,
+          position: 'bottom'
+        })
+        toast.present();
       })
+
   }
 
   loadMoreComments(infiniteScroll) {

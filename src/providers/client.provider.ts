@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { AuthProvider } from './auth.provider';
 import { Post } from '../model/post.model';
@@ -7,20 +8,20 @@ import { WP_API } from '../constants/endpoint.constant';
 
 @Injectable()
 export class ClientProvider {
-    token: any
+    jwtToken: any
+
     constructor(private http: Http, private auth: AuthProvider) {
-        this.auth.getToken().then(res => {
-            this.token = res;
+        this.fetchToken().subscribe(res => {
+            this.jwtToken = res;
         })
     }
 
-    getListPosts(page: number, options?: any) {
-        let opts: string = "";
-        if (options != null) {
-            opts = this.transParams(options);
+    getListPosts(page: number, param?: any) {
+        let paramString: string = "";
+        if (param != null) {
+            paramString = this.transParams(param);
         }
-        console.log(opts);
-        return this.http.get(`${WP_API.GET_POSTS}?page=${page}${opts}`)
+        return this.http.get(`${WP_API.GET_POSTS}?page=${page}${paramString}`)
             .map(res => {
                 let postJson = res.json();
                 postJson.forEach(postItem => {
@@ -47,12 +48,12 @@ export class ClientProvider {
             })
     }
 
-    getListCategories(page: number, options?: any) {
-        let opts: string = "";
-        if (options != null) {
-            opts = this.transParams(options);
+    getListCategories(page: number, param?: any) {
+        let paramString: string = "";
+        if (param != null) {
+            paramString = this.transParams(param);
         }
-        return this.http.get(`${WP_API.GET_CATEGORIES}?page=${page}${opts}`)
+        return this.http.get(`${WP_API.GET_CATEGORIES}?page=${page}${paramString}`)
             .map((res: Response) => res.json())
     }
 
@@ -92,19 +93,16 @@ export class ClientProvider {
             });
     }
 
-    postCommnent(commentDetail: any) {
-        console.log(this.token);
-        let opts: string = "";
-        if (commentDetail != null) {
-            opts = this.transParams(commentDetail);
-        }
+    postCommnent(param: any) {
+        console.log(this.jwtToken);
+        let paramString: string = "";
+        paramString = this.transParams(param);
 
-        let headers = new Headers({'Content-Type': 'application/json'});  
-        headers.append('Authorization','Bearer ')
-        let options = new RequestOptions({headers: headers});
-
-        // console.log(body);
-        return this.http.post(`${WP_API.GET_COMMENTS}?${opts}`, commentDetail, options)
+        let headers = new Headers({'Content-Type': 'application/json'});
+        headers.append('Authorization','Bearer ' + this.jwtToken.token)
+        let options = new RequestOptions({ headers: headers });
+        let body = '';
+        return this.http.post(`${WP_API.POST_COMMENTS}?${paramString}`, body, options)
             .map((res) => res.json())
             .map(res => {
                 return res;
@@ -166,17 +164,24 @@ export class ClientProvider {
             });
     }
 
-    transParams(param: any){
+    transParams(param: any) {
         let opts: string = "";
         if (param != null) {
-            param.forEach(opt => {
-                opts = opts + `&${opt.type}=${opt.id}`;
-            })
+            if (param.length == 1) {
+                opts = `${param[0].type}=${param[0].id}`;
+            } else {
+                param.forEach(opt => {
+                    opts = opts + `&${opt.type}=${opt.id}`;
+                })
+            }
         }
         return opts;
     }
 
     fetchToken() {
-        return this.auth.getToken();
+        return Observable.fromPromise(this.auth.getToken())
+            .map(res => {
+                return res;
+            });;
     }
 }

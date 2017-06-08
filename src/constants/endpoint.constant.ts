@@ -8,6 +8,7 @@ export const WP_API = {
     GET_COMMENTS : `${WP_URL}/wp-json/wp/v2/comments/`,
     GET_MEDIA : `${WP_URL}/wp-json/wp/v2/media/`,
     GET_USER : `${WP_URL}/wp-json/wp/v2/users/`,
+    POST_COMMENTS : `${WP_URL}/wp-json/wp/v2/comments`,
 }
 
 export const WP_USER = {

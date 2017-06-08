@@ -38,20 +38,19 @@ export class LoginPage {
         });
         loader.present();
         this.auth.login(this.login)
-            .then(res => {
+            .subscribe(
+            () => {
                 loader.dismiss();
-                console.log(res.status);
-                if (res.status == 200) {
-                    this.dismiss();
-                }
-                else {
-                    let alert = this.alertCtrl.create({
-                        title: 'Login Error',
-                        subTitle: 'Please check your username or password and try again.',
-                        buttons: ['Dismiss']
-                    });
-                    alert.present();
-                }
+                this.dismiss();
+            }, err => {
+                err = err.json();
+                loader.dismiss();
+                let alert = this.alertCtrl.create({
+                    title: 'Login Error',
+                    subTitle: err.message,
+                    buttons: ['Dismiss']
+                });
+                alert.present();
             })
     }
 

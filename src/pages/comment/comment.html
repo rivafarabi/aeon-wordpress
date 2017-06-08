@@ -31,7 +31,7 @@
 </ion-content>
 <ion-footer>
     <ion-toolbar>
-        <ion-input type="text" placeholder="What's your opinion?'">
+        <ion-input type="text" [(ngModel)]="commentInput" placeholder="What's your opinion?'">
         </ion-input>
         <ion-buttons end>
             <button ion-button icon-only (tap)="postComment()">

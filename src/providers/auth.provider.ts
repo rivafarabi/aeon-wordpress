@@ -16,17 +16,19 @@ export class AuthProvider {
             .map(res => {
                 console.log(res);
                 return this.login({username: registerData.username, password: registerData.password})
-                .then(res => {
+                .subscribe(res => {
                     return res
                 })
             })
     }
 
     login(loginData) {
-        return this.http.post(WP_USER.GET_TOKEN, loginData).toPromise()
-        .then(success => { 
-            this.saveToken(success);
-            return success; 
+        return this.http.post(WP_USER.GET_TOKEN, loginData)
+        .map((res: Response) => res.json())
+        .map(res => {
+            console.log(res);
+            this.saveToken(res);
+            return res; 
         })
         .catch(error => { return error; })
     }

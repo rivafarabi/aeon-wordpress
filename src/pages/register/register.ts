@@ -38,7 +38,8 @@ export class RegisterPage {
             });
             loader.present();
             this.auth.register(this.register)
-                  .subscribe(res => {
+                  .subscribe(
+                  () => {
                         loader.dismiss();
                         this.dismiss();
                   },
@@ -52,6 +53,6 @@ export class RegisterPage {
                         });
                         alert.present();
                   })
-                  
+
       }
 }
