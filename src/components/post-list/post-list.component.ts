@@ -8,6 +8,7 @@ import { MomentModule } from 'angular2-moment';
 export class PostListComponent implements OnInit {
     @Input('postList') posts: any;
     @Input('start') start: number;
+    @Input('end') end: number;
     @Output() postTarget: EventEmitter<any> = new EventEmitter<any>();
 
     constructor(private imageLoaderConfig: ImageLoaderConfig) {
@@ -16,6 +17,7 @@ export class PostListComponent implements OnInit {
 
     ngOnInit() {
         this.start = (this.start != null ? this.start : 0);
+        this.end = (this.end != null ? this.end : 4);
     }
 
     postNav(postId, postMediaUrl) {

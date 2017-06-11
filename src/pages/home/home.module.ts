@@ -5,7 +5,7 @@ import { IonicImageLoader } from 'ionic-image-loader';
 import { MomentModule } from 'angular2-moment';
 
 import { HeaderTransparent } from '../../components/header-transparent.module';
-import { HeaderSlides } from '../../components/header-slides.module';
+import { HeaderSlides } from '../../components/post-list/header-slides/header-slides.module';
 import { CardList } from '../../components/post-list/card-list/card-list.module';
 
 @NgModule({
