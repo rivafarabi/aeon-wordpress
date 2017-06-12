@@ -1,35 +1,39 @@
-<ion-header no-border>
+<header-transparent no-border>
     <ion-navbar color="primary">
-        <ion-title>Register</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (tap)="dismiss()">
+                <ion-icon item-right name="close"></ion-icon>
+            </button>
+        </ion-buttons>
     </ion-navbar>
-</ion-header>
-<ion-content padding>
+</header-transparent>
+<ion-content padding header-overlay>
     <form (ngSubmit)="submit()">
         <ion-list>
             <ion-item>
-                <ion-label floating>Username</ion-label>
+                <ion-label floating ion-text color="light">Username</ion-label>
                 <ion-input type="text" name="username" [(ngModel)]="register.username"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label floating>First Name</ion-label>
+                <ion-label floating ion-text color="light">First Name</ion-label>
                 <ion-input type="text" name="firstname" [(ngModel)]="register.firstname"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label floating>Last Name</ion-label>
+                <ion-label floating ion-text color="light">Last Name</ion-label>
                 <ion-input type="text" name="lastname" [(ngModel)]="register.lastname"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label floating>Email</ion-label>
+                <ion-label floating ion-text color="light">Email</ion-label>
                 <ion-input type="email" name="email" [(ngModel)]="register.email"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label floating>Password</ion-label>
+                <ion-label floating ion-text color="light">Password</ion-label>
                 <ion-input type="password" name="password" [(ngModel)]="register.password"></ion-input>
             </ion-item>
             <ion-item></ion-item>
         </ion-list>
         <div text-right>
-            <button ion-button type="submit" outline strong>Register</button>
+            <button ion-button block type="submit" outline strong large round color="light">Register</button>
         </div>
     </form>
 </ion-content>

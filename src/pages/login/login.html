@@ -1,24 +1,28 @@
-<ion-header no-border>
+<header-transparent>
     <ion-navbar color="primary">
-        <ion-title>Sign In</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (tap)="dismiss()">
+                <ion-icon item-right name="close"></ion-icon>
+            </button>
+        </ion-buttons>
     </ion-navbar>
-</ion-header>
-<ion-content padding>
+</header-transparent>
+<ion-content padding header-overlay>
     <form (ngSubmit)="submit()">
         <ion-list>
             <ion-item>
-                <ion-label floating>Username</ion-label>
+                <ion-label floating ion-text color="light">Username</ion-label>
                 <ion-input type="text" name="username" [(ngModel)]="login.username"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-label floating>Password</ion-label>
+                <ion-label floating ion-text color="light">Password</ion-label>
                 <ion-input type="password" name="password" [(ngModel)]="login.password"></ion-input>
             </ion-item>
             <ion-item></ion-item>
         </ion-list>
-        <p text-right>
-            <button ion-button type="submit" outline strong>Sign In</button><br>
-            <button ion-button outline strong (click)="goToPage('RegisterPage')">Register</button>
+        <button ion-button block type="submit" outline strong large round color="light">Sign In</button>
+        <p ion-text color="light" text-center>
+            Don't have an account? <a (click)="goToPage('RegisterPage')">Sign Up</a>
         </p>
     </form>
 </ion-content>
