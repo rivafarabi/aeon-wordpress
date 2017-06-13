@@ -5,8 +5,7 @@ import { IonicImageLoader } from 'ionic-image-loader';
 import { MomentModule } from 'angular2-moment';
 
 import { HeaderTransparent } from '../../components/header-transparent.module';
-import { HeaderSlides } from '../../components/header-slides.module';
-import { GridList } from '../../components/post-list/grid-list/grid-list.module';
+import { GridList, HeaderSlides } from '../../components/post-list/post-list.module';
 
 @NgModule({
    declarations: [PostListPage],

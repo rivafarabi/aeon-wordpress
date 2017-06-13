@@ -47,7 +47,6 @@ export class HomePage {
     this.onProgress = true;
     this.clientProvider.getListPosts(this.page)
       .subscribe(res => {
-        console.log(res);
         this.posts = res;
         this.onProgress = false;
       })

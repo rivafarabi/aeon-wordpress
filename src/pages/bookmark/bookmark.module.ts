@@ -3,7 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { BookmarkPage } from './bookmark';
 import { IonicImageLoader } from 'ionic-image-loader';
 
-import { GridList } from '../../components/post-list/grid-list/grid-list.module';
+import { GridList } from '../../components/post-list/post-list.module';
 
 @NgModule({
    declarations: [BookmarkPage],

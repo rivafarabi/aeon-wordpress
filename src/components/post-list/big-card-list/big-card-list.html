@@ -1,11 +1,20 @@
 <ion-grid>
     <ion-row align-items-start col-md-10 offset-md-1>
         <ion-col col-12 col-md-6 *ngFor="let item of posts | slice:start">
-            <ion-card *ngIf="item.media_url" (click)="postNav(item.id)">
+            <ion-card (click)="postNav(item.id)">
                 <img-loader *ngIf="item.media_url" (load)="onImageLoad($event)" [src]="item.media_url.sizes.thumbnail.source_url" useImg></img-loader>
-                <span *ngIf="item.category_name" class="post-category" [innerHTML]="item.category_name" ion-text color="light" text-right></span>
+
+                <ion-grid>
+                    <ion-row>
+                        <ion-col col-6 class="post-date" ion-text color="light">
+                            <span>{{item.date | date:'dd'}}</span><br>
+                            <span>{{item.date | date:'MMM '}}</span>
+                        </ion-col>
+                        <ion-col *ngIf="item.category_name" class="post-category" [innerHTML]="item.category_name" ion-text color="light" text-right>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
                 <div>
-                    <p>{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', lastWeek: '[last] dddd', sameElse: 'MMMM DD, YYYY'} }}</p>
                     <ion-card-title *ngIf="item.title" [innerHTML]="item.title.rendered">
                     </ion-card-title>
                 </div>

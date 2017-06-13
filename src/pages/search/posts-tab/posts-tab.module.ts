@@ -4,7 +4,7 @@ import { PostsTabPage } from './posts-tab';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { MomentModule } from 'angular2-moment';
 
-import { GridList } from '../../../components/post-list/grid-list/grid-list.module';
+import { GridList } from '../../components/post-list/post-list.module';
 
 @NgModule({
    declarations: [PostsTabPage],

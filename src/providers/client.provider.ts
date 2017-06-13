@@ -95,8 +95,8 @@ export class ClientProvider {
 
     postCommnent(param: any) {
         let paramString: string = this.transParams(param);
-        let headers = new Headers({'Content-Type': 'application/json'});
-        headers.append('Authorization','Bearer ' + this.jwtToken.token)
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        headers.append('Authorization', 'Bearer ' + this.jwtToken.token)
         let options = new RequestOptions({ headers: headers });
         let body = '';
         return this.http.post(`${WP_API.POST_COMMENTS}?${paramString}`, body, options)
@@ -164,13 +164,9 @@ export class ClientProvider {
     transParams(param: any) {
         let opts: string = "";
         if (param != null) {
-            if (param.length == 1) {
-                opts = `${param[0].type}=${param[0].id}`;
-            } else {
-                param.forEach(opt => {
-                    opts = opts + `&${opt.type}=${opt.id}`;
-                })
-            }
+            param.forEach(opt => {
+                opts = opts + `&${opt.type}=${opt.id}`;
+            })
         }
         return opts;
     }

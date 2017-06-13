@@ -1,0 +1,36 @@
+.aeon-bg-page {
+    background: url('../assets/img/login_bg.jpeg') center center no-repeat;
+    background-size: cover;
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-image: linear-gradient(to bottom right, #10aacc, #aa4225);
+        opacity: .5;
+    }
+}
+
+.aeon-input-item {
+    background: transparent !important;
+    &.item-input:last-child {
+        border: none !important
+    }
+    ion-label {
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+    ion-input {
+        input {
+            background-color: transparent !important;
+        }
+    }
+}
+
+ion-content[header-overlay] {
+    .scroll-content {
+        padding-top: 80px !important;
+    }
+}

@@ -15,7 +15,7 @@
     <header-slides [postList]="posts" [start]='0' [end]='4' (postTarget)="toPostContent($event)"></header-slides>
 
     <!--Post List Component-->
-    <card-list [postList]="posts" [start]=0 (postTarget)="toPostContent($event)"></card-list>
+    <big-card-list [postList]="posts" [start]=5 (postTarget)="toPostContent($event)"></big-card-list>
 
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
         <ion-infinite-scroll-content loadingSpinner="crescent">

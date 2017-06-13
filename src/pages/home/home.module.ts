@@ -5,8 +5,7 @@ import { IonicImageLoader } from 'ionic-image-loader';
 import { MomentModule } from 'angular2-moment';
 
 import { HeaderTransparent } from '../../components/header-transparent.module';
-import { HeaderSlides } from '../../components/post-list/header-slides/header-slides.module';
-import { CardList } from '../../components/post-list/card-list/card-list.module';
+import { CardList, BigCardList, HeaderSlides } from '../../components/post-list/post-list.module';
 
 @NgModule({
    declarations: [
@@ -18,7 +17,8 @@ import { CardList } from '../../components/post-list/card-list/card-list.module'
       MomentModule,
       HeaderTransparent,
       HeaderSlides,
-      CardList
+      CardList,
+      BigCardList
    ],
    exports: [
       HomePage
