@@ -19,7 +19,7 @@
 <ion-content padding>
     <ion-spinner *ngIf="onProgress"></ion-spinner>
     <div class="featured-media" *ngIf="!onProgress">
-        <img-loader *ngIf="post.media_url" [src]="post.media_url.featured"></img-loader>
+        <img-loader *ngIf="post.better_featured_image" [src]="post.better_featured_image.media_details.sizes.medium_large.source_url"></img-loader>
         <div class="post-header">
             <ion-grid>
                 <ion-row>
@@ -27,7 +27,6 @@
                         <span class="text-category" *ngIf="post.category_name" [innerHTML]="post.category_name" ion-text color="light"></span>
                     </ion-col>
                 </ion-row>
-
                 <ion-row>
                     <ion-col>
                         <h1 *ngIf="post.title" ion-text [innerHTML]="post.title.rendered" color="light"></h1>
@@ -39,7 +38,6 @@
                         {{post.author_name}}
                         </button>
                     </ion-col>
-
                     <ion-col col-6>
                         <button ion-button clear block small color="light" *ngIf="post.date">{{post.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', lastWeek: '[last] dddd',  sameElse: 'MMMM DD, YYYY'} }}</button>
                     </ion-col>

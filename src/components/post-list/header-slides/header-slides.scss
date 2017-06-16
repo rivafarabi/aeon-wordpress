@@ -1,5 +1,11 @@
 header-slides {
     ion-slides.featured-media {
+        @extend .aeon-img-placeholder;
+        position: relative;
+        top: -16px;
+        left: -16px;
+        width: calc(100% + 32px);
+        height: $header-slides-height;
         .slide-zoom {
             text-align: initial;
         }
@@ -7,13 +13,7 @@ header-slides {
             top: initial;
             bottom: 0 !important;
         }
-        position: relative;
-        top: -16px;
-        left: -16px;
-        width: calc(100% + 32px);
-        height: $header-slides-height;
-        background-color: gray;
-        div.post-header {
+        .post-header {
             position: absolute;
             bottom: 0;
             margin: 16px;
@@ -31,13 +31,8 @@ header-slides {
             }
         }
         img-loader {
-            background-position: center;
-            background-repeat: no-repeat !important;
-            background-position-x: center !important;
-            background-size: cover !important;
+            @extend .aeon-header-img;
             height: $header-slides-height !important;
-            border: none !important;
-            -webkit-filter: brightness(50%);
         }
     }
 }

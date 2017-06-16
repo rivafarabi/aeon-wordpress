@@ -13,7 +13,16 @@ page-post-content {
         left: -16px;
         width: calc(100% + 32px);
         height: 300px;
-        background-color: gray;
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: linear-gradient(to bottom right, #10aacc, #aa4225);
+            opacity: .5;
+        }
         div.post-header {
             position: absolute;
             bottom: 0;
@@ -38,14 +47,8 @@ page-post-content {
             }
         }
         img-loader {
-            background-position: center;
-            background-repeat: no-repeat !important;
-            background-position-x: center !important;
-            background-size: cover !important;
             height: 300px;
-            border: none !important;
-            -webkit-filter: brightness(50%);
-            background-color: gray;
+            @extend .aeon-header-img;
         }
     }
     .content-container {
@@ -63,7 +66,7 @@ page-post-content {
         }
         img {
             width: 100%;
-            height: auto,
+            height: auto;
         }
         a {
             text-decoration: none;

@@ -25,12 +25,6 @@ export class ClientProvider {
             .map(res => {
                 let postJson = res.json();
                 postJson.forEach(postItem => {
-                    if (postItem.featured_media) {
-                        this.getMedia(postItem.featured_media)
-                            .subscribe(res => {
-                                postItem.media_url = res;
-                            })
-                    }
                     if (postItem.author) {
                         this.getAuthor(postItem.author)
                             .subscribe(res => {
@@ -138,12 +132,6 @@ export class ClientProvider {
         return this.http.get(`${WP_API.GET_POSTS}/${id}`)
             .map((res: Response) => res.json())
             .map(res => {
-                if (res.featured_media) {
-                    this.getMedia(res.featured_media)
-                        .subscribe(resMedia => {
-                            res.media_url = resMedia;
-                        })
-                }
                 if (res.author) {
                     this.getAuthor(res.author)
                         .subscribe(resAuthor => {

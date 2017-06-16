@@ -3,7 +3,7 @@
         <ion-col col-12 col-md-6 *ngFor="let item of posts | slice:start" (click)="postNav(item.id, item.media_url)">
             <ion-row>
                 <ion-col square class="post-thumbnail" col-4>
-                    <img-loader *ngIf="item.media_url" (load)="onImageLoad($event)" [src]="item.media_url.sizes.thumbnail.source_url" useImg></img-loader>
+                    <img-loader *ngIf="item.better_featured_image" (load)="onImageLoad($event)" [src]="item.better_featured_image.media_details.sizes.thumbnail.source_url" useImg></img-loader>
                 </ion-col>
                 <ion-col *ngIf="item.title" col-8>
                     <p class="post-category" [innerHTML]="item.category_name"></p>

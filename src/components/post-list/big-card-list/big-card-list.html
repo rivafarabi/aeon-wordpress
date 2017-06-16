@@ -2,13 +2,12 @@
     <ion-row align-items-start col-md-10 offset-md-1>
         <ion-col col-12 col-md-6 *ngFor="let item of posts | slice:start">
             <ion-card (click)="postNav(item.id)">
-                <img-loader *ngIf="item.media_url" (load)="onImageLoad($event)" [src]="item.media_url.sizes.thumbnail.source_url" useImg></img-loader>
-
+                <img-loader (load)="onImageLoad($event)" [src]="item.better_featured_image.media_details.sizes.thumbnail.source_url" useImg></img-loader>
                 <ion-grid>
                     <ion-row>
                         <ion-col col-6 class="post-date" ion-text color="light">
                             <span>{{item.date | date:'dd'}}</span><br>
-                            <span>{{item.date | date:'MMM '}}</span>
+                            <span>{{item.date | date:'MMM '}}</span><br>
                         </ion-col>
                         <ion-col *ngIf="item.category_name" class="post-category" [innerHTML]="item.category_name" ion-text color="light" text-right>
                         </ion-col>
