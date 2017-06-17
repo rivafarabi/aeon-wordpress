@@ -2,12 +2,9 @@ import { Component, Input, Output, EventEmitter, ElementRef, OnInit } from '@ang
 
 @Component({
     selector: 'header-transparent',
-    template:
-    `<ion-header no-border [ngClass]="{'hide-header':hideHeader,'show-header':showHeader}">
-       <ng-content></ng-content>
-    </ion-header>`,
+    templateUrl: 'header-transparent.html'
 })
-export class HeaderTransparentComponent implements OnInit {
+export class HeaderTransparent implements OnInit {
     @Input('headerTitle') headerTitle: string;
     @Input('threshold') threshold: number;
     @Input('showMenuButton') showMenuButton: boolean;

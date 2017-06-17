@@ -1,0 +1,14 @@
+///Aeon Android Specific Style///
+.platform-android5,
+.platform-android6,
+.platform-android7 {
+    ion-header {
+        background-color: color($colors, primary, base);
+        ion-navbar {
+            margin-top: 24px;
+        }
+    }
+    ion-content {
+        margin-top: 0px;
+    }
+}

@@ -16,6 +16,13 @@ modal-comment {
         }
     }
     ion-item {
+        ion-col.comment-img {
+            text-align: center;
+            img {
+                position: relative;
+                border-radius: 24px;
+            }
+        }
         p {
             white-space: normal;
             line-height: 20px !important;
@@ -24,6 +31,25 @@ modal-comment {
             }
             &.comment-content {
                 font-size: 1.2rem !important;
+                border: 1px solid color($colors, primary, base);
+                padding: 12px;
+                margin: 0px 10px;
+                border-radius: 10px;
+                border-top-left-radius: 0px;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 39px;
+                    width: 0;
+                    height: 0;
+                    border: 16px solid transparent;
+                    border-right-color: color($colors, primary, base);
+                    border-left: 0;
+                    border-top: 0;
+                    margin-top: -12px;
+                    margin-left: 0px;
+                }
             }
             &.comment-date {
                 font-size: 1rem;

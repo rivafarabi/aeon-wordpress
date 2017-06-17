@@ -5,4 +5,4 @@ import { PostListComponent } from '../post-list.component';
     selector: 'big-card-list',
     templateUrl: 'big-card-list.html'
 })
-export class BigCardListComponent extends PostListComponent {}
+export class BigCardList extends PostListComponent {}

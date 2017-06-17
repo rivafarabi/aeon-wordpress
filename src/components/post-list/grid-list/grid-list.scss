@@ -10,6 +10,7 @@ grid-list {
                 border-radius: $grid-list-radius !important;
                 &.post-thumbnail {
                     @extend .aeon-img-placeholder;
+                    padding: 0 !important;
                 }
                 img {
                     width: 100%;

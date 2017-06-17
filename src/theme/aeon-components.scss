@@ -51,6 +51,11 @@
     -webkit-filter: brightness(50%);
 }
 
+ion-title {
+    text-transform: uppercase !important;
+    font-weight: bold;
+}
+
 ion-content[header-overlay] {
     .scroll-content {
         padding-top: 80px !important;

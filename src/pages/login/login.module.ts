@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { LoginPage } from './login';
-
-import { HeaderTransparent } from '../../components/header-transparent.module';
+import { AeonModule } from '../../components/aeon.module';
 
 @NgModule({
    declarations: [LoginPage],
    imports: [
       IonicPageModule.forChild(LoginPage),
-      HeaderTransparent
+      AeonModule
    ]
 })
 export class LoginPageModule { }

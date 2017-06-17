@@ -21,7 +21,6 @@ export class PostListComponent implements OnInit {
     }
 
     postNav(postId, postMediaUrl) {
-        console.log(postId);
         this.postTarget.emit({
             id: postId,
             media: postMediaUrl

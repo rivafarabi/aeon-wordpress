@@ -3,7 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { PostContentPage } from './post-content';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { MomentModule } from 'angular2-moment';
-import { HeaderTransparent } from '../../components/header-transparent.module';
+import { AeonModule } from '../../components/aeon.module';
 
 @NgModule({
    declarations: [PostContentPage],
@@ -11,7 +11,7 @@ import { HeaderTransparent } from '../../components/header-transparent.module';
       IonicPageModule.forChild(PostContentPage),
       IonicImageLoader,
       MomentModule,
-      HeaderTransparent
+      AeonModule
    ],
    exports: [PostContentPage]
 })

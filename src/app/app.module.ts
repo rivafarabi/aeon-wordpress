@@ -10,6 +10,7 @@ import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free';
 import { IonicImageLoader, ImageLoader, ImageLoaderConfig } from 'ionic-image-loader';
 import { MomentModule } from 'angular2-moment';
 import { MyApp } from './app.component';
+import { AeonComponent } from '../components/aeon-component';
 
 import { AuthProvider } from '../providers/auth.provider';
 import { ClientProvider } from '../providers/client.provider';
@@ -23,6 +24,7 @@ import { ClientProvider } from '../providers/client.provider';
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    AeonComponent,
     IonicStorageModule.forRoot(),
     IonicImageLoader,
     MomentModule

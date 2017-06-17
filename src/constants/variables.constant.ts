@@ -8,10 +8,6 @@ export const AdMobConst = {
     IOS_AD_ID : ""
 }
 
-export const DisqusConstant = {
-    SHORTNAME : "slashgeardotcom"
-}
-
 export const GoogleMapsConstant = {
     
 }

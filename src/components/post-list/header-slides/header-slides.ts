@@ -8,5 +8,5 @@ import { PostListComponent } from '../post-list.component';
     selector: 'header-slides',
     templateUrl: 'header-slides.html'
 })
-export class HeaderSlidesComponent extends PostListComponent {
+export class HeaderSlides extends PostListComponent {
 }

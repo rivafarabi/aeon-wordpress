@@ -23,20 +23,6 @@ $colors: ( primary: #FF6F59, secondary: #62bcfa, danger: #f53d3d, light: #f4f4f4
 // iOS only Sass variables can go here
 // App Material Design Variables
 // --------------------------------------------------
-.platform-android5,
-.platform-android6,
-.platform-android7 {
-    ion-header {
-        background-color: color($colors, primary, base);
-        ion-navbar {
-            margin-top: 24px;
-        }
-    }
-    ion-content {
-        margin-top: 0px;
-    }
-}
-
 // Material Design only Sass variables can go here
 // App Windows Variables
 // --------------------------------------------------
@@ -58,5 +44,6 @@ $colors: ( primary: #FF6F59, secondary: #62bcfa, danger: #f53d3d, light: #f4f4f4
 @import "roboto";
 @import "noto-sans";
 @import "../pages/home/home";
+@import "aeon-platforms";
 @import "aeon-theme";
 @import "aeon-components";

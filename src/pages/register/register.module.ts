@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { RegisterPage } from './register';
-
-import { HeaderTransparent } from '../../components/header-transparent.module';
+import { AeonModule } from '../../components/aeon.module';
 
 @NgModule({
    declarations: [RegisterPage],
    imports: [
       IonicPageModule.forChild(RegisterPage),
-      HeaderTransparent
+      AeonModule
    ]
 })
 export class RegisterPageModule { }

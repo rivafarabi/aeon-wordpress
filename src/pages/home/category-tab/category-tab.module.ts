@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { PostsTabPage } from './posts-tab';
+import { CategoryTabPage } from './category-tab';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { MomentModule } from 'angular2-moment';
 import { AeonModule } from '../../../components/aeon.module';
 
 @NgModule({
-   declarations: [PostsTabPage],
+   declarations: [
+      CategoryTabPage
+   ],
    imports: [
-      IonicPageModule.forChild(PostsTabPage),
-      AeonModule,
+      IonicPageModule.forChild(CategoryTabPage),
       IonicImageLoader,
-      MomentModule
+      MomentModule,
+      AeonModule
    ],
    exports: [
-      PostsTabPage
+      CategoryTabPage
    ]
 })
-export class PostsTabPageModule { }
+export class HomePageModule { }

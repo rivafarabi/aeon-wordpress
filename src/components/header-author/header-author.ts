@@ -4,7 +4,7 @@ import { Component, Input, Output, EventEmitter, ElementRef, Renderer, OnInit } 
    selector: 'header-author',
    templateUrl: 'header-author.html'
 })
-export class HeaderAuthorComponent implements OnInit {
+export class HeaderAuthor implements OnInit {
    @Input('authorImg') img: any;
    @Input('authorName') name: number;
 

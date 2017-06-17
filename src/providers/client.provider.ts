@@ -21,7 +21,8 @@ export class ClientProvider {
         if (param != null) {
             paramString = this.transParams(param);
         }
-        return this.http.get(`${WP_API.GET_POSTS}?page=${page}${paramString}`)
+        let fields = '&fields=id,title,date,categories,author,better_featured_image';
+        return this.http.get(`${WP_API.GET_POSTS}?page=${page}${paramString}${fields}`)
             .map(res => {
                 let postJson = res.json();
                 postJson.forEach(postItem => {
@@ -113,7 +114,8 @@ export class ClientProvider {
     }
 
     getAuthor(id: number) {
-        return this.http.get(WP_API.GET_USER + id)
+        let fields = '?fields=id,name,avatar_urls';
+        return this.http.get(`${WP_API.GET_USER}${id}${fields}`)
             .map((res: Response) => res.json())
             .map(res => {
                 return res;
@@ -121,7 +123,8 @@ export class ClientProvider {
     }
 
     getCategory(id: number) {
-        return this.http.get(WP_API.GET_CATEGORIES + id)
+        let fields = '?fields=id,name';
+        return this.http.get(`${WP_API.GET_CATEGORIES}${id}${fields}`)
             .map((res: Response) => res.json())
             .map(res => {
                 return res;
@@ -129,6 +132,7 @@ export class ClientProvider {
     }
 
     getPostContent(id: number) {
+        let fields = '?fields=id,title,date,categories,author,content,better_featured_image';
         return this.http.get(`${WP_API.GET_POSTS}/${id}`)
             .map((res: Response) => res.json())
             .map(res => {
@@ -163,6 +167,6 @@ export class ClientProvider {
         return Observable.fromPromise(this.auth.getToken())
             .map(res => {
                 return res;
-            });;
+            });
     }
 }

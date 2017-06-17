@@ -15,13 +15,16 @@
     </div>
     <ion-list>
         <ion-item *ngFor="let item of comments">
-            <ion-avatar item-left>
-                <img [src]="item.author_avatar_urls[48]">
-            </ion-avatar>
-            <p class="comment-author">{{item.author_name}}</p>
-            <p class="comment-content" [innerHTML]="item.content.rendered"></p>
-            <p class="comment-date">{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', sameElse: 'MMMM DD, YYYY'} }}
-                <p>
+            <ion-row>
+                <ion-col class="comment-img" col-2>
+                    <img [src]="item.author_avatar_urls[48]">
+                </ion-col>
+                <ion-col col-10>
+                    <p class="comment-author" ion-text color="primary">{{item.author_name}}</p>
+                    <p class="comment-content" [innerHTML]="item.content.rendered"></p>
+                    <p class="comment-date">{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', sameElse: 'MMMM DD, YYYY'} }}</p>
+                </ion-col>
+            </ion-row>
         </ion-item>
     </ion-list>
     <ion-infinite-scroll (ionInfinite)="loadMoreComments($event)">

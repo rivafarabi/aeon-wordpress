@@ -1,7 +1,7 @@
-<ion-header>
+<ion-header no-border>
     <ion-navbar color="primary">
         <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
-        <ion-title *ngIf="!showSearchBar"><span>Recent</span></ion-title>
+        <ion-title *ngIf="!showSearchBar"><span>Category</span></ion-title>
         <ion-buttons end *ngIf="!showSearchBar">
             <button ion-button icon-only (click)="toggleSearchBar()">
                 <ion-icon item-right name="search"></ion-icon>
@@ -11,10 +11,11 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <header-slides [postList]="posts" [start]='0' [end]='4' (postTarget)="toPostContent($event)"></header-slides>
-
-    <big-card-list [postList]="posts" [start]=5 (postTarget)="toPostContent($event)"></big-card-list>
-
+    <ion-list>
+        <button ion-item *ngFor="let item of categories" (click)="toCategory(item.id, item.name)">
+            <span [innerHTML]="item.name"></span>
+        </button>
+    </ion-list>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
         <ion-infinite-scroll-content loadingSpinner="crescent">
         </ion-infinite-scroll-content>

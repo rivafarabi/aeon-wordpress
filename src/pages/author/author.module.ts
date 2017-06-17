@@ -3,22 +3,15 @@ import { IonicPageModule } from 'ionic-angular';
 import { AuthorPage } from './author';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { MomentModule } from 'angular2-moment';
-
-import { HeaderTransparent } from '../../components/header-transparent.module';
-import { HeaderAuthor } from '../../components/header-author/header-author.module';
-import { GridList } from '../../components/post-list/grid-list/grid-list.module';
-import { ShrinkHeaderTitle } from '../../directive/shrink-header-title.directive';
+import { AeonModule } from '../../components/aeon.module';
 
 @NgModule({
    declarations: [
-      AuthorPage,
-      ShrinkHeaderTitle
+      AuthorPage
    ],
    imports: [
       IonicPageModule.forChild(AuthorPage),
-      HeaderTransparent,
-      HeaderAuthor,
-      GridList,
+      AeonModule,
       IonicImageLoader,
       MomentModule
    ],

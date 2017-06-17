@@ -9,13 +9,13 @@ import { ClientProvider } from '../../../providers/client.provider';
 
 @IonicPage()
 @Component({
-  selector: 'tab-photo',
-  templateUrl: 'photo-tab.html',
+  selector: 'tab-category',
+  templateUrl: 'category-tab.html',
   providers: [ClientProvider]
 })
-export class PhotoTabPage {
+export class CategoryTabPage {
   @ViewChild('searchbar') searchbar: Searchbar;
-  posts: any;
+  categories: any;
   page: number;
   onProgress: boolean;
   showSearchBar: boolean;
@@ -41,14 +41,24 @@ export class PhotoTabPage {
     };
     this.nativePageTransitions.fade(opt);
   }
-
+  
   fetch() {
     this.onProgress = true;
-    this.clientProvider.getListPosts(this.page)
+    this.clientProvider.getListCategories(this.page)
       .subscribe(res => {
-        this.posts = res;
-        this.onProgress = false;
+        this.categories = res;
       })
+  }
+
+  goToCategory(id, name) {
+    this.navCtrl.push(
+      "PostListPage", {
+        'opt': [{
+          'type': 'categories',
+          'id': id,
+          'name': name
+        }]
+      });
   }
 
   refresh(refresher) {
@@ -62,27 +72,24 @@ export class PhotoTabPage {
   loadMore(infiniteScroll) {
     this.page++;
     setTimeout(() => {
-      this.clientProvider.getListPosts(this.page)
+      this.clientProvider.getListCategories(this.page)
         .subscribe(res => {
           res.forEach(element => {
-            this.posts.push(element)
+            this.categories.push(element)
           });
           infiniteScroll.complete();
         })
     }, 500)
   }
 
-  toPostContent(postDetail: any) {
-    let opt: NativeTransitionOptions = {
-      duration: 100,
-      iosdelay: 50,
-      androiddelay: 100
-    };
-    this.nativePageTransitions.fade(opt);
+  toCategory(id, name) {
     this.navCtrl.push(
-      "PostContentPage", {
-        'postId': postDetail.id,
-        'postMedia': postDetail.media
+      "PostListPage", {
+        'opt': [{
+          'type': 'categories',
+          'id': id,
+          'name': name
+        }]
       });
   }
 

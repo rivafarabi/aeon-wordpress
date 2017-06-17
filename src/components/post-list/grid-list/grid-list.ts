@@ -6,4 +6,4 @@ import { PostListComponent } from '../post-list.component';
    selector: 'grid-list',
    templateUrl: 'grid-list.html'
 })
-export class GridListComponent extends PostListComponent {}
+export class GridList extends PostListComponent {}

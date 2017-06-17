@@ -3,9 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { RecentTabPage } from './recent-tab';
 import { IonicImageLoader } from 'ionic-image-loader';
 import { MomentModule } from 'angular2-moment';
-
-import { HeaderTransparent } from '../../../components/header-transparent.module';
-import { CardList, BigCardList, HeaderSlides } from '../../../components/post-list/post-list.module';
+import { AeonModule } from '../../../components/aeon.module';
 
 @NgModule({
    declarations: [
@@ -15,10 +13,7 @@ import { CardList, BigCardList, HeaderSlides } from '../../../components/post-li
       IonicPageModule.forChild(RecentTabPage),
       IonicImageLoader,
       MomentModule,
-      HeaderTransparent,
-      HeaderSlides,
-      CardList,
-      BigCardList
+      AeonModule
    ],
    exports: [
       RecentTabPage
