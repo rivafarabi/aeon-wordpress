@@ -31,8 +31,6 @@ export class MyApp {
 
     this.pages = [
       { title: 'Home', component: "HomePage" },
-      { title: 'Categories', component: "CategoryListPage" },
-      { title: 'Tags', component: "TagListPage" },
       { title: 'Bookmark', component: "BookmarkPage" },
       { title: 'Settings', component: "SettingPage" },
       { title: 'About', component: "AboutPage" },

@@ -23,6 +23,18 @@
     font-weight: bold;
 }
 
+//Lora Fonts
+@font-face {
+    font-family: 'lora';
+    src: url('../assets/fonts/Lora/Lora-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'lora';
+    src: url('../assets/fonts/Lora/Lora-Bold.ttf');
+    font-weight: bold;
+}
+
 ion-menu {
     padding-top: 48px;
     div.header-container {

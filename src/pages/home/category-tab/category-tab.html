@@ -11,11 +11,12 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <ion-list>
+    <!--<ion-list>
         <button ion-item *ngFor="let item of categories" (click)="toCategory(item.id, item.name)">
             <span [innerHTML]="item.name"></span>
         </button>
-    </ion-list>
+    </ion-list>-->
+    <category-thumbnail-list [categoryList]="categories" (categoryNav)="toCategory($event)"></category-thumbnail-list>
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
         <ion-infinite-scroll-content loadingSpinner="crescent">
         </ion-infinite-scroll-content>

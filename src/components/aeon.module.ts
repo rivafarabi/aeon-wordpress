@@ -13,9 +13,9 @@ import { MomentModule } from 'angular2-moment';
 import { SquareDirective } from '../directives/square.directive'
 
 /**
- * Export  Module
+ * Export Component Module
  */
-
+import { CategoryThumbnailList } from './category-list/category-thumbnail-list/category-thumbnail-list';
 import { BigCardList } from './post-list/big-card-list/big-card-list';
 import { CardList } from './post-list/card-list/card-list';
 import { GridList } from './post-list/grid-list/grid-list';
@@ -26,6 +26,7 @@ import { HeaderTransparent } from './header-transparent/header-transparent';
 @NgModule({
    declarations: [
       SquareDirective,
+      CategoryThumbnailList,
       CardList,
       GridList,
       HeaderAuthor,
@@ -38,6 +39,7 @@ import { HeaderTransparent } from './header-transparent/header-transparent';
       MomentModule
    ],
    exports: [
+      CategoryThumbnailList,
       CardList,
       GridList,
       HeaderAuthor,

@@ -6,6 +6,11 @@
             <ion-grid>
                 <ion-row>
                     <ion-col>
+                        <span class="text-category" *ngIf="item.category_name" [innerHTML]="item.category_name" ion-text color="dark"></span>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
                         <h1 *ngIf="item.title" ion-text [innerHTML]="item.title.rendered" color="light"></h1>
                     </ion-col>
                 </ion-row>

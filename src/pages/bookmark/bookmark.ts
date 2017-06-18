@@ -58,13 +58,4 @@ export class BookmarkPage {
         'postMedia': postDetail.media
       });
   }
-
-  search(event: any) {
-    let searchOptions = {
-      type: 'search',
-      id: event.target.value
-    }
-    this.fetch();
-    this.pageTitle = event.target.value;
-  }
 }

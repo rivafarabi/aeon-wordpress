@@ -22,12 +22,22 @@ header-slides {
                 width: 50%;
             }
             h1 {
-                text-transform: uppercase;
+                font-family: 'lora';
+                font-weight: bold;
+                margin-top: 10px;
             }
             span {
                 text-align: right;
                 font-weight: 300;
                 font-size: $header-slides-subheader;
+                &.text-category {
+                    text-transform: uppercase;
+                    letter-spacing: 5px;
+                    font-weight: 700;
+                    text-align: right;
+                    background: #fff;
+                    padding: 5px 5px 5px 8px;
+                }
             }
         }
         img-loader {
