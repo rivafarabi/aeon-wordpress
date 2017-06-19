@@ -118,23 +118,10 @@ export class ClientProvider {
     }
 
     getPostContent(id: number) {
-        let fields = '?fields=id,title,date,categories,author,content,better_featured_image,pure_taxonomies,_embedded.author';
+        let fields = '?fields=id,title,date,link,categories,author,content,better_featured_image,pure_taxonomies,_embedded.author';
         return this.http.get(`${WP_API.GET_POSTS}/${id}${fields}&_embed`)
             .map((res: Response) => res.json())
             .map(res => {
-                if (res.author) {
-                    this.getAuthor(res.author)
-                        .subscribe(resAuthor => {
-                            res.author_name = resAuthor.name;
-                        })
-                }
-                if (res.categories) {
-                    this.getCategory(res.categories[0])
-                        .subscribe(resCategory => {
-                            res.category_name = resCategory.name;
-                        })
-                }
-                console.log(res);
                 return res;
             });
     }

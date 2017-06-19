@@ -20,7 +20,6 @@ export class CategoryTabPage {
   page: number;
   onProgress: boolean;
   showSearchBar: boolean;
-  searchString: string;
 
   constructor(
     public navCtrl: NavController,
@@ -46,10 +45,13 @@ export class CategoryTabPage {
   fetch() {
     this.onProgress = true;
     this.categories = CategoryConst;
-    // this.clientProvider.getListCategories(this.page)
-    //   .subscribe(res => {
-    //     this.categories = res;
-    //   })
+
+    /** Use this to fetch category from REST API
+    this.clientProvider.getListCategories(this.page)
+      .subscribe(res => {
+        this.categories = res;
+      })
+    */
   }
 
   refresh(refresher) {
@@ -73,14 +75,15 @@ export class CategoryTabPage {
     }, 500)
   }
 
-  toCategory(id, name) {
+  toCategory(categoryDetail) {
     this.navCtrl.push(
       "PostListPage", {
         'opt': [{
           'type': 'categories',
-          'id': id,
-          'name': name
-        }]
+          'id': categoryDetail.id,
+          'name': categoryDetail.name
+        }],
+        "name": categoryDetail.name
       });
   }
 

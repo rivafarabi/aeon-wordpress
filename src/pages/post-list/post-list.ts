@@ -28,13 +28,9 @@ export class PostListPage {
     public clientProvider: ClientProvider
   ) {
     this.pageTitle = this.navParams.get('name');
-    // this.options = [{
-    //   type: this.navParams.get('type'),
-    //   id: this.navParams.get('id')
-    // }]
     this.options = this.navParams.get('opt');
     this.page = 1;
-    this.fetch(this.options);
+    this.fetch();
     this.showSearchBar = false;
   }
 
@@ -48,7 +44,7 @@ export class PostListPage {
     this.nativePageTransitions.fade(opt);
   }
 
-  fetch(opt: any, searchOpt?: any) {
+  fetch(searchOpt?: any) {
     this.onProgress = true;
     this.clientProvider.getListPosts(this.page, this.options)
       .subscribe(res => {
@@ -103,7 +99,6 @@ export class PostListPage {
   }
 
   searchBlurred(event:any){
-    console.log(event);
     this.showSearchBar = false;
   }
 

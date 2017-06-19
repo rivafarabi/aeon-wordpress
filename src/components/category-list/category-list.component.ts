@@ -7,16 +7,16 @@ import { MomentModule } from 'angular2-moment';
 @Component({})
 export class CategoryListComponent {
     @Input('categoryList') categories: any;
-    @Output() postTarget: EventEmitter<any> = new EventEmitter<any>();
+    @Output() itemTap: EventEmitter<any> = new EventEmitter<any>();
 
     constructor(private imageLoaderConfig: ImageLoaderConfig) {
         imageLoaderConfig.enableSpinner(false);
     }
 
-    categoryNav(categoryId, postMediaUrl) {
-        this.postTarget.emit({
+    categoryNav(categoryId, categoryName) {
+        this.itemTap.emit({
             id: categoryId,
-            media: postMediaUrl
+            name: categoryName
         });
     }
 }

@@ -11,5 +11,5 @@
     </ion-navbar>
 </ion-header>
 <ion-content>
-    <category-thumbnail-list [categoryList]="categories" (categoryNav)="toCategory($event)"></category-thumbnail-list>
+    <category-thumbnail-list [categoryList]="categories" (itemTap)="toCategory($event)"></category-thumbnail-list>
 </ion-content>

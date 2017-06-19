@@ -4,7 +4,7 @@
             <button ion-button icon-only (tap)="openComment()">
                 <ion-icon item-right  name="chatbubbles"></ion-icon>
             </button>
-            <button ion-button icon-only *ngIf="post.link" (tap)="share(post.link)">
+            <button ion-button icon-only (tap)="share(post.link)">
         <ion-icon  item-right  ios="ios-share" md="md-share"></ion-icon>
       </button>
             <button *ngIf="!isBookmarked" ion-button icon-only (tap)="bookmark(post)">
@@ -29,7 +29,7 @@
                 </ion-row>
                 <ion-row>
                     <ion-col>
-                        <h1 *ngIf="post.title" ion-text [innerHTML]="post.title.rendered" color="light"></h1>
+                        <h1 ion-text [innerHTML]="post.title.rendered" color="light"></h1>
                     </ion-col>
                 </ion-row>
                 <ion-row>

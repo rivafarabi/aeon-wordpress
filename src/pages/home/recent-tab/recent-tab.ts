@@ -87,6 +87,12 @@ export class RecentTabPage {
   }
 
   search(event: any) {
+    let opt: NativeTransitionOptions = {
+      duration: 100,
+      iosdelay: 50,
+      androiddelay: 100
+    };
+    this.nativePageTransitions.fade(opt);
     this.navCtrl.push(
       "SearchPage", {
         'type': 'search',
