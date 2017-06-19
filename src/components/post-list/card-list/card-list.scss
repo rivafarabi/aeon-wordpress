@@ -35,7 +35,6 @@ card-list {
             height: $card-list-height;
             padding: $card-list-content-padding !important;
             ion-card-title {
-                font-family: 'lora';
                 font-weight: 700;
                 font-size: $card-list-title-font-size !important;
                 @media only screen and (min-width: 768px) {

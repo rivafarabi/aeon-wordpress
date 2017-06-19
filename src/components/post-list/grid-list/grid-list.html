@@ -6,7 +6,7 @@
                     <img-loader *ngIf="item.better_featured_image" (load)="onImageLoad($event)" [src]="item.better_featured_image.media_details.sizes.thumbnail.source_url" useImg></img-loader>
                 </ion-col>
                 <ion-col *ngIf="item.title" col-8>
-                    <p class="post-category" [innerHTML]="item.category_name"></p>
+                    <p class="post-category" *ngIf="item.pure_taxonomies.categories" [innerHTML]="item.pure_taxonomies.categories[0].name"></p>
                     <p class="post-title" [innerHTML]="item.title.rendered"></p>
                     <p class="post-date">{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', lastWeek: '[last] dddd', sameElse: 'MMMM DD, YYYY'} }}</p>
                 </ion-col>

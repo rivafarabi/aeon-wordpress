@@ -5,6 +5,7 @@ import { ImageLoaderConfig } from 'ionic-image-loader';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import 'rxjs/Rx'
 
+import { CategoryConst } from '../../../constants/variables.constant';
 import { ClientProvider } from '../../../providers/client.provider';
 
 @IonicPage()
@@ -44,21 +45,11 @@ export class CategoryTabPage {
   
   fetch() {
     this.onProgress = true;
-    this.clientProvider.getListCategories(this.page)
-      .subscribe(res => {
-        this.categories = res;
-      })
-  }
-
-  goToCategory(id, name) {
-    this.navCtrl.push(
-      "PostListPage", {
-        'opt': [{
-          'type': 'categories',
-          'id': id,
-          'name': name
-        }]
-      });
+    this.categories = CategoryConst;
+    // this.clientProvider.getListCategories(this.page)
+    //   .subscribe(res => {
+    //     this.categories = res;
+    //   })
   }
 
   refresh(refresher) {

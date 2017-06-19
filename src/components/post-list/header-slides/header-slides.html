@@ -1,12 +1,12 @@
 <div class="gradient-overlay"></div>
 <ion-slides class="featured-media" *ngIf="!onProgress" loop="true" pager="true" paginationType="progress" parallax="true">
     <ion-slide *ngFor="let item of posts | slice:start:end" (click)="postNav(item.id, item.better_featured_image)">
-        <img-loader *ngIf="item.better_featured_image" [src]="item.better_featured_image.media_details.sizes.medium_large.source_url"></img-loader>
+        <img-loader *ngIf="item.better_featured_image" [src]="item.better_featured_image.media_details.sizes.medium.source_url"></img-loader>
         <div class="post-header">
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <span class="text-category" *ngIf="item.category_name" [innerHTML]="item.category_name" ion-text color="dark"></span>
+                        <span class="text-category" *ngIf="item.pure_taxonomies.categories" [innerHTML]="item.pure_taxonomies.categories[0].name" ion-text color="dark"></span>
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -16,8 +16,8 @@
                 </ion-row>
                 <ion-row>
                     <ion-col col-6>
-                        <button ion-button outline color="light" round block small *ngIf="item.author_name">
-                        {{item.author_name}}
+                        <button ion-button outline color="light" round block small>
+                        {{item._embedded.author[0].name}}
                         </button>
                     </ion-col>
                     <ion-col col-6>

@@ -21,24 +21,10 @@ export class ClientProvider {
         if (param != null) {
             paramString = this.transParams(param);
         }
-        let fields = '&fields=id,title,date,categories,author,better_featured_image';
-        return this.http.get(`${WP_API.GET_POSTS}?page=${page}${paramString}${fields}`)
+        let fields = '&fields=id,title,date,categories,author,better_featured_image,pure_taxonomies,_embedded.author';
+        return this.http.get(`${WP_API.GET_POSTS}?page=${page}${paramString}${fields}&_embed`)
             .map(res => {
                 let postJson = res.json();
-                postJson.forEach(postItem => {
-                    if (postItem.author) {
-                        this.getAuthor(postItem.author)
-                            .subscribe(res => {
-                                postItem.author_name = res.name;
-                            })
-                    }
-                    if (postItem.categories) {
-                        this.getCategory(postItem.categories[0])
-                            .subscribe(res => {
-                                postItem.category_name = res.name;
-                            })
-                    }
-                });
                 return postJson;
             })
     }
@@ -132,8 +118,8 @@ export class ClientProvider {
     }
 
     getPostContent(id: number) {
-        let fields = '?fields=id,title,date,categories,author,content,better_featured_image';
-        return this.http.get(`${WP_API.GET_POSTS}/${id}`)
+        let fields = '?fields=id,title,date,categories,author,content,better_featured_image,pure_taxonomies,_embedded.author';
+        return this.http.get(`${WP_API.GET_POSTS}/${id}${fields}&_embed`)
             .map((res: Response) => res.json())
             .map(res => {
                 if (res.author) {

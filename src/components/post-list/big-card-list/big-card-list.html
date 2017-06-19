@@ -9,7 +9,7 @@
                             <span>{{item.date | date:'dd'}}</span><br>
                             <span>{{item.date | date:'MMM '}}</span><br>
                         </ion-col>
-                        <ion-col *ngIf="item.category_name" class="post-category" [innerHTML]="item.category_name" ion-text color="light" text-right>
+                        <ion-col *ngIf="item.pure_taxonomies.categories" class="post-category" [innerHTML]="item.pure_taxonomies.categories[0].name" ion-text color="light" text-right>
                         </ion-col>
                     </ion-row>
                 </ion-grid>

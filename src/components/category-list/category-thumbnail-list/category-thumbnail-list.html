@@ -1,9 +1,10 @@
 <ion-grid>
     <ion-row>
         <ion-col col-6 square *ngFor="let item of categories">
-            <ion-card square>
-                <p class="category-name" [innerHTML]="item.name"></p>
-            </ion-card>
+
+            <img [src]="item.thumbnail" />
+            <p class="category-name" [innerHTML]="item.name"></p>
+
         </ion-col>
     </ion-row>
 </ion-grid>

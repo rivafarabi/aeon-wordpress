@@ -10,19 +10,6 @@
         <ion-searchbar #searchbar *ngIf="showSearchBar" (search)="search($event)" (ionBlur)="searchBlurred($event)" (ionCancel)="toggleSearchBar()"></ion-searchbar>
     </ion-navbar>
 </ion-header>
-<ion-content padding>
-    <!--<ion-list>
-        <button ion-item *ngFor="let item of categories" (click)="toCategory(item.id, item.name)">
-            <span [innerHTML]="item.name"></span>
-        </button>
-    </ion-list>-->
+<ion-content>
     <category-thumbnail-list [categoryList]="categories" (categoryNav)="toCategory($event)"></category-thumbnail-list>
-    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
-        <ion-infinite-scroll-content loadingSpinner="crescent">
-        </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-    <ion-refresher (ionRefresh)="refresh($event)">
-        <ion-refresher-content>
-        </ion-refresher-content>
-    </ion-refresher>
 </ion-content>

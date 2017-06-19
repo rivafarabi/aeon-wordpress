@@ -3,7 +3,7 @@
         <ion-col col-6 col-md-3 *ngFor="let item of posts | slice:start">
             <ion-card *ngIf="item.better_featured_image" (click)="postNav(item.id)">
                 <img-loader *ngIf="item.better_featured_image" (load)="onImageLoad($event)" [src]="item.better_featured_image.media_details.sizes.thumbnail.source_url" useImg></img-loader>
-                <span *ngIf="item.category_name" class="post-category" [innerHTML]="item.category_name" ion-text color="light" text-right></span>
+                <span *ngIf="item.pure_taxonomies.categories" class="post-category" [innerHTML]="item.pure_taxonomies.categories[0].name" ion-text color="light" text-right></span>
                 <ion-card-content>
                     <ion-card-title *ngIf="item.title" [innerHTML]="item.title.rendered">
                     </ion-card-title>
@@ -12,7 +12,7 @@
             </ion-card>
             <ion-card class="no-image-card fade-in" *ngIf="!item.better_featured_image" (click)="postNav(item.id)">
                 <ion-card-content>
-                    <p class="post-category" [innerHTML]="item.category_name"></p>
+                    <p class="post-category" *ngIf="item.pure_taxonomies.categories" [innerHTML]="item.pure_taxonomies.categories[0].name"></p>
                     <ion-card-title *ngIf="item.title" [innerHTML]="item.title.rendered">
                     </ion-card-title>
                     <p class="post-date">{{item.date | amCalendar: { sameDay: '[Today]', lastDay: '[Yesterday]', lastWeek: '[last] dddd', sameElse: 'MMMM DD, YYYY'} }}</p>

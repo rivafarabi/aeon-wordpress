@@ -1,1 +1,21 @@
-category-thumbnail-list {}
+category-thumbnail-list {
+    ion-grid,
+    ion-row,
+    ion-col,
+    ion-card {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    img {
+        height: 100%;
+        -webkit-filter: brightness(80%);
+    }
+    p {
+        margin: 0 3px;
+        position: absolute;
+        bottom: 0;
+        color: white !important;
+        font-weight: 700 !important;
+        font-size: 36px !important;
+    }
+}
