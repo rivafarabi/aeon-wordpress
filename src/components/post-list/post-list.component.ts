@@ -1,5 +1,5 @@
 
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, Renderer2, OnInit } from '@angular/core';
 import { ImgLoader } from 'ionic-image-loader';
 import { ImageLoaderConfig } from 'ionic-image-loader';
 import { MomentModule } from 'angular2-moment';
@@ -11,7 +11,10 @@ export class PostListComponent implements OnInit {
     @Input('end') end: number;
     @Output() postTarget: EventEmitter<any> = new EventEmitter<any>();
 
-    constructor(private imageLoaderConfig: ImageLoaderConfig) {
+    constructor(
+        private imageLoaderConfig: ImageLoaderConfig,
+        private renderer: Renderer2
+    ) {
         imageLoaderConfig.enableSpinner(false);
     }
 
@@ -28,6 +31,16 @@ export class PostListComponent implements OnInit {
     }
 
     onImageLoad(imgLoader: ImgLoader) {
-        imgLoader.element.parentElement.parentElement.className = "fade-in";
+        // imgLoader.element.parentElement.parentElement.className = "fade-in";
+    }
+
+    onReveal(event) {
+        if (event.value) {
+            this.renderer.addClass(event.target, 'active');
+            this.renderer.removeClass(event.target, 'inactive');
+        } else {
+            this.renderer.addClass(event.target, 'inactive');
+            this.renderer.removeClass(event.target, 'active');
+        }
     }
 }

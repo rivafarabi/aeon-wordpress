@@ -6,7 +6,7 @@ import { IonicModule } from 'ionic-angular'
  */
 import { IonicImageLoader } from 'ionic-image-loader';
 import { MomentModule } from 'angular2-moment';
-
+import { InViewportModule } from 'ng-in-viewport';
 /**
  * Import Directive
  */
@@ -36,7 +36,8 @@ import { HeaderTransparent } from './header-transparent/header-transparent';
    imports: [
       IonicModule,
       IonicImageLoader,
-      MomentModule
+      MomentModule,
+      InViewportModule
    ],
    exports: [
       CategoryThumbnailList,

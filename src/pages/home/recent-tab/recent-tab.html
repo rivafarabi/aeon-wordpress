@@ -10,7 +10,7 @@
         <ion-searchbar #searchbar *ngIf="showSearchBar" (search)="search($event)" (ionBlur)="searchBlurred($event)" (ionCancel)="toggleSearchBar()"></ion-searchbar>
     </ion-navbar>
 </ion-header>
-<ion-content padding>
+<ion-content padding vp-scrollable-content=".scroll-content">
     <header-slides [postList]="posts" [start]='0' [end]='4' (postTarget)="toPostContent($event)"></header-slides>
 
     <card-list [postList]="posts" [start]=5 (postTarget)="toPostContent($event)"></card-list>

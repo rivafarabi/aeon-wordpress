@@ -11,7 +11,7 @@ import { IonicImageLoader, ImageLoader, ImageLoaderConfig } from 'ionic-image-lo
 import { MomentModule } from 'angular2-moment';
 import { MyApp } from './app.component';
 import { AeonModule } from '../components/aeon.module';
-
+import { InViewportModule } from 'ng-in-viewport';
 import { AuthProvider } from '../providers/auth.provider';
 import { ClientProvider } from '../providers/client.provider';
 
@@ -26,6 +26,7 @@ import { ClientProvider } from '../providers/client.provider';
     IonicModule.forRoot(MyApp),
     AeonModule,
     IonicStorageModule.forRoot(),
+    InViewportModule.forRoot(),
     IonicImageLoader,
     MomentModule
   ],
