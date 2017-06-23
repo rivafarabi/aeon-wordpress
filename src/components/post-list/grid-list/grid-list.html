@@ -1,9 +1,9 @@
 <ion-grid *ngIf="posts">
     <ion-row col-md-10 offset-md-1>
-        <ion-col col-12 col-md-6 *ngFor="let item of posts | slice:start" (click)="postNav(item.id, item.media_url)">
+        <ion-col col-12 col-md-6 *ngFor="let item of posts | slice:start" (click)="postNav(item.id, item.media_url)" in-viewport [inViewportOptions]="{ partial: true }" (inViewportAction)="onReveal($event)">
             <ion-row>
                 <ion-col square class="post-thumbnail" col-4>
-                    <img-loader *ngIf="item.better_featured_image" (load)="onImageLoad($event)" [src]="item.better_featured_image.media_details.sizes.thumbnail.source_url" useImg></img-loader>
+                    <img-loader *ngIf="item.better_featured_image" [src]="item.better_featured_image.media_details.sizes.thumbnail.source_url" (load)="onImageLoad($event)" useImg></img-loader>
                 </ion-col>
                 <ion-col *ngIf="item.title" col-8>
                     <p class="post-category" *ngIf="item.pure_taxonomies.categories" [innerHTML]="item.pure_taxonomies.categories[0].name"></p>

@@ -1,0 +1,48 @@
+///Scroll Reveal Animation
+///Fade Animation
+.fade-reveal {
+    &.fade-active {
+        opacity: 1 !important;
+        transition: all 1.0s ease !important;
+    }
+    &.fade-inactive {
+        opacity: 0 !important;
+        transition: all 1.0s ease !important;
+    }
+}
+
+//Zoom Animation
+.zoom-reveal {
+    &.zoom-active {
+        transform: scale(1);
+        transition: all 0.5s ease !important;
+    }
+    &.zoom-inactive {
+        transform: scale(0);
+        transition: all 0.5s ease !important;
+    }
+}
+
+//Slide Right
+.slide-right-reveal {
+    &.slide-right-active {
+        transform: translate3d(0, 0, 0);
+        transition: all 1.0s ease !important;
+    }
+    &.slide-right-inactive {
+        transform: translate3d(-150px, 0, 0);
+        transition: all 1.0s ease !important;
+    }
+}
+
+//Slide Left
+.slide-left-reveal {
+    &.slide-left-active {
+        transform: translate3d(0, 0, 0);
+        transition: all 1.0s ease !important;
+    }
+    &.slide-left-inactive {
+        transform: translate3d(150px, 0, 0);
+        transition: all 1.0s ease !important;
+    }
+}

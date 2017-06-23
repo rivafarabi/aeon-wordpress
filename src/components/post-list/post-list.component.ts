@@ -9,6 +9,7 @@ export class PostListComponent implements OnInit {
     @Input('postList') posts: any;
     @Input('start') start: number;
     @Input('end') end: number;
+    @Input('scrollReveal') scroll_anim: string;
     @Output() postTarget: EventEmitter<any> = new EventEmitter<any>();
 
     constructor(
@@ -31,16 +32,15 @@ export class PostListComponent implements OnInit {
     }
 
     onImageLoad(imgLoader: ImgLoader) {
-        // imgLoader.element.parentElement.parentElement.className = "fade-in";
     }
 
     onReveal(event) {
         if (event.value) {
-            this.renderer.addClass(event.target, 'active');
-            this.renderer.removeClass(event.target, 'inactive');
+            this.renderer.addClass(event.target, this.scroll_anim + '-active');
+            this.renderer.removeClass(event.target, this.scroll_anim + '-inactive');
         } else {
-            this.renderer.addClass(event.target, 'inactive');
-            this.renderer.removeClass(event.target, 'active');
+            this.renderer.addClass(event.target, this.scroll_anim + '-inactive');
+            this.renderer.removeClass(event.target, this.scroll_anim + '-active');
         }
     }
 }

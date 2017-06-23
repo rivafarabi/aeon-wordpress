@@ -1,13 +1,9 @@
 card-list {
     ion-col {
-        &.active {
-            opacity: 1 !important;
-            transition: all 1.0s ease !important;
-        }
-        &.inactive {
-            opacity: 0 !important;
-            transition: all 1.0s ease !important;
-        }
+        @extend .fade-reveal;
+        @extend .zoom-reveal;
+        @extend .slide-right-reveal;
+        @extend .slide-left-reveal;
     }
     ion-card {
         position: relative;
