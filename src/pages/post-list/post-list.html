@@ -15,7 +15,7 @@
     <header-slides [postList]="posts" [start]='0' [end]='4' (postTarget)="toPostContent($event)"></header-slides>
 
     <!--Post List Component-->
-    <grid-list [postList]="posts" [start]=4 (postTarget)="toPostContent($event)"></grid-list>
+    <grid-list [postList]="posts" [start]=4 [scrollReveal]="'slide-right'" (postTarget)="toPostContent($event)"></grid-list>
 
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
         <ion-infinite-scroll-content loadingSpinner="crescent">

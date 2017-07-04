@@ -13,7 +13,7 @@
 <ion-content padding vp-scrollable-content=".scroll-content">
     <header-slides [postList]="posts" [start]='0' [end]='4' (postTarget)="toPostContent($event)"></header-slides>
 
-    <card-list [postList]="posts" [start]=5 (postTarget)="toPostContent($event)"></card-list>
+    <card-list [postList]="posts" [start]=5 [scrollReveal]="'zoom'" (postTarget)="toPostContent($event)"></card-list>
 
     <ion-infinite-scroll (ionInfinite)="loadMore($event)">
         <ion-infinite-scroll-content loadingSpinner="crescent">

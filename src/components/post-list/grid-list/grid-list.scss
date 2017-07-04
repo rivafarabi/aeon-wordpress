@@ -9,14 +9,13 @@ grid-list {
                 margin: $grid-list-margin !important;
                 border-radius: $grid-list-radius !important;
                 &.post-thumbnail {
-                    @extend .aeon-img-placeholder;
                     padding: 0 !important;
                 }
                 img {
+                    @extend .aeon-img-placeholder;
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
-                    background-color: gray;
                 }
                 p {
                     margin: 5px;
