@@ -1,3 +1,5 @@
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RWL5M8UDP5ZU8)
+
 # Aeon-Wordpress
 Aeon Wordpress - Ionic 3 Wordpress Client
 Ver 0.1 Beta
