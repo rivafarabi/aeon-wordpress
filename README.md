@@ -22,3 +22,18 @@ Ver 0.1 Beta
   * JWT Authentication for WP-API
   * WP REST API - Pure Taxonomies
   * WP REST API - filter fields
+
+## Installation
+
+Clone the project to your folder
+````
+git clone https://github.com/rivafarabi/aeon-wordpress my-wordpress-app
+````
+
+Set `WP_URL` with your Wordpress website URL in src/constants/endpoint.constant.ts
+````
+const WP_URL = "https://YOUR-WORDPRESS-SITE.com/";
+````
+Use `ionic serve` to start a local dev server for app testing.
+
+
